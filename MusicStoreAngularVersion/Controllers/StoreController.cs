@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Newtonsoft.Json;
 
 namespace MusicStoreAngularVersion.Controllers
 {
@@ -13,7 +14,7 @@ namespace MusicStoreAngularVersion.Controllers
         // GET api/store
         public IEnumerable<string> Get()
         {
-            return new string[] { "value1", "value2" };
+            return new[] { "value1", "value2" };
         }
 
         // GET api/store/5
@@ -39,18 +40,19 @@ namespace MusicStoreAngularVersion.Controllers
 
         public HttpResponseMessage Get(string genre)
         {
-            var albums = new AlbumManager().GetAlbumsByGenre(genre);
-           //_genre.Albums = new List<Album>();
-            List<AlbumViewModel> albumVM = new List<AlbumViewModel>();
-            Mapper.CreateMap<Album, AlbumViewModel>().ForMember(x => x.ArtistName, m => m.MapFrom(album => album.Artist.Name));
-            Mapper.CreateMap<Album, AlbumViewModel>().ForMember(x => x.GenreName, m => m.MapFrom(album => album.Genre.Name));
+            //var albums = new AlbumManager().GetAlbumsByGenre(genre);
+            //_genre.Albums = new List<Album>();
+            //var albumVm = new List<AlbumViewModel>();
+            //Mapper.CreateMap<Album, AlbumViewModel>().ForMember(x => x.ArtistName, m => m.MapFrom(album => album.Artist.Name));
+            //Mapper.CreateMap<Album, AlbumViewModel>().ForMember(x => x.GenreName, m => m.MapFrom(album => album.Genre.Name));
 
-            foreach (var item in albums)
-            {
-                albumVM.Add(Mapper.DynamicMap<Album, AlbumViewModel>(item));
-            }
+            //foreach (var album in albums)
+            //    albumVm.Add(Mapper.DynamicMap<Album, AlbumViewModel>(album));
 
-           HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, albumVM);
+            var _genre = new GenreManager().GetGenreByName(genre);
+            var json = JsonConvert.SerializeObject(_genre);
+
+           HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, _genre);
            return response;
         }
     }

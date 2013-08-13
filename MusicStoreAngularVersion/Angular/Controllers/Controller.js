@@ -17,12 +17,11 @@ app.controller('HomeController', function ($scope, $location) {
 app.controller('StoreController', function ($scope, $location, $routeParams, storeFactory) {
     $scope.genre = $routeParams.genre;
     $scope.path = $location.path();
-    $scope.error;
 
     init();
 
     function init() {
-        var albums = storeFactory.browseByGenre({ genre: $routeParams.genre });
+        $scope.albums = storeFactory.browseByGenre({ genre: $routeParams.genre });
     }
 
 });
