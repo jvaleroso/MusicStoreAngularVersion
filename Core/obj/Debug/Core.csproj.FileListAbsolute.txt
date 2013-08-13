@@ -1,0 +1,13 @@
+C:\PRACTICE PROJECTS\MusicStoreAngularVersion\Core\bin\Debug\Core.dll
+C:\PRACTICE PROJECTS\MusicStoreAngularVersion\Core\bin\Debug\Core.pdb
+C:\PRACTICE PROJECTS\MusicStoreAngularVersion\Core\bin\Debug\AutoMapper.dll
+C:\PRACTICE PROJECTS\MusicStoreAngularVersion\Core\bin\Debug\AutoMapper.Net4.dll
+C:\PRACTICE PROJECTS\MusicStoreAngularVersion\Core\bin\Debug\FluentNHibernate.dll
+C:\PRACTICE PROJECTS\MusicStoreAngularVersion\Core\bin\Debug\Iesi.Collections.dll
+C:\PRACTICE PROJECTS\MusicStoreAngularVersion\Core\bin\Debug\NHibernate.dll
+C:\PRACTICE PROJECTS\MusicStoreAngularVersion\Core\bin\Debug\AutoMapper.xml
+C:\PRACTICE PROJECTS\MusicStoreAngularVersion\Core\bin\Debug\FluentNHibernate.xml
+C:\PRACTICE PROJECTS\MusicStoreAngularVersion\Core\bin\Debug\Iesi.Collections.xml
+C:\PRACTICE PROJECTS\MusicStoreAngularVersion\Core\bin\Debug\NHibernate.xml
+C:\PRACTICE PROJECTS\MusicStoreAngularVersion\Core\obj\Debug\Core.dll
+C:\PRACTICE PROJECTS\MusicStoreAngularVersion\Core\obj\Debug\Core.pdb
