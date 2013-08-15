@@ -60,11 +60,11 @@ namespace Core.Manager
             Artist artistAlias = null;
             Genre genreAlias = null;
             Album albumAlias = null;
-            OrderDetail odAlias = null;
 
-            var queryOver = QueryOver.Of(() => albumAlias)
-                .JoinAlias(() => albumAlias.Genre, () => genreAlias, JoinType.LeftOuterJoin)
-                .JoinAlias(() => albumAlias.Artist, () => artistAlias, JoinType.LeftOuterJoin);
+
+            var queryOver = QueryOver.Of<Album>()
+                .JoinAlias(album => album.Genre, () => genreAlias, JoinType.LeftOuterJoin)
+                .JoinAlias(album => album.Artist, () => artistAlias, JoinType.LeftOuterJoin);
 
             if (!string.IsNullOrWhiteSpace(genreName))
                 queryOver.And(() => genreAlias.Name == genreName);

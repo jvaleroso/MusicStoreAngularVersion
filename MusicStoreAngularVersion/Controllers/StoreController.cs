@@ -1,10 +1,11 @@
-﻿using AutoMapper;
+﻿using System.Linq;
+using System.Web.Http;
+using AutoMapper;
 using Core.Entity;
 using Core.Manager;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
-using System.Web.Http;
 using Newtonsoft.Json;
 
 namespace MusicStoreAngularVersion.Controllers
@@ -40,20 +41,14 @@ namespace MusicStoreAngularVersion.Controllers
 
         public HttpResponseMessage Get(string genre)
         {
-            //var albums = new AlbumManager().GetAlbumsByGenre(genre);
-            //_genre.Albums = new List<Album>();
-            //var albumVm = new List<AlbumViewModel>();
-            //Mapper.CreateMap<Album, AlbumViewModel>().ForMember(x => x.ArtistName, m => m.MapFrom(album => album.Artist.Name));
-            //Mapper.CreateMap<Album, AlbumViewModel>().ForMember(x => x.GenreName, m => m.MapFrom(album => album.Genre.Name));
+            var albums = new AlbumManager().GetAlbumsByGenre(genre);
 
-            //foreach (var album in albums)
-            //    albumVm.Add(Mapper.DynamicMap<Album, AlbumViewModel>(album));
+            Mapper.CreateMap<Album, AlbumViewModel>().ForMember(x => x.ArtistName, m => m.MapFrom(album => album.Artist.Name));
+            Mapper.CreateMap<Album, AlbumViewModel>().ForMember(x => x.GenreName, m => m.MapFrom(album => album.Genre.Name));
 
-            var _genre = new GenreManager().GetGenreByName(genre);
-            var json = JsonConvert.SerializeObject(_genre);
+            var albumViewModels = albums.Select(Mapper.DynamicMap<Album, AlbumViewModel>).ToList();
 
-           HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK, _genre);
-           return response;
+            return this.Request.CreateResponse(HttpStatusCode.OK, albumViewModels);
         }
     }
 }

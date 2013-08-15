@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Runtime.Serialization;
 
 namespace Core.Entity
 {
-    [KnownType(typeof(Order))]
     public class Order
     {
         public virtual int Id { get; set; }

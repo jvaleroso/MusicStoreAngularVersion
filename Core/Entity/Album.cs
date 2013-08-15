@@ -12,12 +12,6 @@ namespace Core.Entity
         public virtual string AlbumArtURL { get; set; }
         public virtual Artist Artist { get; set; }
         public virtual Genre Genre { get; set; }
-
-
-        public Album() {
-            Artist = new Artist();
-            Genre = new Genre();
-        }
     }
 
     public class AlbumViewModel

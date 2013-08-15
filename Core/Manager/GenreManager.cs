@@ -2,10 +2,7 @@
 using Core.Repository;
 using NHibernate;
 using NHibernate.Criterion;
-using NHibernate.SqlCommand;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Core.Manager
 {
@@ -22,10 +19,9 @@ namespace Core.Manager
 
         public IList GetGenreandAlbums()
         {
-            IList result;
-
             using (var session = NHibernateBase.OpentSession())
             {
+                IList result;
                 using (var tx = session.BeginTransaction())
                 {
                     IQuery query = session.CreateQuery(
@@ -43,17 +39,11 @@ namespace Core.Manager
 
         private QueryOver<Genre, Genre> GetQueryForGenre(string genreName)
         {
-            Genre genreAlias = null;
-            IList<Album> albumAlias = null;
-
-            var query = QueryOver.Of<Genre>(() => genreAlias)
-                .JoinAlias(() => genreAlias.Albums, () => albumAlias, JoinType.InnerJoin);
-
+            var query = QueryOver.Of<Genre>();
             if (!string.IsNullOrWhiteSpace(genreName))
-                query.And(() => genreAlias.Name == genreName);
+                query.And(genre => genre.Name == genreName);
 
             return query;
-
         }
     }
 }
