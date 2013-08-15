@@ -10,7 +10,6 @@ namespace Core.Mapping
             Id(orderDetail => orderDetail.Id).Not.Nullable();
             Map(orderDetail => orderDetail.UnitPrice).Not.Nullable();
             Map(orderDetail => orderDetail.Quantity).Not.Nullable();
-
             References(orderDetail => orderDetail.Album).Not.Nullable();
             References(orderDetail => orderDetail.Order).Not.Nullable();
         }

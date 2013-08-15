@@ -5,9 +5,6 @@ using NHibernate.Criterion;
 using NHibernate.SqlCommand;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Core.Manager
 {
@@ -50,7 +47,7 @@ namespace Core.Manager
         {
             using (var session = NHibernateBase.OpentSession())
             {
-                using (var tx = session.BeginTransaction())
+                using (session.BeginTransaction())
                 {
                     var cartItems = session.QueryOver<Cart>().Where(c => c.CartId == shoppingCartId).List();
 
@@ -75,8 +72,8 @@ namespace Core.Manager
             Cart cartAlias = null;
             Album albumAlias = null;
 
-            var query = QueryOver.Of(() => cartAlias)
-                .JoinAlias(() => cartAlias.Album, () => albumAlias, JoinType.InnerJoin);
+            var query = QueryOver.Of<Cart>()
+                .JoinAlias(cart => cart.Album, () => albumAlias, JoinType.InnerJoin);
 
             if (id != 0)
                 query.And(() => cartAlias.Id == id);
@@ -109,7 +106,7 @@ namespace Core.Manager
                     .SelectList(list => list
                         .SelectSum(c => c.Count))
                         .SingleOrDefault<int>();
-                return count ?? 0;
+                return (int) count;
             }
         }
 
@@ -163,11 +160,11 @@ namespace Core.Manager
             }
         }
 
-        public int CreateOrder(Core.Entity.Order order, string shoppingCartId)
+        public int CreateOrder(Entity.Order order, string shoppingCartId)
         {
             decimal orderTotal = 0;
 
-            var cartItems = this.GetCartItems(shoppingCartId);
+            var cartItems = GetCartItems(shoppingCartId);
 
             foreach (var item in cartItems)
             {

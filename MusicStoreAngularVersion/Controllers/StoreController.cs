@@ -6,7 +6,7 @@ using Core.Manager;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
-using Newtonsoft.Json;
+using MusicStoreAngularVersion.Models;
 
 namespace MusicStoreAngularVersion.Controllers
 {
@@ -48,7 +48,7 @@ namespace MusicStoreAngularVersion.Controllers
 
             var albumViewModels = albums.Select(Mapper.DynamicMap<Album, AlbumViewModel>).ToList();
 
-            return this.Request.CreateResponse(HttpStatusCode.OK, albumViewModels);
+            return Request.CreateResponse(HttpStatusCode.OK, albumViewModels);
         }
     }
 }

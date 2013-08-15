@@ -11,7 +11,6 @@ namespace Core.Mapping
             Map(cart => cart.CartId).Not.Nullable();
             Map(cart => cart.DateCreated).Not.Nullable();
             Map(cart => cart.Count).Not.Nullable();
-
             References(cart => cart.Album);
         }
     }
