@@ -26,8 +26,14 @@ app.controller('StoreController', function ($scope, $location, $routeParams, sto
 
 });
 
-app.controller('GenreController', function ($scope, $location) {
-    $scope.genres = ['Acapella', 'Rock', 'Acoustic', 'Ballad'];
+app.controller('GenreController', function ($scope, $location, $routeParams, genreFactory) {
+    $scope.genres = genreFactory.getGenres();
+    $scope.getClass = function (genre) {
+        if ($routeParams.genre == genre)
+            return true;
+        else
+            return false;
+    }
 });
 
 

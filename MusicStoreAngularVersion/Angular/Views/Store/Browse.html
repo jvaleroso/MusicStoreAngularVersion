@@ -1,15 +1,15 @@
-﻿<div id="genre">
-    <h3><em>{{genre}}</em></h3>
-    <ul ng-repeat="album in albums" id="album-list">
-       <li>
-           <a href="">
-               <!--img alt="{{albumTitle}}" src="{{album.AlbumArtURL}}" /-->
-               <span>{{album.Title}}</span>
-                <span>{{album.Price}}</span>
-                <span>{{album.ArtistName}}</span>
-                <span>{{album.GenreName}}</span>
-               <span>{{error}}</span>
-           </a>
-       </li>
-    </ul>
-</div>
+﻿<ul class="thumbnails">
+    <li ng-repeat="album in albums" class="span3">
+        <div class="thumbnail">
+            <!--img alt="{{albumTitle}}" src="{{album.AlbumArtURL}}" /-->
+            <div class="caption">
+                <h4>{{album.Title}}</h4>
+                <p>Artist: {{album.ArtistName}}</p>
+                <p>Album: {{album.GenreName}}</p>
+                <p>Price: {{album.Price}}</p>
+                <button type="button" class="btn btn-primary">Add to cart</button>
+            </div>
+        </div>
+    </li>
+</ul>
+

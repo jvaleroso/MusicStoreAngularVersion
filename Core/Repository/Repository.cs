@@ -6,31 +6,82 @@ using System.Threading.Tasks;
 
 namespace Core.Repository
 {
-    public class Repository<T>: IRepository<T> where T: class
+    public class Repository<T> : IRepository<T> where T : class
     {
         public void Save(T entity)
         {
-            throw new NotImplementedException();
+            using (var session = NHibernateBase.OpentSession())
+            {
+                using (var tx = session.BeginTransaction())
+                {
+                    try
+                    {
+                        session.Save(entity);
+                    }
+                    catch
+                    {
+                        tx.Rollback();
+                    }
+
+                    tx.Commit();
+                }
+            }
         }
 
         public void Update(T entity)
         {
-            throw new NotImplementedException();
+            using (var session = NHibernateBase.OpentSession())
+            {
+                using (var tx = session.BeginTransaction())
+                {
+                    try
+                    {
+                        session.Update(entity);
+                    }
+                    catch
+                    {
+                        tx.Rollback();
+                    }
+
+                    tx.Commit();
+                }
+            }
         }
 
         public void Delete(T entity)
         {
-            throw new NotImplementedException();
+            using (var session = NHibernateBase.OpentSession())
+            {
+                using (var tx = session.BeginTransaction())
+                {
+                    try
+                    {
+                        session.Delete(entity);
+                    }
+                    catch
+                    {
+                        tx.Rollback();
+                    }
+
+                    tx.Commit();
+                }
+            }
         }
 
         public IList<T> GetList()
         {
-            throw new NotImplementedException();
+            using (var session = NHibernateBase.OpentSession())
+            {
+                return session.QueryOver<T>().List();
+            }
         }
 
         public T GetById(int id)
         {
-            throw new NotImplementedException();
+            using (var session = NHibernateBase.OpentSession())
+            {
+                return session.Get<T>(id);
+            }
         }
     }
 }

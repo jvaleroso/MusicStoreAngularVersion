@@ -8,3 +8,10 @@ app.factory('storeFactory', function ($resource) {
     });
 
 });
+
+app.factory('genreFactory', function ($resource) {
+    var url = 'Api/Genre/';
+    return $resource(url, {}, {
+        getGenres: { method: 'GET', params: {}, isArray: true }
+    });
+});

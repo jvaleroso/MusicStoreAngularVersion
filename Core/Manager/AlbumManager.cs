@@ -49,7 +49,7 @@ namespace Core.Manager
         //        .Desc.Take(5);
 
         //    using (var session = NHibernateBase.OpentSession())
-        //    {
+        //    {a
         //        return queryOver.GetExecutableQueryOver(session).List();
         //    }
         //}

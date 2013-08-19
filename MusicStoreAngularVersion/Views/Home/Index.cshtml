@@ -1,48 +1,53 @@
 ﻿<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" ng-app="core">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" ng-app="core">
 <head>
     <title></title>
-    <link href="~/Content/bootstrap/bootstrap.min.css" rel="stylesheet" />
-    <style type="text/css">
-
-        .animate-enter {
-            -webkit-transition: 1s linear all; /* Safari/Chrome */
-            -moz-transition: 1s linear all; /* Firefox */
-            -ms-transition: 1s linear all; /* IE10 */
-            -o-transition: 1s linear all; /* Opera */
-            transition: 1s linear all; /* Future Browsers */
-            opacity: 0;
-        }
-
-        .animate-enter.animate-enter-active {
-
-                opacity: 1;
-            }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" />
+    <link href="~/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/Content.css" rel="stylesheet" media="screen" />
 </head>
 <body>
-    <div class="container">
-        <div class="navbar">
-            <ul class="nav nav-pills" ng-controller="NavbarController">
-                <li ng-class="{'active': getClass('/Home')}"><a href="#/Home">Home</a></li>
-                <li ng-class="{'active': getClass('/Store')}"><a href="#/Store">Store</a></li>
-                <li ng-class="{'active': getClass('/Cart')}"><a href="#/Cart">Cart</a></li>
-            </ul>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <a href="#" class="brand">Music Store</a>
+                <ul class="nav" ng-controller="NavbarController">
+                    <li ng-class="{'active': getClass('/Home')}"><a href="#/Home">Home</a></li>
+                    <li ng-class="{'active': getClass('/Store')}"><a href="#/Store">Store</a></li>
+                    <li ng-class="{'active': getClass('/Cart')}"><a href="#/Cart">Cart</a></li>
+                </ul>
+            </div>
         </div>
-        <div ng-controller="GenreController" style="float: left; width: 200px;">
-            <ul ng-repeat="genre in genres" >
-                <li><a href="#/Store/Browse?genre={{genre}}">{{genre}}</a></li>
-            </ul>
+    </div>
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span3">
+                <div ng-controller="GenreController" class="well sidebar-nav">
+                    <ul class="nav nav-list">
+                        <li class="nav-header">Genre</li>
+                        <li ng-repeat="genre in genres" ng-class="{'active': getClass('{{genre.Name}}')}">
+                            <a href="#/Store/Browse?genre={{genre.Name}}">
+                                {{genre.Name}}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="span9">
+                <div ng-view ng-animate="'animate'" />
+            </div>
         </div>
-        <div ng-view="" ng-animate="'animate'" style="float: right; width: 970px;"/>
     </div>
 </body>
 </html>
 
+<script src="~/Scripts/jquery-2.0.3.js"></script>
+<script src="~/bootstrap/js/bootstrap.min.js"></script>
 <script src="~/Scripts/angular.min.js"></script>
 <script src="~/Scripts/angular-resource.min.js"></script>
 <script src="~/Angular/core.js"></script>
 <script src="~/Angular/Controllers/Controller.js"></script>
 <script src="~/Angular/Factory/StoreFactory.js"></script>
-<script src="~/Scripts/bootstrap.min.js"></script>
-<script src="~/Scripts/jquery-1.9.1.min.js"></script>
+
+
