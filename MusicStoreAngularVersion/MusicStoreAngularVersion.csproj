@@ -148,7 +148,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
@@ -178,9 +177,10 @@
   <ItemGroup>
     <Content Include="Angular\Controllers\Controller.js" />
     <Content Include="Angular\core.js" />
-    <Content Include="Angular\Factory\StoreFactory.js" />
-    <Content Include="Angular\Views\Home\Home.html" />
-    <Content Include="Angular\Views\Store\Browse.html" />
+    <Content Include="Angular\Factories\StoreFactory.js" />
+    <Content Include="Angular\Partials\Home.html" />
+    <Content Include="Angular\Partials\LogOn\LogOn.html" />
+    <Content Include="Angular\Partials\Store\Browse.html" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="bootstrap\css\bootstrap-responsive.css" />
     <Content Include="bootstrap\css\bootstrap-responsive.min.css" />
@@ -255,11 +255,10 @@
     <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
-    <Content Include="Angular\Views\Cart\Cart.html" />
+    <Content Include="Angular\Partials\Cart\Cart.html" />
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
     <Content Include="Scripts\jquery-2.0.3.js" />
     <Content Include="Scripts\jquery-2.0.3.min.js" />
-    <Content Include="Views\favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
     <Content Include="Areas\HelpPage\Views\Shared\_Layout.cshtml" />
@@ -589,8 +588,7 @@
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <None Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\Home.html" />
-    <Content Include="Angular\Views\Store\Store.html" />
+    <Content Include="Angular\Partials\Store\Store.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -614,6 +612,7 @@
     <Content Include="Images\orderedList8.png" />
     <Content Include="Images\orderedList9.png" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -643,7 +642,7 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerPort>8211</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:17846/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

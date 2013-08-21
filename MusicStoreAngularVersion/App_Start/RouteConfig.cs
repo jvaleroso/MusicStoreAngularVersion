@@ -18,12 +18,6 @@ namespace MusicStoreAngularVersion
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
-
-            routes.MapRoute(
-                name: "Store",
-                url: "Store/{action}/{id}",
-                defaults: new { controller = "Store", action = "Browse", genre = UrlParameter.Optional }
-            );
         }
     }
 }

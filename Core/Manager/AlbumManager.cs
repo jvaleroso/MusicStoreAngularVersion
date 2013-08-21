@@ -1,4 +1,5 @@
 ﻿using Core.Entity;
+using Core.Properties;
 using Core.Repository;
 using NHibernate.Criterion;
 using NHibernate.SqlCommand;
@@ -36,6 +37,18 @@ namespace Core.Manager
             }
         }
 
+        public IList<Album> GetNewestAlbums()
+        {
+            using (var session = NHibernateBase.OpentSession())
+            {
+                var queryOver = GetQueryOverByArtistOrGenre();
+                return queryOver.OrderBy(album => album.DateCreated).Asc()
+                     .Take(Settings.Default.AlbumCount)
+                     .GetExecutableQueryOver(session)
+                     .List();
+            }
+        }
+
 
         //public IList<Album> GetTopSellingAlbums(int count)
         //{
@@ -63,9 +76,9 @@ namespace Core.Manager
 
 
             var queryOver = QueryOver.Of<Album>()
-                .JoinAlias(album => album.Genre, () => genreAlias, JoinType.LeftOuterJoin)
-                .JoinAlias(album => album.Artist, () => artistAlias, JoinType.LeftOuterJoin);
-
+                .JoinAlias(album => album.Artist, () => artistAlias, JoinType.LeftOuterJoin)
+                .JoinAlias(album => album.Genre, () => genreAlias, JoinType.LeftOuterJoin);
+                
             if (!string.IsNullOrWhiteSpace(genreName))
                 queryOver.And(() => genreAlias.Name == genreName);
 

@@ -11,6 +11,7 @@ namespace Core.Mapping
             Map(album => album.Title).Not.Nullable();
             Map(album => album.Price).CustomSqlType("numeric(28,9)").Not.Nullable();
             Map(album => album.AlbumArtURL).Not.Nullable();
+            Map(album => album.DateCreated).Not.Nullable();
             References(album => album.Artist);
             References(album => album.Genre);
         }

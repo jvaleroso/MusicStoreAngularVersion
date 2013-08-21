@@ -8,22 +8,26 @@ app.config(function ($routeProvider) {
         .when('/Home',
         {
             controller: 'HomeController',
-            templateUrl: 'Angular/Views/Home/Home.html'
+            templateUrl: 'Angular/Partials/Home.html'
         })
         .when('/Store',
         {
             controller: 'StoreController',
-            templateUrl: 'Angular/Views/Store/Store.html'
+            templateUrl: 'Angular/Partials/Store/Store.html'
         })
         .when('/Store/Browse',
         {
             controller: 'StoreController',
-            templateUrl: 'Angular/Views/Store/Browse.html'
+            templateUrl: 'Angular/Partials/Store/Browse.html'
         })
         .when('/Cart',
         {
             controller: 'CartController',
-            templateUrl: 'Angular/Views/Cart/Cart.html'
+            templateUrl: 'Angular/Partials/Cart/Cart.html'
+        })
+        .when('/LogOn', {
+            controller: 'LogOnController',
+            templateUrl: 'Angular/Partials/LogOn/LogOn.html'
         })
         .otherwise({ redirectTo: '/Home' });
 });

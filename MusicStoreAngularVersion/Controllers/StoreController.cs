@@ -12,10 +12,12 @@ namespace MusicStoreAngularVersion.Controllers
 {
     public class StoreController : ApiController
     {
-        // GET api/store
-        public IEnumerable<string> Get()
+         //GET api/store
+        public HttpResponseMessage Get()
         {
-            return new[] { "value1", "value2" };
+            var albums = new AlbumManager().GetNewestAlbums();
+            var albumViewModels = MapAlbums(albums);
+            return Request.CreateResponse(HttpStatusCode.OK, albumViewModels);
         }
 
         // GET api/store/5
@@ -42,13 +44,18 @@ namespace MusicStoreAngularVersion.Controllers
         public HttpResponseMessage Get(string genre)
         {
             var albums = new AlbumManager().GetAlbumsByGenre(genre);
-
-            Mapper.CreateMap<Album, AlbumViewModel>().ForMember(x => x.ArtistName, m => m.MapFrom(album => album.Artist.Name));
-            Mapper.CreateMap<Album, AlbumViewModel>().ForMember(x => x.GenreName, m => m.MapFrom(album => album.Genre.Name));
-
-            var albumViewModels = albums.Select(Mapper.DynamicMap<Album, AlbumViewModel>).ToList();
-
+            var albumViewModels = MapAlbums(albums);
             return Request.CreateResponse(HttpStatusCode.OK, albumViewModels);
+        }
+
+
+        private IList<AlbumViewModel> MapAlbums(IList<Album> albums)
+        {
+            Mapper.CreateMap<Album, AlbumViewModel>()
+                .ForMember(x => x.ArtistName, m => m.MapFrom(album => album.Artist.Name))
+                .ForMember(x => x.GenreName, m => m.MapFrom(album => album.Genre.Name));
+
+            return albums.Select(Mapper.DynamicMap<Album, AlbumViewModel>).ToList();
         }
     }
 }

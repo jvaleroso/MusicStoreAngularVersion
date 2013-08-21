@@ -2,6 +2,7 @@
 
 
 app.controller('NavbarController', function ($scope, $location) {
+    
     $scope.getClass = function (path) {
         if ($location.path().substr(0, path.length) === path)
             return true;
@@ -18,13 +19,17 @@ app.controller('StoreController', function ($scope, $location, $routeParams, sto
     $scope.genre = $routeParams.genre;
     $scope.path = $location.path();
 
-    init();
+    initialize();
 
-    function init() {
-        $scope.albums = storeFactory.browseByGenre({ genre: $routeParams.genre });
+    function initialize() {
+        if ($routeParams.genre != undefined)
+            $scope.albums = storeFactory.browseByGenre({ genre: $routeParams.genre });
+        else
+            $scope.albums = storeFactory.getNewestAlbums();
     }
 
 });
+
 
 app.controller('GenreController', function ($scope, $location, $routeParams, genreFactory) {
     $scope.genres = genreFactory.getGenres();

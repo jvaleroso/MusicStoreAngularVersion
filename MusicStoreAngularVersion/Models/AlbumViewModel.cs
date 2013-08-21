@@ -1,12 +1,13 @@
-﻿namespace MusicStoreAngularVersion.Models
+﻿using System;
+namespace MusicStoreAngularVersion.Models
 {
     public class AlbumViewModel
     {
-        public virtual int Id { get; set; }
-        public virtual string Title { get; set; }
-        public virtual decimal Price { get; set; }
-        public virtual string AlbumArtURL { get; set; }
-        public virtual string ArtistName { get; set; }
-        public virtual string GenreName { get; set; }
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public decimal Price { get; set; }
+        public string AlbumArtURL { get; set; }
+        public string ArtistName { get; set; }
+        public string GenreName { get; set; }
     }
 }
