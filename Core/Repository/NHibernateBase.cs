@@ -2,6 +2,7 @@
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using NHibernate;
+using NHibernate.Dialect;
 using NHibernate.Tool.hbm2ddl;
 
 namespace Core.Repository
@@ -25,7 +26,7 @@ namespace Core.Repository
         {
 
             _session = Fluently.Configure()
-                .Database(MsSqlConfiguration.MsSql2008
+                .Database(MsSqlConfiguration.MsSql2005.Dialect<MsSql2012Dialect>()
                 .ConnectionString("Data Source=localhost;Initial Catalog=music_store;Integrated Security=True")
                 .ShowSql())
                 .Mappings(m => m.FluentMappings.AddFromAssemblyOf<Album>())

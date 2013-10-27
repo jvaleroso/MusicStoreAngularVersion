@@ -149,3 +149,4 @@ C:\PRACTICE PROJECTS\MusicStoreAngularVersion\MusicStoreAngularVersion\bin\zh-Ha
 C:\PRACTICE PROJECTS\MusicStoreAngularVersion\MusicStoreAngularVersion\obj\Debug\MusicStoreAngularVersion.csprojResolveAssemblyReference.cache
 C:\PRACTICE PROJECTS\MusicStoreAngularVersion\MusicStoreAngularVersion\obj\Debug\MusicStoreAngularVersion.dll
 C:\PRACTICE PROJECTS\MusicStoreAngularVersion\MusicStoreAngularVersion\obj\Debug\MusicStoreAngularVersion.pdb
+C:\PRACTICE PROJECTS\MusicStoreAngularVersion\MusicStoreAngularVersion\bin\MusicStoreAngularVersion.dll.config
