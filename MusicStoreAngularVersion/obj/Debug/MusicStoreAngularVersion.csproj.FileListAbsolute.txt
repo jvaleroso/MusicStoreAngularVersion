@@ -79,6 +79,7 @@ C:\Users\jvaleroso\Documents\MusicStoreAngularVersion\MusicStoreAngularVersion\b
 C:\Users\jvaleroso\Documents\MusicStoreAngularVersion\MusicStoreAngularVersion\obj\Debug\MusicStoreAngularVersion.csprojResolveAssemblyReference.cache
 C:\Users\jvaleroso\Documents\MusicStoreAngularVersion\MusicStoreAngularVersion\obj\Debug\MusicStoreAngularVersion.dll
 C:\Users\jvaleroso\Documents\MusicStoreAngularVersion\MusicStoreAngularVersion\obj\Debug\MusicStoreAngularVersion.pdb
+C:\PRACTICE PROJECTS\MusicStoreAngularVersion\MusicStoreAngularVersion\bin\MusicStoreAngularVersion.dll.config
 C:\PRACTICE PROJECTS\MusicStoreAngularVersion\MusicStoreAngularVersion\bin\MusicStoreAngularVersion.dll
 C:\PRACTICE PROJECTS\MusicStoreAngularVersion\MusicStoreAngularVersion\bin\MusicStoreAngularVersion.pdb
 C:\PRACTICE PROJECTS\MusicStoreAngularVersion\MusicStoreAngularVersion\bin\Antlr3.Runtime.dll

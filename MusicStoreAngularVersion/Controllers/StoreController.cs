@@ -49,7 +49,7 @@ namespace MusicStoreAngularVersion.Controllers
         }
 
 
-        private IList<AlbumViewModel> MapAlbums(IList<Album> albums)
+        private IList<AlbumViewModel> MapAlbums(IEnumerable<Album> albums)
         {
             Mapper.CreateMap<Album, AlbumViewModel>()
                 .ForMember(x => x.ArtistName, m => m.MapFrom(album => album.Artist.Name))
