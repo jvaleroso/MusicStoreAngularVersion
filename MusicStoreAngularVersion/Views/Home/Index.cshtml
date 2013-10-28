@@ -3,20 +3,39 @@
 <head>
     <title></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="~/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" />
-    <link href="~/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="~/Content/Content.css" rel="stylesheet" media="screen" />
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/css/bootstrap-responsive.min.css" rel="stylesheet" />
+    <style type="text/css">
+        body {
+            padding-top: 60px;
+            padding-bottom: 40px;
+        }
+
+        .sidebar-nav {
+            padding: 9px 0;
+        }
+
+
+        .navbar-text.pull-right {
+            float: none;
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+    </style>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="navbar-inner">
             <div class="container-fluid">
                 <a href="#" class="brand">Music Store</a>
-                <ul class="nav" ng-controller="NavbarController">
-                    <li ng-class="{'active': getClass('/Home')}"><a href="#/Home">Home</a></li>
-                    <li ng-class="{'active': getClass('/Store')}"><a href="#/Store">Store</a></li>
-                    <li ng-class="{'active': getClass('/Cart')}"><a href="#/Cart">Cart</a></li>
-                </ul>
+                <div class="nav-collapse collapse">
+                    <ul class="nav" ng-controller="NavbarController">
+                        <li ng-class="{'active': getClass('/Home')}"><a href="#/Home">Home</a></li>
+                        <li ng-class="{'active': getClass('/Store')}"><a href="#/Store">Store</a></li>
+                        <li ng-class="{'active': getClass('/Cart')}"><a href="#/Cart">Cart</a></li>
+
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
@@ -42,8 +61,8 @@
 </body>
 </html>
 
-<script src="~/Scripts/jquery-2.0.3.js"></script>
-<script src="~/bootstrap/js/bootstrap.min.js"></script>
+<script src="~/Scripts/jquery-2.0.3.min.js"></script>
+<script src="~/Content/js/bootstrap.min.js"></script>
 <script src="~/Scripts/angular.min.js"></script>
 <script src="~/Scripts/angular-resource.min.js"></script>
 <script src="~/Angular/core.js"></script>

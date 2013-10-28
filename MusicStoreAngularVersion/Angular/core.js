@@ -29,6 +29,10 @@ app.config(function ($routeProvider) {
             controller: 'LogOnController',
             templateUrl: 'Angular/Partials/LogOn/LogOn.html'
         })
+        .when('/Admin', {
+            controller: 'AdminController',
+            templateUrl: 'Angular/Partials/Admin/Admin.html'
+        })
         .otherwise({ redirectTo: '/Home' });
 });
 
