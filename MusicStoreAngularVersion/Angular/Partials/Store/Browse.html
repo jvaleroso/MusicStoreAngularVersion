@@ -1,0 +1,17 @@
+﻿<div class="row-fluid">
+    <ul class="thumbnails">
+        <li class="span3" ng-repeat="album in albums">
+            <div class="thumbnail">
+                <div class="caption">
+                    <h5>{{album.Title}}</h5>
+                    <p>Price: {{album.Price}}</p>
+                    <p>Artist: {{album.ArtistName}}</p>
+                    <p>Genre: {{album.GenreName}}</p>
+                    <p>
+                        <a href="#" class="btn btn-primary">Buy</a>
+                    </p>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
