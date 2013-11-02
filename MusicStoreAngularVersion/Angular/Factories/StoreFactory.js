@@ -18,3 +18,9 @@ app.factory('genreFactory', function ($resource) {
         });
 
 });
+
+app.factory('storeManagerFactory', function($resource) {
+
+    var url = 'Api/StoreManager/';
+    return $resource(url, {}, { getAllAlbums: { method: 'GET', isArray: true } });
+});

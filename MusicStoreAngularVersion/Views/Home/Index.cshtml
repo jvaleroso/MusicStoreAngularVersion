@@ -21,6 +21,16 @@
             padding-left: 5px;
             padding-right: 5px;
         }
+
+        .animate-enter {
+            -webkit-transition: 1s linear all; /* Chrome */
+            transition: 1s linear all;
+            opacity: 0;
+        }
+
+            .animate-enter.animate-enter-active {
+                opacity: 1;
+            }
     </style>
 </head>
 <body>
@@ -33,7 +43,7 @@
                         <li ng-class="{'active': getClass('/Home')}"><a href="#/Home">Home</a></li>
                         <li ng-class="{'active': getClass('/Store')}"><a href="#/Store">Store</a></li>
                         <li ng-class="{'active': getClass('/Cart')}"><a href="#/Cart">Cart</a></li>
-
+                        <li ng-class="{'active': getClass('/Admin')}"><a href="#/Admin">Admin</a></li>
                     </ul>
                 </div>
             </div>
@@ -54,7 +64,7 @@
                 </div>
             </div>
             <div class="span9">
-                <div ng-view ng-animate="'animate'" />
+                <div ng-view ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}" />
             </div>
         </div>
     </div>

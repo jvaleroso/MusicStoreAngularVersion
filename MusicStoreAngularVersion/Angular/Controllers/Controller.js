@@ -47,3 +47,7 @@ app.controller('AdminController', function($scope, $location, $routeParams) {
 });
 
 
+app.controller('StoreManagerController', function($scope, $location, $routeParams, storeManagerFactory) {
+    $scope.albums = storeManagerFactory.getAllAlbums();
+});
+

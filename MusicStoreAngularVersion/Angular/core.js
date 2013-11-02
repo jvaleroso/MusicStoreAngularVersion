@@ -6,25 +6,25 @@ var app = angular.module('core', ['ngResource']);
 app.config(function ($routeProvider) {
     $routeProvider
         .when('/Home',
-        {
-            controller: 'HomeController',
-            templateUrl: 'Angular/Partials/Home.html'
-        })
+            {
+                controller: 'HomeController',
+                templateUrl: 'Angular/Partials/Home.html'
+            })
         .when('/Store',
-        {
-            controller: 'StoreController',
-            templateUrl: 'Angular/Partials/Store/Store.html'
-        })
+            {
+                controller: 'StoreController',
+                templateUrl: 'Angular/Partials/Store/Store.html'
+            })
         .when('/Store/Browse',
-        {
-            controller: 'StoreController',
-            templateUrl: 'Angular/Partials/Store/Browse.html'
-        })
+            {
+                controller: 'StoreController',
+                templateUrl: 'Angular/Partials/Store/Browse.html'
+            })
         .when('/Cart',
-        {
-            controller: 'CartController',
-            templateUrl: 'Angular/Partials/Cart/Cart.html'
-        })
+            {
+                controller: 'CartController',
+                templateUrl: 'Angular/Partials/Cart/Cart.html'
+            })
         .when('/LogOn', {
             controller: 'LogOnController',
             templateUrl: 'Angular/Partials/LogOn/LogOn.html'
@@ -32,6 +32,10 @@ app.config(function ($routeProvider) {
         .when('/Admin', {
             controller: 'AdminController',
             templateUrl: 'Angular/Partials/Admin/Admin.html'
+        })
+        .when('/StoreManager', {
+            controller: 'StoreManagerController',
+            templateUrl: 'Angular/Partials/Store/StoreManager.html'
         })
         .otherwise({ redirectTo: '/Home' });
 });

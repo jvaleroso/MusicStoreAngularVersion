@@ -1,0 +1,18 @@
+﻿<h2>Store Manager</h2>
+<a href="#">Create New</a>
+<table class="table table-bordered">
+    <tr>
+        <th>Genre</th>
+        <th>Artist</th>
+        <th>Title</th>
+        <th>Price</th>
+        <th></th>
+    </tr>
+    <tr ng-repeat="album in albums">
+        <td>{{album.GenreName}}</td>
+        <td>{{album.ArtistName}}</td>
+        <td>{{album.Title}}</td>
+        <td>{{album.Price}}</td>
+        <td><a href="#">Edit</a> | <a href="#">Detals</a> | <a href="#">Delete</a></td>
+    </tr>
+</table>
