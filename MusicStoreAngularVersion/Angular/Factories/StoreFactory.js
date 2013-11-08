@@ -19,8 +19,15 @@ app.factory('genreFactory', function ($resource) {
 
 });
 
-app.factory('storeManagerFactory', function($resource) {
+app.factory('storeManagerFactory', function ($resource) {
 
-    var url = 'Api/StoreManager/';
-    return $resource(url, {}, { getAllAlbums: { method: 'GET', isArray: true } });
+    var storeManagerURL = 'Api/StoreManager/';
+    var genreURL = 'Api/Genre/';
+    var artistURL = 'Api/Artist/';
+
+    return {
+        albums: $resource(storeManagerURL, {}, { query: { method: 'GET', isArray: true } }),
+        genres: $resource(genreURL, {}, { query: { method: 'GET', isArray: true } }),
+        artists: $resource(artistURL, {}, { query: { method: 'GET', isArray: true } })
+    };
 });

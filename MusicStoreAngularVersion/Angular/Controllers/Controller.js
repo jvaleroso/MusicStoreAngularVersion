@@ -48,6 +48,8 @@ app.controller('AdminController', function($scope, $location, $routeParams) {
 
 
 app.controller('StoreManagerController', function($scope, $location, $routeParams, storeManagerFactory) {
-    $scope.albums = storeManagerFactory.getAllAlbums();
+    $scope.albums = storeManagerFactory.albums.query();
+    $scope.genres = storeManagerFactory.genres.query();
+    $scope.artists = storeManagerFactory.artists.query();
 });
 

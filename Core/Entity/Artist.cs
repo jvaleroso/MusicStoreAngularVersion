@@ -6,11 +6,5 @@ namespace Core.Entity
     {
         public virtual int Id { get; set; }
         public virtual string Name { get; set; }
-        public virtual IList<Album> Albums { get; set; }
-
-        public Artist()
-        {
-            Albums = new List<Album>();
-        }
     }
 }

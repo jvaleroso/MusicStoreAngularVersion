@@ -37,6 +37,10 @@ app.config(function ($routeProvider) {
             controller: 'StoreManagerController',
             templateUrl: 'Angular/Partials/Store/StoreManager.html'
         })
+           .when('/createModal', {
+               controller: 'StoreManagerController',
+               templateUrl: 'Angular/Partials/Store/StoreManager.html'
+           })
         .otherwise({ redirectTo: '/Home' });
 });
 
