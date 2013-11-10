@@ -51,5 +51,17 @@ app.controller('StoreManagerController', function($scope, $location, $routeParam
     $scope.albums = storeManagerFactory.albums.query();
     $scope.genres = storeManagerFactory.genres.query();
     $scope.artists = storeManagerFactory.artists.query();
+    
+    $scope.saveAlbum = function(newAlbum) {
+        storeManagerFactory.saveAlbum.save(newAlbum);
+    };
+
+    $scope.newAlbum = {
+        albumName: $scope.AlbumeName,
+        albumPrice: $scope.AlbumPrice,
+        albumURL: $scope.albumURL,
+        albumGenre: $scope.GenreId,
+        albumArtist: $scope.ArtistId
+    };
 });
 

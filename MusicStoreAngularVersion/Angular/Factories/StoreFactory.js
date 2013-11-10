@@ -24,10 +24,13 @@ app.factory('storeManagerFactory', function ($resource) {
     var storeManagerURL = 'Api/StoreManager/';
     var genreURL = 'Api/Genre/';
     var artistURL = 'Api/Artist/';
+    var alnumURL = 'Api/Album/';
+
 
     return {
         albums: $resource(storeManagerURL, {}, { query: { method: 'GET', isArray: true } }),
         genres: $resource(genreURL, {}, { query: { method: 'GET', isArray: true } }),
-        artists: $resource(artistURL, {}, { query: { method: 'GET', isArray: true } })
+        artists: $resource(artistURL, {}, { query: { method: 'GET', isArray: true } }),
+        saveAlbum: $resource(alnumURL, {}, {save: {method: 'POST'} })
     };
 });

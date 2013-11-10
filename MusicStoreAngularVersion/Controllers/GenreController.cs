@@ -12,8 +12,8 @@ namespace MusicStoreAngularVersion.Controllers
     {
         public HttpResponseMessage Get()
         {
-            var genre = new GenreManager().GetList();
-            return Request.CreateResponse(HttpStatusCode.OK, genre);
+            var genres = new GenreManager().GetList();
+            return Request.CreateResponse(HttpStatusCode.OK, genres.OrderBy(genre => genre.Name));
         }
     }
 }

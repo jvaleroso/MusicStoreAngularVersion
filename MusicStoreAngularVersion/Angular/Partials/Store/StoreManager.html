@@ -10,25 +10,25 @@
         <form>
             <fieldset>
                 <label>Title</label>
-                <input type="text" placeholder="Album name" />
+                <input type="text" placeholder="Album name" ng-model="newAlbum.albumName" />
                 <label>Price</label>
-                <input type="text" placeholder="Album price" />
+                <input type="text" placeholder="Album price" ng-model="newAlbum.albumPrice" />
                 <label>Album URL</label>
-                <input type="text" placeholder="Album URL" />
+                <input type="text" placeholder="Album URL" ng-model="newAlbum.albumURL" />
                 <label>Artist</label>
-                <select>
-                    <option ng-repeat="artist in artists" value="{{artist.Id}}">{{artist.Name}}</option>
+                <select ng-options="artist.artistId as artist.Name for artist in artists">
+                    <!--option ng-repeat="artist in artists" value="{{artist.Id}}" ng-model="newAlbum.artistId">{{artist.Name}}</!--option-->
                 </select>
                 <label>Genre</label>
                 <select>
-                    <option ng-repeat="genre in genres" value="{{genre.Id}}">{{genre.Name}}</option>
+                    <option ng-model="newAlbum.albumGenre" ng-repeat="genre in genres" value="{{genre.Id}}">{{genre.Name}}</option>
                 </select>
             </fieldset>
         </form>
     </div>
     <div class="modal-footer">
         <button class="btn" data-dismiss="modal" aria-hidden="True">Close</button>
-        <button class="btn btn-primary">Save</button>
+        <button class="btn btn-primary" ng-click="saveAlbum(newAlbum)">Save</button>
     </div>
 </div>
 
