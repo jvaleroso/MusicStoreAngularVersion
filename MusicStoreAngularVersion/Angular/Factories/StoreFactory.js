@@ -1,11 +1,11 @@
 ﻿/// <reference path="../core.js" />
 app.factory('storeFactory', function ($resource) {
-    var url = 'Api/Store/';
+    var url = 'Api/Album/';
 
     return $resource(url, {},
         {
             browseByGenre: { method: 'GET', params: { genre: '' }, isArray: true },
-            getNewestAlbum: { method: 'GET', isArray: true }
+            getNewestAlbums: { method: 'GET', isArray: true }
         });
 });
 
@@ -21,16 +21,15 @@ app.factory('genreFactory', function ($resource) {
 
 app.factory('storeManagerFactory', function ($resource) {
 
-    var storeManagerURL = 'Api/StoreManager/';
     var genreURL = 'Api/Genre/';
     var artistURL = 'Api/Artist/';
-    var alnumURL = 'Api/Album/';
-
+    var albumURL = 'Api/Album/';
 
     return {
-        albums: $resource(storeManagerURL, {}, { query: { method: 'GET', isArray: true } }),
+        albums: $resource(albumURL, {}, { query: { method: 'GET', isArray: true } }),
         genres: $resource(genreURL, {}, { query: { method: 'GET', isArray: true } }),
         artists: $resource(artistURL, {}, { query: { method: 'GET', isArray: true } }),
-        saveAlbum: $resource(alnumURL, {}, {save: {method: 'POST'} })
+        album: $resource(albumURL, {}, { save: { method: 'POST' } })
     };
 });
+

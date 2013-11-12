@@ -1,6 +1,5 @@
 ﻿<h2>Store Manager</h2>
 <a href="#StoreManager" role="button" class="btn" data-toggle="modal">Create New</a>
-
 <div id="StoreManager" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="createModalLabel" aria-hidden="true">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="True">x</button>
@@ -10,42 +9,41 @@
         <form>
             <fieldset>
                 <label>Title</label>
-                <input type="text" placeholder="Album name" ng-model="newAlbum.albumName" />
+                <input type="text" placeholder="Album name" ng-model="album.title" />
                 <label>Price</label>
-                <input type="text" placeholder="Album price" ng-model="newAlbum.albumPrice" />
+                <input type="text" placeholder="Album price" ng-model="album.price" />
                 <label>Album URL</label>
-                <input type="text" placeholder="Album URL" ng-model="newAlbum.albumURL" />
+                <input type="text" placeholder="Album URL" ng-model="album.albumArtURL" />
                 <label>Artist</label>
-                <select ng-options="artist.artistId as artist.Name for artist in artists">
-                    <!--option ng-repeat="artist in artists" value="{{artist.Id}}" ng-model="newAlbum.artistId">{{artist.Name}}</!--option-->
+                <select ng-model="album.artist" ng-options="a.Name for a in artists">
+                    <option value="">--Choose Artist--</option>
                 </select>
                 <label>Genre</label>
-                <select>
-                    <option ng-model="newAlbum.albumGenre" ng-repeat="genre in genres" value="{{genre.Id}}">{{genre.Name}}</option>
+                <select ng-model="album.genre" ng-options="g.Name for g in genres">
+                    <option value="">--Choose Genre--</option>
                 </select>
             </fieldset>
         </form>
     </div>
     <div class="modal-footer">
         <button class="btn" data-dismiss="modal" aria-hidden="True">Close</button>
-        <button class="btn btn-primary" ng-click="saveAlbum(newAlbum)">Save</button>
+        <button class="btn btn-primary" ng-click="save(album)" data-dismiss="modal" aria-hidden="True">Save</button>
     </div>
 </div>
 
-
 <table class="table table-bordered">
     <tr>
-        <th>Genre</th>
-        <th>Artist</th>
         <th>Title</th>
         <th>Price</th>
+        <th>Genre</th>
+        <th>Artist</th>
         <th></th>
     </tr>
     <tr ng-repeat="album in albums">
-        <td>{{album.GenreName}}</td>
-        <td>{{album.ArtistName}}</td>
         <td>{{album.Title}}</td>
         <td>{{album.Price}}</td>
+        <td>{{album.GenreName}}</td>
+        <td>{{album.ArtistName}}</td>
         <td><a href="#">Edit</a> | <a href="#">Detals</a> | <a href="#">Delete</a></td>
     </tr>
 </table>

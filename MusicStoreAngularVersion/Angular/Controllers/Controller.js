@@ -47,21 +47,27 @@ app.controller('AdminController', function($scope, $location, $routeParams) {
 });
 
 
-app.controller('StoreManagerController', function($scope, $location, $routeParams, storeManagerFactory) {
+app.controller('StoreManagerController', function ($scope, $location, $routeParams, storeManagerFactory) {
     $scope.albums = storeManagerFactory.albums.query();
     $scope.genres = storeManagerFactory.genres.query();
     $scope.artists = storeManagerFactory.artists.query();
-    
-    $scope.saveAlbum = function(newAlbum) {
-        storeManagerFactory.saveAlbum.save(newAlbum);
+    $scope.artist = [];
+    $scope.genre = [];
+    $scope.album = {
+        title: "",
+        price: "",
+        albumArtURL: "",
+        dateCreated: new Date(),
+        genre: [],
+        album: []
     };
 
-    $scope.newAlbum = {
-        albumName: $scope.AlbumeName,
-        albumPrice: $scope.AlbumPrice,
-        albumURL: $scope.albumURL,
-        albumGenre: $scope.GenreId,
-        albumArtist: $scope.ArtistId
-    };
+    $scope.save = function (album) {
+        storeManagerFactory.album.save(album, function success() {
+            $scope.albums = storeManagerFactory.albums.query();
+            $scope.album = [];
+        }, function err() { });
+    }
 });
+
 

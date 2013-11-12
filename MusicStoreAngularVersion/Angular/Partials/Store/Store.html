@@ -1,1 +1,17 @@
-﻿
+﻿<div class="row-fluid">
+    <ul class="thumbnails">
+        <li class="span3" ng-repeat="album in albums" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+            <div class="thumbnail">
+                <div class="caption">
+                    <h6>{{album.Title}}</h6>
+                    <p>Price: {{album.Price}}</p>
+                    <p>Artist: {{album.ArtistName}}</p>
+                    <p>Genre: {{album.GenreName}}</p>
+                    <p>
+                        <a href="#/Store/Browse?genre={{album.GenreName}}" class="btn btn-primary">Buy</a>
+                    </p>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
