@@ -29,7 +29,10 @@ app.factory('storeManagerFactory', function ($resource) {
         albums: $resource(albumURL, {}, { query: { method: 'GET', isArray: true } }),
         genres: $resource(genreURL, {}, { query: { method: 'GET', isArray: true } }),
         artists: $resource(artistURL, {}, { query: { method: 'GET', isArray: true } }),
-        album: $resource(albumURL, {}, { save: { method: 'POST' } })
+        album: $resource(albumURL, {}, { save: { method: 'POST' } }),
+        updatedAlbum: $resource(albumURL, {}, { update: { method: 'PUT' } })
     };
 });
+
+ap.factory('userService')
 

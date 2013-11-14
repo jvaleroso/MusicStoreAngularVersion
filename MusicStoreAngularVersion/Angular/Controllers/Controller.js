@@ -51,23 +51,45 @@ app.controller('StoreManagerController', function ($scope, $location, $routePara
     $scope.albums = storeManagerFactory.albums.query();
     $scope.genres = storeManagerFactory.genres.query();
     $scope.artists = storeManagerFactory.artists.query();
-    $scope.artist = [];
-    $scope.genre = [];
+    $scope.Artist = [];
+    $scope.Genre = [];
     $scope.album = {
-        title: "",
-        price: "",
-        albumArtURL: "",
-        dateCreated: new Date(),
-        genre: [],
-        album: []
+        Title: "",
+        Price: "",
+        AlbumArtURL: "",
+        DateCreated: new Date(),
+        Genre: [],
+        Artist: []
     };
+    $scope.operation;
 
     $scope.save = function (album) {
-        storeManagerFactory.album.save(album, function success() {
-            $scope.albums = storeManagerFactory.albums.query();
-            $scope.album = [];
-        }, function err() { });
+        if ($scope.operation === 'insert') {
+            storeManagerFactory.album.save(album, function success() {
+                $scope.albums = storeManagerFactory.albums.query();
+                $scope.album = [];
+            }, function err() { });
+        }
+        else if($scope.operation === 'update'){
+            storeManagerFactory.updatedAlbum.update(album, function success() { }, function err() { });
+        }
     }
+
+    $scope.edit = function (id) {
+        $scope.operation = 'update';
+
+        for (var i = 0; i < $scope.albums.length; i++) {
+            if ($scope.albums[i].Id === id) {
+                $scope.album = $scope.albums[i];
+                break;
+            }
+        }
+    }
+
+    $scope.setOperation = function () {
+        $scope.operation = 'insert';
+        $scope.album = [];
+    };
 });
 
 

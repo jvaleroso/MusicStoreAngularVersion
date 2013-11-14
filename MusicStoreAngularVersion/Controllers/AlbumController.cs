@@ -13,11 +13,17 @@ namespace MusicStoreAngularVersion.Controllers
 {
     public class AlbumController : ApiController
     {
-        public HttpResponseMessage Get()
+        public HttpResponseMessage GetAlbums()
         {
             var albums = new AlbumManager().GetAllAlbums();
-            var albumViewModels = MapAlbums(albums);
-            return Request.CreateResponse(HttpStatusCode.OK, albumViewModels.OrderBy(a => a.Title));
+            //var albumViewModels = MapAlbums(albums);
+            return Request.CreateResponse(HttpStatusCode.OK, albums.OrderBy(a => a.Title));
+        }
+
+        public void PutAlbum(Album album)
+        {
+            if (album != null)
+                new AlbumManager().Update(album);
         }
 
         private IEnumerable<AlbumViewModel> MapAlbums(IEnumerable<Album> albums)

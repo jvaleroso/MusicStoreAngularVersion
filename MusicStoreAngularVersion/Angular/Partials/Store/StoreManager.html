@@ -1,5 +1,5 @@
 ﻿<h2>Store Manager</h2>
-<a href="#StoreManager" role="button" class="btn" data-toggle="modal">Create New</a>
+<a href="#StoreManager" role="button" class="btn btn-primary" data-toggle="modal" ng-click="setOperation()"><i class="icon-plus-sign icon-white"></i> Create New</a>
 <div id="StoreManager" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="createModalLabel" aria-hidden="true">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="True">x</button>
@@ -9,29 +9,35 @@
         <form>
             <fieldset>
                 <label>Title</label>
-                <input type="text" placeholder="Album name" ng-model="album.title" />
+                <input type="text" placeholder="Album name" ng-model="album.Title" />
                 <label>Price</label>
-                <input type="text" placeholder="Album price" ng-model="album.price" />
+                <input type="text" placeholder="Album price" ng-model="album.Price" />
                 <label>Album URL</label>
-                <input type="text" placeholder="Album URL" ng-model="album.albumArtURL" />
+                <input type="text" placeholder="Album URL" ng-model="album.AlbumArtURL" />
                 <label>Artist</label>
-                <select ng-model="album.artist" ng-options="a.Name for a in artists">
+                <select ng-model="album.Artist">
                     <option value="">--Choose Artist--</option>
+                    <option ng-repeat="artist in artists" value="artist.Id" ng-selected="artist.Name == album.Artist.Name">
+                        {{artist.Name}}
+                    </option>
                 </select>
                 <label>Genre</label>
-                <select ng-model="album.genre" ng-options="g.Name for g in genres">
+                <select ng-model="album.Genre">
                     <option value="">--Choose Genre--</option>
+                    <option ng-repeat="genre in genres" value="genre.Id" ng-selected="genre.Name == album.Genre.Name">
+                        {{genre.Name}}
+                    </option>
                 </select>
             </fieldset>
         </form>
     </div>
     <div class="modal-footer">
-        <button class="btn" data-dismiss="modal" aria-hidden="True">Close</button>
+        <button class="btn btn-danger" data-dismiss="modal" aria-hidden="True">Close</button>
         <button class="btn btn-primary" ng-click="save(album)" data-dismiss="modal" aria-hidden="True">Save</button>
     </div>
 </div>
 
-<table class="table table-bordered">
+<table class="table table-bordered table-hover">
     <tr>
         <th>Title</th>
         <th>Price</th>
@@ -42,8 +48,11 @@
     <tr ng-repeat="album in albums">
         <td>{{album.Title}}</td>
         <td>{{album.Price}}</td>
-        <td>{{album.GenreName}}</td>
-        <td>{{album.ArtistName}}</td>
-        <td><a href="#">Edit</a> | <a href="#">Detals</a> | <a href="#">Delete</a></td>
+        <td>{{album.Artist.Name}}</td>
+        <td>{{album.Genre.Name}}</td>
+        <td>
+            <a href="#StoreManager" role="button" class="btn btn-success" data-toggle="modal" ng-click="edit({{album.Id}})"><i class="icon-edit icon-white"></i> Edit</a> |
+            <a href="#StoreManager" role="button" class="btn btn-danger" data-toggle="modal" ng-click="delete({{album.Id}})"><i class="icon-trash icon-white"></i> Delete</a>
+        </td>
     </tr>
 </table>
