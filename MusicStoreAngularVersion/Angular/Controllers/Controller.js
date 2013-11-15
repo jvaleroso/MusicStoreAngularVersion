@@ -1,9 +1,8 @@
 ﻿/// <reference path="../core.js" />
 
-
 app.controller('NavbarController', function ($scope, $location) {
 
-    $scope.getClass = function(path) {
+    $scope.getClass = function (path) {
         if ($location.path().substr(0, path.length) === path)
             return true;
         else
@@ -11,9 +10,7 @@ app.controller('NavbarController', function ($scope, $location) {
     };
 });
 
-app.controller('HomeController', function ($scope, $location) {
-
-});
+app.controller('HomeController', function () { });
 
 app.controller('StoreController', function ($scope, $location, $routeParams, storeFactory) {
     $scope.genre = $routeParams.genre;
@@ -30,10 +27,9 @@ app.controller('StoreController', function ($scope, $location, $routeParams, sto
 
 });
 
-
 app.controller('GenreController', function ($scope, $location, $routeParams, genreFactory) {
     $scope.genres = genreFactory.getGenres();
-    $scope.getClass = function(genre) {
+    $scope.getClass = function (genre) {
         if ($routeParams.genre == genre)
             return true;
         else
@@ -41,39 +37,39 @@ app.controller('GenreController', function ($scope, $location, $routeParams, gen
     };
 });
 
-app.controller('AdminController', function($scope, $location, $routeParams) {
- 
-    
-});
-
+app.controller('AdminController', function () { });
 
 app.controller('StoreManagerController', function ($scope, $location, $routeParams, storeManagerFactory) {
     $scope.albums = storeManagerFactory.albums.query();
     $scope.genres = storeManagerFactory.genres.query();
     $scope.artists = storeManagerFactory.artists.query();
-    $scope.Artist = [];
-    $scope.Genre = [];
+    $scope.selectedArtist = [];
+    $scope.selectedGenre = [];
     $scope.album = {
-        Title: "",
-        Price: "",
-        AlbumArtURL: "",
+        Title: '',
+        Price: '',
+        AlbumArtURL: '',
         DateCreated: new Date(),
         Genre: [],
         Artist: []
     };
-    $scope.operation;
+
+    $scope.operation = '';
 
     $scope.save = function (album) {
         if ($scope.operation === 'insert') {
             storeManagerFactory.album.save(album, function success() {
                 $scope.albums = storeManagerFactory.albums.query();
                 $scope.album = [];
-            }, function err() { });
+            }, function err() {
+            });
+
+        } else if ($scope.operation === 'update') {
+            storeManagerFactory.updatedAlbum.update(album, function success() {
+            }, function err() {
+            });
         }
-        else if($scope.operation === 'update'){
-            storeManagerFactory.updatedAlbum.update(album, function success() { }, function err() { });
-        }
-    }
+    };
 
     $scope.edit = function (id) {
         $scope.operation = 'update';
@@ -84,12 +80,19 @@ app.controller('StoreManagerController', function ($scope, $location, $routePara
                 break;
             }
         }
-    }
+    };
 
-    $scope.setOperation = function () {
-        $scope.operation = 'insert';
-        $scope.album = [];
+    $scope.setOperation = function (operation) {
+        $scope.operation = operation;
+        if (operation == 'insert') {
+            $scope.album = {
+                Title: '',
+                Price: '',
+                AlbumArtURL: '',
+                DateCreated: new Date(),
+                Genre: [],
+                Artist: []
+            };
+        }
     };
 });
-
-

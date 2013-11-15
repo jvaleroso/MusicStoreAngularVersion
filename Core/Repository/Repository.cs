@@ -13,13 +13,12 @@ namespace Core.Repository
                     try
                     {
                         session.Save(entity);
+                        tx.Commit();
                     }
                     catch
                     {
                         tx.Rollback();
                     }
-
-                    tx.Commit();
                 }
             }
         }
@@ -33,13 +32,12 @@ namespace Core.Repository
                     try
                     {
                         session.Update(entity);
+                        tx.Commit();
                     }
                     catch
                     {
                         tx.Rollback();
                     }
-
-                    tx.Commit();
                 }
             }
         }
@@ -53,13 +51,12 @@ namespace Core.Repository
                     try
                     {
                         session.Delete(entity);
+                        tx.Commit();
                     }
                     catch
                     {
                         tx.Rollback();
                     }
-
-                    tx.Commit();
                 }
             }
         }

@@ -34,5 +34,4 @@ app.factory('storeManagerFactory', function ($resource) {
     };
 });
 
-ap.factory('userService')
 
