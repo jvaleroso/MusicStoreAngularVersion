@@ -1,5 +1,5 @@
 ﻿using FluentNHibernate.Mapping;
-using Core.Entity;
+using MusicStore;
 
 namespace Core.Mapping
 {

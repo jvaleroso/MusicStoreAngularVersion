@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Core.Entity
+namespace MusicStore
 {
     public class Cart
     {

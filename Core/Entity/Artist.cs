@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Core.Entity
+namespace MusicStore
 {
     public class Artist
     {

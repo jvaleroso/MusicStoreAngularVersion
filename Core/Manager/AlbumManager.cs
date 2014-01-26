@@ -1,4 +1,4 @@
-﻿using Core.Entity;
+﻿using MusicStore;
 using Core.Properties;
 using Core.Repository;
 using NHibernate.Criterion;

@@ -1,5 +1,5 @@
 ﻿using Core.Repository;
-using Core.Entity;
+using MusicStore;
 
 namespace Core.Manager
 {

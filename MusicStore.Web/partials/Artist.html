@@ -1,0 +1,14 @@
+﻿<form>
+    <fieldset>
+        <legend>Create Artist</legend>
+        <div class="control-group">
+            <label class="control-label" for="artistLable">Artist:</label>
+            <div class="controls">
+                <input type="text" id="artistLable" placeholder="Artist" ng-model="newArtist.name" />
+            </div>
+        </div>
+        <div class="control-group">
+            <button type="submit" class="btn" ng-click="createNewArtist(newArtist)">Save</button>
+        </div>
+    </fieldset>
+</form>

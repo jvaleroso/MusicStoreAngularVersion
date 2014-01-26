@@ -1,14 +1,15 @@
 ﻿using System;
-namespace Core.Entity
+
+namespace MusicStore
 {
-    public class Album
+    public sealed class Album
     {
-        public virtual int Id { get; set; }
-        public virtual string Title { get; set; }
-        public virtual decimal Price { get; set; }
-        public virtual string AlbumArtURL { get; set; }
-        public virtual Artist Artist { get; set; }
-        public virtual Genre Genre { get; set; }
-        public virtual DateTime DateCreated { get; set; }
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public decimal Price { get; set; }
+        public string AlbumArtURL { get; set; }
+        public Artist Artist { get; set; }
+        public Genre Genre { get; set; }
+        public DateTime DateCreated { get; set; }
     }
 }

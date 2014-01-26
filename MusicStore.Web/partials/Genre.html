@@ -1,0 +1,20 @@
+﻿<form>
+    <fieldset>
+        <legend>Create Artist</legend>
+        <div class="control-group">
+            <label class="control-label" for="genreLabel">Artist:</label>
+            <div class="controls">
+                <input type="text" id="genreLabel" placeholder="Genre" ng-model="newGenre.name" />
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="genreDescription">Description:</label>
+            <div class="controls">
+                <input type="text" id="genreDescription" placeholder="Genre" ng-model="newGenre.description" />
+            </div>
+        </div>
+        <div class="control-group">
+            <button type="submit" class="btn" ng-click="createNewGenre(newGenre)">Save</button>
+        </div>
+    </fieldset>
+</form>

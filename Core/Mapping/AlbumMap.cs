@@ -1,4 +1,4 @@
-﻿using Core.Entity;
+﻿using MusicStore;
 using FluentNHibernate.Mapping;
 
 namespace Core.Mapping

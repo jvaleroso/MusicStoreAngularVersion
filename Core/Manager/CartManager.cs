@@ -1,4 +1,4 @@
-﻿using Core.Entity;
+﻿using MusicStore;
 using Core.Repository;
 using NHibernate;
 using NHibernate.Criterion;
@@ -160,7 +160,7 @@ namespace Core.Manager
             }
         }
 
-        public int CreateOrder(Entity.Order order, string shoppingCartId)
+        public int CreateOrder(MusicStore.Order order, string shoppingCartId)
         {
             decimal orderTotal = 0;
 

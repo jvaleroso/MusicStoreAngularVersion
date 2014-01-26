@@ -1,0 +1,254 @@
+USE [master]
+GO
+
+/****** Object:  Database [music_store]    Script Date: 1/26/2014 11:43:03 AM ******/
+CREATE DATABASE [music_store]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'music_store', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL11.LOCALHOST\MSSQL\DATA\music_store.mdf' , SIZE = 4096KB , MAXSIZE = UNLIMITED, FILEGROWTH = 1024KB )
+ LOG ON 
+( NAME = N'music_store_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL11.LOCALHOST\MSSQL\DATA\music_store_log.ldf' , SIZE = 1280KB , MAXSIZE = 2048GB , FILEGROWTH = 10%)
+GO
+
+ALTER DATABASE [music_store] SET COMPATIBILITY_LEVEL = 110
+GO
+
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [music_store].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+
+ALTER DATABASE [music_store] SET ANSI_NULL_DEFAULT OFF 
+GO
+
+ALTER DATABASE [music_store] SET ANSI_NULLS OFF 
+GO
+
+ALTER DATABASE [music_store] SET ANSI_PADDING OFF 
+GO
+
+ALTER DATABASE [music_store] SET ANSI_WARNINGS OFF 
+GO
+
+ALTER DATABASE [music_store] SET ARITHABORT OFF 
+GO
+
+ALTER DATABASE [music_store] SET AUTO_CLOSE OFF 
+GO
+
+ALTER DATABASE [music_store] SET AUTO_CREATE_STATISTICS ON 
+GO
+
+ALTER DATABASE [music_store] SET AUTO_SHRINK OFF 
+GO
+
+ALTER DATABASE [music_store] SET AUTO_UPDATE_STATISTICS ON 
+GO
+
+ALTER DATABASE [music_store] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+
+ALTER DATABASE [music_store] SET CURSOR_DEFAULT  GLOBAL 
+GO
+
+ALTER DATABASE [music_store] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+
+ALTER DATABASE [music_store] SET NUMERIC_ROUNDABORT OFF 
+GO
+
+ALTER DATABASE [music_store] SET QUOTED_IDENTIFIER OFF 
+GO
+
+ALTER DATABASE [music_store] SET RECURSIVE_TRIGGERS OFF 
+GO
+
+ALTER DATABASE [music_store] SET  DISABLE_BROKER 
+GO
+
+ALTER DATABASE [music_store] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+
+ALTER DATABASE [music_store] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+
+ALTER DATABASE [music_store] SET TRUSTWORTHY OFF 
+GO
+
+ALTER DATABASE [music_store] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+
+ALTER DATABASE [music_store] SET PARAMETERIZATION SIMPLE 
+GO
+
+ALTER DATABASE [music_store] SET READ_COMMITTED_SNAPSHOT OFF 
+GO
+
+ALTER DATABASE [music_store] SET HONOR_BROKER_PRIORITY OFF 
+GO
+
+ALTER DATABASE [music_store] SET RECOVERY FULL 
+GO
+
+ALTER DATABASE [music_store] SET  MULTI_USER 
+GO
+
+ALTER DATABASE [music_store] SET PAGE_VERIFY CHECKSUM  
+GO
+
+ALTER DATABASE [music_store] SET DB_CHAINING OFF 
+GO
+
+ALTER DATABASE [music_store] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+
+ALTER DATABASE [music_store] SET TARGET_RECOVERY_TIME = 0 SECONDS 
+GO
+
+ALTER DATABASE [music_store] SET  READ_WRITE 
+GO
+
+USE [music_store]
+GO
+
+/****** Object:  Table [dbo].[Album]    Script Date: 1/26/2014 11:47:39 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Artist](
+	[Id] [BIGINT] IDENTITY(1,1) NOT NULL,
+	[Name] [NVARCHAR](50) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+CREATE TABLE [dbo].[Genre](
+	[Id] [BIGINT] IDENTITY(1,1) NOT NULL,
+	[Name] [NVARCHAR](50) NOT NULL,
+	[Description] [NVARCHAR](255) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+CREATE TABLE [dbo].[Album](
+	[Id] BIGINT IDENTITY(1,1) NOT NULL,
+	[Title] [nvarchar](50) NOT NULL,
+	[Price] [numeric](28, 9) NOT NULL,
+	[AlbumArtURL] [nvarchar](150) NOT NULL,
+	[DateCreated] [datetime] NOT NULL,
+	[Artist_id] [bigint] NULL,
+	[Genre_id] [bigint] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+ALTER TABLE [dbo].[Album]  WITH CHECK ADD  CONSTRAINT [FK_Album_Artist] FOREIGN KEY([Artist_id])
+REFERENCES [dbo].[Artist] ([Id])
+GO
+
+ALTER TABLE [dbo].[Album] CHECK CONSTRAINT [FK_Album_Artist]
+GO
+
+ALTER TABLE [dbo].[Album]  WITH CHECK ADD  CONSTRAINT [FK_Album_Genre] FOREIGN KEY([Genre_id])
+REFERENCES [dbo].[Genre] ([Id])
+GO
+
+ALTER TABLE [dbo].[Album] CHECK CONSTRAINT [FK_Album_Genre]
+GO
+
+CREATE TABLE [dbo].[Cart](
+	[Id] [BIGINT] IDENTITY(1,1) NOT NULL,
+	[CartId] [nvarchar](50) NOT NULL,
+	[DateCreated] [datetime] NOT NULL,
+	[Count] [INT] NOT NULL,
+	[Album_id] [BIGINT] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+ALTER TABLE [dbo].[Cart]  WITH CHECK ADD  CONSTRAINT [FK_Cart_Album] FOREIGN KEY([Album_id])
+REFERENCES [dbo].[Album] ([Id])
+GO
+
+ALTER TABLE [dbo].[Cart] CHECK CONSTRAINT [FK_Cart_Album]
+GO
+
+CREATE TABLE [dbo].[Order](
+	[Id] [BIGINT] IDENTITY(1,1) NOT NULL,
+	[FirstName] [nvarchar](30) NOT NULL,
+	[LastName] [nvarchar](30) NOT NULL,
+	[OrderDate] [datetime] NOT NULL,
+	[Phone] [nvarchar](25) NOT NULL,
+	[PostalCode] [nvarchar](10) NOT NULL,
+	[City] [nvarchar](25) NOT NULL,
+	[State] [nvarchar](25) NOT NULL,
+	[Address] [nvarchar](100) NOT NULL,
+	[Country] [nvarchar](25) NOT NULL,
+	[Email] [nvarchar](25) NOT NULL,
+	[Total] [numeric](19, 5) NOT NULL,
+	[Username] [nvarchar](30) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+CREATE TABLE [dbo].[OrderDetail](
+	[Id] [BIGINT] IDENTITY(1,1) NOT NULL,
+	[UnitPrice] [numeric](19,5) NOT NULL,
+	[Quantity] [int] NOT NULL,
+	[Album_id] [bigint] NOT NULL,
+	[Order_id] [bigint] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+ALTER TABLE [dbo].[OrderDetail]  WITH CHECK ADD  CONSTRAINT [FK_OrderDetail_Order] FOREIGN KEY([Order_id])
+REFERENCES [dbo].[Order] ([Id])
+GO
+
+ALTER TABLE [dbo].[OrderDetail] CHECK CONSTRAINT [FK_OrderDetail_Order]
+GO
+
+ALTER TABLE [dbo].[OrderDetail]  WITH CHECK ADD  CONSTRAINT [FK_OrderDetail_Album] FOREIGN KEY([Album_id])
+REFERENCES [dbo].[Album] ([Id])
+GO
+
+ALTER TABLE [dbo].[OrderDetail] CHECK CONSTRAINT [FK_OrderDetail_Album]
+GO
+
+
+/****** Object:  User [musicstore]    Script Date: 1/26/2014 12:05:20 PM ******/
+CREATE USER [musicstore] FOR LOGIN [musicstore] WITH DEFAULT_SCHEMA=[dbo]
+GO
+
+
+
+
+
