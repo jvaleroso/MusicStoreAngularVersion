@@ -43,6 +43,7 @@ namespace MusicStore.Web.App_Start
                 "~/Scripts/resources/StoreManager.js",
                 "~/Scripts/resources/Artist.js",
                 "~/Scripts/controllers/GenreController.js",
+                "~/Scripts/controllers/GenreListController.js",
                 "~/Scripts/controllers/HomeController.js",
                 "~/Scripts/controllers/NavbarController.js",
                 "~/Scripts/controllers/StoreController.js",
