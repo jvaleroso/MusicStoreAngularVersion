@@ -30,7 +30,8 @@ namespace MusicStore.NHibernate.Dao
 
         public IList<Genre> GetList()
         {
-            return Mapper.Map<IList<Genre>>(NH.Select(s => s.QueryOver<GenreRepo>().List()));
+            var genreList = Mapper.Map<IList<Genre>>(NH.Select(s => s.QueryOver<GenreRepo>().List()));
+            return genreList.OrderBy(a => a.Name).ToList();
         }
     }
 }

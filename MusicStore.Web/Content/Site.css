@@ -1,5 +1,5 @@
 ﻿html {
-    background-color: #e2e2e2;
+    background-color: #fff;
     margin: 0;
     padding: 0;
 }
@@ -120,7 +120,7 @@ header .content-wrapper {
 
 footer {
     clear: both;
-    background-color: #e2e2e2;
+    background-color: #ffffff;
     font-size: .8em;
     height: 100px;
 }

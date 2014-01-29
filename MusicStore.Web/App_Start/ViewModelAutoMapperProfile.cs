@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using AutoMapper;
+using MusicStore.Web.Models;
 
 namespace MusicStore.Web.App_Start
 {
@@ -14,6 +15,14 @@ namespace MusicStore.Web.App_Start
                 .ConvertUsing(d => DateTime.SpecifyKind(d, DateTimeKind.Utc));
             Mapper.CreateMap<DateTimeOffset, DateTime>()
                 .ConvertUsing(v => v.UtcDateTime);
+            Mapper.CreateMap<Genre, GenreViewModel>();
+            Mapper.CreateMap<GenreViewModel, Genre>();
+            //Mapper.CreateMap<Album, AlbumViewModel>()
+            //    .ForMember(x => x.ArtistName, m => m.MapFrom(album => album.Artist.Name))
+            //    .ForMember(x => x.GenreName, m => m.MapFrom(album => album.Genre.Name));
+            //Mapper.CreateMap<AlbumViewModel, Album>();
         }
+
+
     }
 }

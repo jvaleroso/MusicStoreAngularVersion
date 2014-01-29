@@ -1,10 +1,10 @@
 ﻿<h2>Store Manager</h2>
 <hr />
-<a href="#StoreManager" role="button" class="btn btn-primary" data-toggle="modal" ng-click="setOperation(insert)"><i class="icon-plus-sign icon-white"></i> Create New</a>
-<a href="#/StoreManager/CreateArtist" role="button" class="btn btn-primary"><i class="icon-plus-sign icon-white"></i> Create Arstist</a>
-<a href="#/StoreManager/CreateGenre" role="button" class="btn btn-primary"><i class="icon-plus-sign icon-white"></i> Create Genre</a>
+<a href="#StoreManager" role="button" class="btn btn-default" data-toggle="modal" ng-click="setOperation(insert)"><i class="icon-plus-sign"></i> Create New</a>
+<a href="#/StoreManager/CreateArtist" role="button" class="btn btn-default"><i class="icon-plus-sign"></i> Create Arstist</a>
+<a href="#/StoreManager/CreateGenre" role="button" class="btn btn-default"><i class="icon-plus-sign"></i> Create Genre</a>
 <div id="StoreManager" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="createModalLabel" aria-hidden="true">
-    <div id="modal-header">
+    <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="True">x</button>
         <h3 id="createModalLabel">Create Album</h3>
     </div>
@@ -45,10 +45,10 @@
         <th></th>
     </tr>
     <tr ng-repeat="album in albums">
-        <td>{{album.title}}</td>
-        <td>{{album.price}}</td>
-        <td>{{album.artist.name}}</td>
-        <td>{{album.genre.name}}</td>
+        <td><span ng-bind="album.title"></span></td>
+        <td><span ng-bind="album.price"></span></td>
+        <td><span ng-bind="album.artist.name"></span></td>
+        <td><span ng-bind="album.genre.name"></span></td>
         <td>
             <a href="#StoreManager" role="button" class="btn btn-success" data-toggle="modal" ng-click="editAlbum(album)"><i class="icon-edit icon-white"></i> Edit</a> |
             <a href="#StoreManager" role="button" class="btn btn-danger" data-toggle="modal" ng-click="deleteAlbum(album)"><i class="icon-trash icon-white"></i> Delete</a>

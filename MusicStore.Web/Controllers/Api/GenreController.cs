@@ -1,8 +1,11 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using AutoMapper;
 using MusicStore.Services;
+using MusicStore.Web.Models;
 
 namespace MusicStore.Web.Controllers.Api
 {
@@ -18,15 +21,15 @@ namespace MusicStore.Web.Controllers.Api
         [HttpGet]
         public HttpResponseMessage Get()
         {
-            var genres = _genreService.GetList();
-            return Request.CreateResponse(HttpStatusCode.OK, genres.OrderBy(genre => genre.Name));
+            var genres = Mapper.Map<IList<GenreViewModel>>(_genreService.GetList());
+            return Request.CreateResponse(HttpStatusCode.OK, genres);
         }
 
         [HttpPost]
         public HttpResponseMessage CreateGenre(Genre genre)
         {
-             _genreService.Save(genre);
-            return Request.CreateResponse(HttpStatusCode.OK, genre);
+            var savedGenre = _genreService.Save(genre);
+            return Request.CreateResponse(HttpStatusCode.OK, savedGenre);
         }
     }
 }
