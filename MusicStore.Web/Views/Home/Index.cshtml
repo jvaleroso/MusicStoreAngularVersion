@@ -5,7 +5,7 @@
     <title>Music Store</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @Styles.Render(
-      "~/Content/css")
+      "~/Content/css/bootstrap")
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -24,7 +24,6 @@
                         <li ng-class="{'active': getClass('/Cart')}"><a href="#/Cart">Cart</a></li>
                         <li ng-class="{'active': getClass('/Admin')}"><a href="#/Admin">Admin</a></li>
                         <li ng-class="{'active': getClass('/StoreManager')}"><a href="#/StoreManager">Store Manager</a></li>
-                        <li ng-class="{'active': getClass('/Artist')}"><a href="#/Artist">Artist</a></li>
                     </ul>
                 </div>
             </div>
@@ -33,10 +32,11 @@
     <hr />
     <div class="container-fluid">
         <div class="row-fluid">
-            <div class="span2">
-                <div ng-controller="GenreListController" class="well sidebar-nav">
+            <div class="span2" class="well sidebar-nav">
+                <div ng-controller="GenreListController">
                     <ul class="nav nav-list">
-                        <li class="nav-header">Genre</li>
+                        <li class="nav-header">Music Genre</li>
+                        <li class="divider"></li>
                         <li ng-repeat="genre in genres" ng-class="{'active': genre.selected}">
                             <a href="#/Store/Browse?genre={{genre.name}}">
                                 <span ng-bind="genre.name"></span>

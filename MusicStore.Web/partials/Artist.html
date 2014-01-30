@@ -2,13 +2,16 @@
     <fieldset>
         <legend>Create Artist</legend>
         <div class="control-group">
-            <label class="control-label" for="artistLable">Artist:</label>
+            <label class="control-label" for="txtArtist">Artist:</label>
             <div class="controls">
-                <input type="text" id="artistLable" placeholder="Artist" ng-model="newArtist.name" />
+                <input type="text" id="txtArtist" placeholder="Artist's name" ng-model="newArtist.name" />
             </div>
         </div>
         <div class="control-group">
-            <button type="submit" class="btn" ng-click="createNewArtist(newArtist)">Save</button>
+            <div class="controls">
+                <button type="submit" class="btn btn-info" ng-click="createNewArtist(newArtist)">Save</button>
+                <button type="button" class="btn btn-default" onclick="window.history.back()">&larr;&nbsp;&nbsp;Back</button>
+            </div>
         </div>
     </fieldset>
 </form>

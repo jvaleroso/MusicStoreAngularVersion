@@ -37,21 +37,28 @@
 </div>
 
 <table class="table table-bordered table-hover">
-    <tr>
-        <th>Title</th>
-        <th>Price</th>
-        <th>Genre</th>
-        <th>Artist</th>
-        <th></th>
-    </tr>
-    <tr ng-repeat="album in albums">
-        <td><span ng-bind="album.title"></span></td>
-        <td><span ng-bind="album.price"></span></td>
-        <td><span ng-bind="album.artist.name"></span></td>
-        <td><span ng-bind="album.genre.name"></span></td>
-        <td>
-            <a href="#StoreManager" role="button" class="btn btn-success" data-toggle="modal" ng-click="editAlbum(album)"><i class="icon-edit icon-white"></i> Edit</a> |
-            <a href="#StoreManager" role="button" class="btn btn-danger" data-toggle="modal" ng-click="deleteAlbum(album)"><i class="icon-trash icon-white"></i> Delete</a>
-        </td>
-    </tr>
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Price</th>
+            <th>Genre</th>
+            <th>Artist</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="album in albums">
+            <td><span ng-bind="album.title"></span></td>
+            <td><span ng-bind="album.price"></span></td>
+            <td><span ng-bind="album.artist.name"></span></td>
+            <td><span ng-bind="album.genre.name"></span></td>
+            <td>
+                <a href="#StoreManager" role="button" class="btn btn-default" data-toggle="modal" ng-click="editAlbum(album)"><i class="icon-edit icon-white"></i> Edit</a> |
+                <a href="#StoreManager" role="button" class="btn btn-default" data-toggle="modal" ng-click="deleteAlbum(album)"><i class="icon-trash icon-white"></i> Delete</a>
+            </td>
+        </tr>
+        <tr ng-show="albums.length == 0" class="error">
+            <td colspan="5" style="text-align: center"><em>No results found</em></td>
+        </tr>
+    </tbody>
 </table>

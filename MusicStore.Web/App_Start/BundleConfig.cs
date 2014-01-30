@@ -26,7 +26,7 @@ namespace MusicStore.Web.App_Start
                 "~/Scripts/respond.js",
                 "~/Scripts/bootstrap.js"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(
+            bundles.Add(new StyleBundle("~/Content/css/bootstrap").Include(
                 "~/Content/site.css",
                 "~/Content/css/bootstrap.css",
                 "~/Content/css/bootstrap-responsive.css"));
@@ -49,6 +49,8 @@ namespace MusicStore.Web.App_Start
                 "~/Scripts/controllers/StoreController.js",
                 "~/Scripts/controllers/StoreManagerController.js",
                 "~/Scripts/controllers/ArtistController.js"));
+
+            BundleTable.EnableOptimizations = true;
         }
     }
 }

@@ -12,7 +12,6 @@
                 }, function(error) {
                     console.log(error);
                 });
-
             }
 
             $scope.createNewArtist = function () {

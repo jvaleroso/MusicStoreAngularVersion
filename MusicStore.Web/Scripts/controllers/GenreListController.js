@@ -27,9 +27,6 @@
                     if (item.name == selectedGenre) item.selected = true;
                     else item.selected = false;
                 });
-
-                
             });
-
         }]);
 })();
