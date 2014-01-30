@@ -50,7 +50,6 @@ namespace MusicStore.Web.App_Start
                 "~/Scripts/controllers/StoreManagerController.js",
                 "~/Scripts/controllers/ArtistController.js"));
 
-            BundleTable.EnableOptimizations = true;
         }
     }
 }
