@@ -1,15 +1,16 @@
-﻿<form>
+﻿<form name="frmArtist">
     <fieldset>
         <legend>Create Artist</legend>
         <div class="control-group">
-            <label class="control-label" for="txtArtist">Artist:</label>
+            <label class="control-label" for="inputArtist">Artist:</label>
             <div class="controls">
-                <input type="text" id="txtArtist" placeholder="Artist's name" ng-model="newArtist.name" />
+                <input type="text" id="inputArtist" name="inputArtist" placeholder="Artist's name" ng-model="newArtist.name" required />
+                <span class="label label-important" ng-show="frmArtist.inputArtist.$invalid">Required</span>
             </div>
         </div>
         <div class="control-group">
             <div class="controls">
-                <button type="submit" class="btn btn-info" ng-click="createNewArtist(newArtist)">Save</button>
+                <button type="submit" ng-disabled="frmArtist.$invalid" class="btn btn-info" ng-click="createNewArtist(newArtist)">Save</button>
                 <button type="button" class="btn btn-default" onclick="window.history.back()">&larr;&nbsp;&nbsp;Back</button>
             </div>
         </div>
