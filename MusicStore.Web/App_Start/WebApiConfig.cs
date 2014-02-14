@@ -26,6 +26,12 @@ namespace MusicStore.Web.App_Start
                 new { httpMethod = new HttpMethodConstraint("GET") });
 
             config.Routes.MapHttpRoute(
+                "GetAlbumById",
+                "api/album/details",
+                new {controller = "Album", action = "GetById"},
+                new {httpMethod = new HttpMethodConstraint("GET")});
+
+            config.Routes.MapHttpRoute(
                 "CreateAlbum",
                 "api/album/createalbum",
                 new { controller = "Album", action = "CreateAlbum" },

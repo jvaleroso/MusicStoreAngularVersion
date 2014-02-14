@@ -39,6 +39,10 @@ app.config(['$routeProvider', function ($routeProvider) {
             controller: 'GenreController',
             templateUrl: '/partials/Genre.html'
         })
+        .when('/StoreManager/Details/:id', {
+            controller: 'AlbumDetailsController',
+            templateUrl: '/partials/AlbumDetails.html'
+        })
         .otherwise({ redirectTo: '/Home' });
 }]);
 

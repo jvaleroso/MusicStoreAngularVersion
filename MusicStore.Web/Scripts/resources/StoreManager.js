@@ -8,6 +8,7 @@
             saveArtist: { method: 'POST', url: '/api/artist', isArray: false },
             saveAlbum: { method: 'POST', url: '/api/album/createalbum', isArray: false },
             getAlbums: { method: 'GET', url: '/api/album/', isArray: true },
+            getById: { method: 'GET', params: { id: '' }, url: '/api/album/details/:id', isArray: false },
         });
     }]);
 })();

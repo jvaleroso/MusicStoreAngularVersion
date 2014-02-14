@@ -235,9 +235,11 @@
     <Content Include="hibernate.cfg.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="partials\AlbumDetails.html" />
     <Content Include="partials\Artist.html" />
     <Content Include="partials\Cart.html" />
     <Content Include="partials\Genre.html" />
+    <Content Include="Scripts\controllers\AlbumDetailsController.js" />
     <Content Include="Scripts\controllers\ArtistController.js" />
     <Content Include="Scripts\controllers\GenreListController.js" />
     <Content Include="Scripts\controllers\HomeController.js" />

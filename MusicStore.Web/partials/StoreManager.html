@@ -53,8 +53,9 @@
             <td><span ng-bind="album.artist.name"></span></td>
             <td><span ng-bind="album.genre.name"></span></td>
             <td>
-                <a href="#StoreManager" role="button" class="btn btn-default" data-toggle="modal" ng-click="editAlbum(album)"><i class="icon-edit icon-white"></i> Edit</a> |
-                <a href="#StoreManager" role="button" class="btn btn-default" data-toggle="modal" ng-click="deleteAlbum(album)"><i class="icon-trash icon-white"></i> Delete</a>
+                <a href="#/StoreManager/Details/{{album.id}}"><i class="icon-align-justify"></i> Details</a> |
+                <a href="#StoreManager" data-toggle="modal" ng-click="editAlbum(album)"><i class="icon-edit"></i> Edit</a> |
+                <a href="#StoreManager" data-toggle="modal" ng-click="deleteAlbum(album)"><i class="icon-trash"></i> Delete</a>
             </td>
         </tr>
         <tr ng-show="albums.length == 0" class="error">

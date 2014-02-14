@@ -40,5 +40,11 @@ namespace MusicStore.Web.Controllers.Api
             return Request.CreateResponse(HttpStatusCode.OK, albums.OrderBy(a => a.Title));
         }
 
+        public HttpResponseMessage GetById(long id)
+        {
+            var album = _albumService.GetById(id);
+            return Request.CreateResponse(HttpStatusCode.OK, album);
+        }
+
     }
 }

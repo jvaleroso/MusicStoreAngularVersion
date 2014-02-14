@@ -48,6 +48,7 @@ namespace MusicStore.Web.App_Start
                 "~/Scripts/controllers/NavbarController.js",
                 "~/Scripts/controllers/StoreController.js",
                 "~/Scripts/controllers/StoreManagerController.js",
+                "~/Scripts/controllers/AlbumDetailsController.js",
                 "~/Scripts/controllers/ArtistController.js"));
 
         }
