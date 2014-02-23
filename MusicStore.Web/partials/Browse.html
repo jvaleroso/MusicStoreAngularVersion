@@ -3,12 +3,12 @@
         <li class="span3" ng-repeat="album in albums" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
             <div class="thumbnail">
                 <div class="caption">
-                    <h5>{{album.Title}}</h5>
-                    <p>Price: {{album.Price}}</p>
-                    <p>Artist: {{album.ArtistName}}</p>
-                    <p>Genre: {{album.GenreName}}</p>
+                    <h5><span ng-bind="album.title"></span></h5>
+                    <p><span ng-bind="album.price"></span></p>
+                    <p>Artist: <span ng-bind="album.artist.name"></span></p>
+                    <p>Genre: <span ng-bind="album.genre.name"></span></p>
                     <p>
-                        <a href="#/Store/Browse?genre={{album.GenreName}}" class="btn btn-primary">Buy</a>
+                        <a href="#/Store/Browse?genre={{album.genre.name}}" class="btn btn-success">Add to cart</a>
                     </p>
                 </div>
             </div>

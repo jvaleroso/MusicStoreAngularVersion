@@ -41,8 +41,8 @@
         <tr>
             <th>Title</th>
             <th>Price</th>
-            <th>Genre</th>
             <th>Artist</th>
+            <th>Genre</th>
             <th></th>
         </tr>
     </thead>
@@ -55,7 +55,7 @@
             <td>
                 <a href="#/StoreManager/Details/{{album.id}}"><i class="icon-align-justify"></i> Details</a> |
                 <a href="#StoreManager" data-toggle="modal" ng-click="editAlbum(album)"><i class="icon-edit"></i> Edit</a> |
-                <a href="#StoreManager" data-toggle="modal" ng-click="deleteAlbum(album)"><i class="icon-trash"></i> Delete</a>
+                <a href="#/StoreManager/Delete/{{album.id}}"><i class="icon-trash"></i> Delete</a>
             </td>
         </tr>
         <tr ng-show="albums.length == 0" class="error">
