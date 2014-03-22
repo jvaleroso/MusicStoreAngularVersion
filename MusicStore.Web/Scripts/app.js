@@ -3,47 +3,46 @@ var app = angular.module('musicStoreApp', ['ngResource', 'ngRoute']);
 
 app.config(['$routeProvider', function ($routeProvider) {
     $routeProvider
-        .when('/Home', {
-            controller: 'HomeController',
-            templateUrl: '/partials/Home.html'
-        })
+        //.when('/Home', {
+        //    controller: 'HomeController',
+        //    templateUrl: 'Views/Home/Index.cshtml'
+        //})
         .when('/Store', {
             controller: 'StoreController',
-            templateUrl: 'partials/Store.html'
+            templateUrl: 'Views/Store/Store.cshtml'
         })
         .when('/Store/Browse', {
             controller: 'StoreController',
-            templateUrl: '/partials/Browse.html'
+            templateUrl: 'Views/Store/Browse.cshtml'
         })
-        .when('/Cart', {
-            controller: 'CartController',
-            templateUrl: '/partials/Cart.html'
-        })
-        .when('/LogOn', {
-            controller: 'LogOnController',
-            templateUrl: '/partials/LogOn.html'
-        })
-        .when('/Admin', {
-            controller: 'AdminController',
-            templateUrl: '/partials/Admin.html'
+        .when('/Store/Details', {
+            controller: 'StoreController',
+            templateUrl: 'Views/Store/Details.cshtml'
         })
         .when('/StoreManager', {
             controller: 'StoreManagerController',
-            templateUrl: '/partials/StoreManager.html'
+            templateUrl: 'Views/StoreManager/StoreManager.cshtml'
         })
-        .when('/StoreManager/CreateArtist', {
-            controller: 'ArtistController',
-            templateUrl: '/partials/Artist.html'
+        .when('/StoreManager/Create', {
+            controller: 'StoreManagerController',
+            templateUrl: 'Views/StoreManager/Create.cshtml'
         })
-        .when('/StoreManager/CreateGenre', {
-            controller: 'GenreController',
-            templateUrl: '/partials/Genre.html'
+        .when('/StoreManager/Edit/:id', {
+            controller: 'StoreManagerController',
+            templateUrl: 'Views/StoreManager/Edit.cshtml'
         })
         .when('/StoreManager/Details/:id', {
-            controller: 'AlbumDetailsController',
-            templateUrl: '/partials/AlbumDetails.html'
+            controller: 'StoreManagerController',
+            templateUrl: 'Views/StoreManager/Details.cshtml'
         })
-        .otherwise({ redirectTo: '/Home' });
+        .when('/StoreManager/Delete/:id', {
+            controller: 'StoreManagerController',
+            templateUrl: 'Views/StoreManager/Delete.cshtml'
+        });
+    //.otherwise({
+    //    controller: 'StoreController',
+    //    templateUrl: 'Views/Store/Browse.cshtml'
+    //});
 }]);
 
 
