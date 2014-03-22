@@ -3,46 +3,43 @@ var app = angular.module('musicStoreApp', ['ngResource', 'ngRoute']);
 
 app.config(['$routeProvider', function ($routeProvider) {
     $routeProvider
-        //.when('/Home', {
-        //    controller: 'HomeController',
-        //    templateUrl: 'Views/Home/Index.cshtml'
-        //})
+        .when('/Home', {
+            controller: 'HomeController',
+            templateUrl: '/PartialViews/Home/Index.html'
+        })
         .when('/Store', {
             controller: 'StoreController',
-            templateUrl: 'Views/Store/Store.cshtml'
+            templateUrl: '/PartialViews/Store/Store.html'
         })
         .when('/Store/Browse', {
             controller: 'StoreController',
-            templateUrl: 'Views/Store/Browse.cshtml'
+            templateUrl: '/PartialViews/Store/Browse.html'
         })
         .when('/Store/Details', {
             controller: 'StoreController',
-            templateUrl: 'Views/Store/Details.cshtml'
+            templateUrl: '/PartialViews/Store/Details.html'
         })
         .when('/StoreManager', {
             controller: 'StoreManagerController',
-            templateUrl: 'Views/StoreManager/StoreManager.cshtml'
+            templateUrl: '/PartialViews/StoreManager/StoreManager.html'
         })
         .when('/StoreManager/Create', {
             controller: 'StoreManagerController',
-            templateUrl: 'Views/StoreManager/Create.cshtml'
+            templateUrl: '/PartialViews/StoreManager/Create.html'
         })
         .when('/StoreManager/Edit/:id', {
             controller: 'StoreManagerController',
-            templateUrl: 'Views/StoreManager/Edit.cshtml'
+            templateUrl: '/PartialViews/StoreManager/Edit.html'
         })
         .when('/StoreManager/Details/:id', {
             controller: 'StoreManagerController',
-            templateUrl: 'Views/StoreManager/Details.cshtml'
+            templateUrl: '/PartialViews/StoreManager/Details.html'
         })
         .when('/StoreManager/Delete/:id', {
             controller: 'StoreManagerController',
-            templateUrl: 'Views/StoreManager/Delete.cshtml'
-        });
-    //.otherwise({
-    //    controller: 'StoreController',
-    //    templateUrl: 'Views/Store/Browse.cshtml'
-    //});
+            templateUrl: '/PartialViews/StoreManager/Delete.html'
+        })
+        .otherwise('/Home');
 }]);
 
 

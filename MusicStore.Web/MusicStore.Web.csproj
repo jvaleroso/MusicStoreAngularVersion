@@ -585,11 +585,11 @@
     <Content Include="Scripts\knockout-3.0.0.js" />
     <Content Include="Scripts\jquery-2.1.0.min.map" />
     <Content Include="Scripts\version.json" />
-    <None Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="PartialViews\Home\Index.html" />
     <Content Include="Scripts\modernizr-2.7.1.js" />
     <Content Include="Scripts\resources\Genre.js" />
     <Content Include="Scripts\resources\StoreManager.js" />
-    <Content Include="Views\Shared\Layout.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -615,18 +615,19 @@
     <Content Include="Images\orderedList9.png" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Views\Web.config" />
-    <Content Include="Views\StoreManager\StoreManager.cshtml" />
-    <Content Include="Views\StoreManager\Create.cshtml" />
-    <Content Include="Views\StoreManager\Details.cshtml" />
-    <Content Include="Views\StoreManager\Edit.cshtml" />
-    <Content Include="Views\StoreManager\Delete.cshtml" />
-    <Content Include="Views\Store\Browse.cshtml" />
-    <Content Include="Views\Store\Details.cshtml" />
-    <Content Include="Views\Store\Store.cshtml" />
+    <Content Include="PartialViews\StoreManager\StoreManager.html" />
+    <Content Include="PartialViews\StoreManager\Create.html" />
+    <Content Include="PartialViews\StoreManager\Details.html" />
+    <Content Include="PartialViews\StoreManager\Edit.html" />
+    <Content Include="PartialViews\StoreManager\Delete.html" />
+    <Content Include="PartialViews\Store\Browse.html" />
+    <Content Include="PartialViews\Store\Details.html" />
+    <Content Include="PartialViews\Store\Store.html" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\images\" />
+    <Folder Include="Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
