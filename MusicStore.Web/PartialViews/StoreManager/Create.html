@@ -1,1 +1,52 @@
-﻿
+﻿<form id="mainForm" role="form" class="form-horizontal">
+    <div class="container">
+        <div class="form-horizontal">
+            <hr />
+            <fieldset>
+                <legend>Album Details</legend>
+                <div class="control-group">
+                    <label class="control-label" for="lblTitle">Title</label>
+                    <div class="controls">
+                        <input type="text" id="lblTitle" ng-model="album.title">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="lblPrice">Price</label>
+                    <div class="controls">
+                        <input type="text" id="lblPrice" ng-model="album.price">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="lblAlbumArtUrl">Album Art URL:</label>
+                    <div class="controls">
+                        <input type="text" id="lblAlbumArtUrl" ng-model="album.albumarturl">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="drpArtists">Aritst</label>
+                    <div class="controls">
+                        <select ng-model="album.artists.id" id="drpArtists">
+                            <option value=""></option>
+                            <option ng-repeat="artist in artists" value="{{artist.id}}">{{artist.name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="drpGenre">Genre</label>
+                    <div class="controls">
+                        <select ng-model="album.genre.id" id="drpGenre">
+                            <option value=""></option>
+                            <option ng-repeat="genre in genres" value="{{genre.id}}">{{genre.name}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="controls">
+                        <button class="btn btn-default" data-ng-click="CreateAlbum(album)">Create</button>
+                        <button class="btn btn-default" onclick=" window.history.back() ">&larr;&nbsp;&nbsp;Back</button>
+                    </div>
+                </div>
+            </fieldset>  
+        </div>
+    </div>
+</form>

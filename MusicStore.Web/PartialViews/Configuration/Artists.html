@@ -1,0 +1,33 @@
+﻿<div class="container">
+    <h3>Artists Configuration</h3>
+    <hr/>
+    <div class="pull-right">
+        <span>
+            <i class="fa fa-upload"></i>
+            <span>Upload Artists</span>
+            <input type="file" name="artistUpload" value="Upload" />
+        </span>
+        <span>
+            <i class="fa fa-download"></i>
+            <span>Download Artists</span>
+            <input type="file" name="artistUpload" value="Upload" />
+        </span>
+    </div>
+    <div>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Artists</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="artist in artists">
+                    <td><span ng-bind="artist.name"></span></td>
+                </tr>
+                <tr ng-show="albums.length == 0" class="error">
+                    <td colspan="5" style="text-align: center"><em>No results found</em></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

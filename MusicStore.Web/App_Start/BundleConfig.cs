@@ -31,6 +31,9 @@ namespace MusicStore.Web.App_Start
                 "~/Content/css/bootstrap.css",
                 "~/Content/css/bootstrap-responsive.css"));
 
+            bundles.Add(new StyleBundle("~/Content/css/font-awesome").Include(
+                "~/Content/font-awesome.css"));
+
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
                 "~/Scripts/angular.js",
                 "~/Scripts/angular-route.js",

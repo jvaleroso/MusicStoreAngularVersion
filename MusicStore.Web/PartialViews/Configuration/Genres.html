@@ -1,0 +1,19 @@
+﻿<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="genre in genres">
+            <td><span ng-bind="artist.name"></span></td>
+            <td><span ng-bind="artist.description"></span></td>
+        </tr>
+        <tr ng-show="albums.length == 0" class="error">
+            <td colspan="5" style="text-align: center"><em>No results found</em></td>
+        </tr>
+    </tbody>
+</table>
+
+<input type="file" name="artistUpload" />

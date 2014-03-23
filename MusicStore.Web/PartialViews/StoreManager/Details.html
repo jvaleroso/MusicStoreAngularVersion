@@ -1,17 +1,39 @@
-﻿@{
-    Layout = null;
-}
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title></title>
-</head>
-<body>
-    <div>
-    
+﻿<form id="mainForm" role="form" class="form-horizontal">
+    <div class="container">
+        <div class="form-horizontal">
+            <hr />
+            <fieldset>
+                <legend>Album Details</legend>
+                <div class="control-group">
+                    <label class="control-label" for="lblTitle">Title</label>
+                    <div class="controls">
+                        <input type="text" id="lblTitle" ng-disabled="true" ng-model="album.title">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="lblPrice">Price</label>
+                    <div class="controls">
+                        <input type="text" id="lblPrice" ng-disabled="true" ng-model="album.price">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="lblArtist">Aritst</label>
+                    <div class="controls">
+                        <input type="text" id="lblArtist" ng-disabled="true" ng-model="album.artist.name">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="lblGenre">Genre</label>
+                    <div class="controls">
+                        <input type="text" id="lblGenre" ng-disabled="true" ng-model="album.genre.name">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="controls">
+                        <button class="btn btn-default" onclick=" window.history.back() ">&larr;&nbsp;&nbsp;Back</button>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
     </div>
-</body>
-</html>
+</form>
