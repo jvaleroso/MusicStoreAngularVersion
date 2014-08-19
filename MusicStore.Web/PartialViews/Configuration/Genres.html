@@ -1,19 +1,35 @@
-﻿<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Description</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr ng-repeat="genre in genres">
-            <td><span ng-bind="artist.name"></span></td>
-            <td><span ng-bind="artist.description"></span></td>
-        </tr>
-        <tr ng-show="albums.length == 0" class="error">
-            <td colspan="5" style="text-align: center"><em>No results found</em></td>
-        </tr>
-    </tbody>
-</table>
-
-<input type="file" name="artistUpload" />
+﻿<div class="container-fluid">
+    <div class="row-fluid">
+        <h3>Genre Configuration</h3>
+        <hr />
+        <div class="btn-group pull-right">
+            <button type="button" class="btn btn-warning">
+                <span class="glyphicon glyphicon-upload"></span> Download
+            </button>
+            <button type="button" class="btn btn-success">
+                <span class="glyphicon glyphicon-download"></span> Upload
+            </button>
+        </div>
+    </div>
+    <br />
+    <br />
+    <div class="row-fluid">
+        <table class="table table-bordered table-hover table-condensed">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="genre in genres">
+                    <td><span ng-bind="artist.name"></span></td>
+                    <td><span ng-bind="artist.description"></span></td>
+                </tr>
+                <tr ng-show="albums.length == 0" class="error">
+                    <td colspan="5" style="text-align: center"><em>No results found</em></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

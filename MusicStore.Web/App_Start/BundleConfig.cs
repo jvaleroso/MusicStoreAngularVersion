@@ -23,13 +23,12 @@ namespace MusicStore.Web.App_Start
                 "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                "~/Scripts/respond.js",
-                "~/Scripts/bootstrap.js"));
+                "~/Scripts/bootstrap.min.js"));
 
-            bundles.Add(new StyleBundle("~/Content/css/bootstrap").Include(
-                "~/Content/site.css",
-                "~/Content/css/bootstrap.css",
-                "~/Content/css/bootstrap-responsive.css"));
+            bundles.Add(new StyleBundle("~/Content/bootstrap").Include(
+                "~/Content/bootstrap.min.css",
+                "~/Content/bootstrap-theme.min.css",
+                "~/Content/site.css"));
 
             bundles.Add(new StyleBundle("~/Content/css/font-awesome").Include(
                 "~/Content/font-awesome.css"));

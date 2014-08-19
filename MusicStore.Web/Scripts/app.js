@@ -3,6 +3,9 @@ var app = angular.module('musicStoreApp', ['ngResource', 'ngRoute']);
 
 app.config(['$routeProvider', function ($routeProvider) {
     $routeProvider
+        .when('/Home', {
+            templateUrl: '/PartialViews/Home/Index.html'
+        })
         .when('/Store', {
             controller: 'StoreController',
             templateUrl: '/PartialViews/Store/Store.html'
@@ -42,6 +45,9 @@ app.config(['$routeProvider', function ($routeProvider) {
         .when('/Configuration/Genres', {
             controller: 'ConfigurationController',
             templateUrl: '/PartialViews/Configuration/Genres.html'
+        })
+        .otherwise({
+            redirectTo: '/PartialViews/Home/Index.html'
         });
 }]);
 
