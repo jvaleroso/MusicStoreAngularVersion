@@ -44,6 +44,7 @@ namespace MusicStore.Web.App_Start
             container.RegisterType<IGenreService, GenreService>(new ContainerControlledLifetimeManager());
             container.RegisterType<IArtistService, ArtistService>(new ContainerControlledLifetimeManager());
             container.RegisterType<ICartService, CartService>(new ContainerControlledLifetimeManager());
+            container.RegisterType<IArtistFactory, ArtistFactory>(new ContainerControlledLifetimeManager());
 
             #endregion //MusicStore Services
 
