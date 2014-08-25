@@ -38,12 +38,16 @@ namespace MusicStore.Web.App_Start
                 "~/Scripts/angular-route.js",
                 "~/Scripts/angular-resource.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/restangular").Include(
+                "~/Scripts/restangular.js",
+                "~/Scripts/lodash.js"
+                ));
+
             bundles.Add(new ScriptBundle("~/bundles/musicstore-app").Include(
                 "~/Scripts/app.js",
-                "~/Scripts/resources/Genre.js",
-                "~/Scripts/resources/Store.js",
-                "~/Scripts/resources/StoreManager.js",
-                "~/Scripts/resources/Artist.js",
+                "~/Scripts/resources/GenreService.js",
+                "~/Scripts/resources/ArtistService.js",
+                "~/Scripts/resources/AlbumService.js",
                 "~/Scripts/controllers/GenreController.js",
                 "~/Scripts/controllers/GenreListController.js",
                 "~/Scripts/controllers/HomeController.js",

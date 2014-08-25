@@ -1,32 +1,35 @@
-﻿(function () {
-    var musicStoreApp = angular.module('musicStoreApp');
-
-    musicStoreApp.controller('GenreController', ['$rootScope', '$scope', '$location', '$routeParams', 'Genre',
-        function ($rootScope, $scope, $location, $routeParams, genre) {
-
-            init();
-
-            function init() {
-                genre.query(function (response) {
-                    $scope.genres = response;
-                }, function (error) {
-                    console.log(error);
-                });
+﻿var MusicStore;
+(function (MusicStore) {
+    (function (Controllers) {
+        var GenreController = (function () {
+            function GenreController($rootScope, $location, $routeParams, genreService) {
+                this.$rootScope = $rootScope;
+                this.$location = $location;
+                this.$routeParams = $routeParams;
+                this.genreService = genreService;
+                this.genres = genreService.getGenres();
             }
-
-            $scope.createNewGenre = function (newGenre) {
-                genre.createGenre(newGenre, function () {
-                    $rootScope.$broadcast('GenreController_AddNewGenre');
-                    $location.path('/StoreManager');
-                }, function (error) {
-                    console.log(error);
-                });
+            GenreController.prototype.createNewGenre = function () {
+                var newGenre = this.genreService.createGenre(this.genre);
+                if (newGenre != null)
+                    this.genreService.createGenre(newGenre);
             };
-                      
-            $scope.getClass = function (musicGenre) {
-                if ($routeParams.genre == musicGenre) return true;
-                else return false;
-            };
-        }]);
-})();
 
+            GenreController.prototype.getClass = function (musicGenre) {
+                return this.$routeParams.genre == musicGenre;
+            };
+            return GenreController;
+        })();
+        Controllers.GenreController = GenreController;
+
+        angular.module('musicStoreApp').controller('GenreController', [
+            '$rootScope',
+            '$location',
+            '$routeParams',
+            'genreService',
+            GenreController
+        ]);
+    })(MusicStore.Controllers || (MusicStore.Controllers = {}));
+    var Controllers = MusicStore.Controllers;
+})(MusicStore || (MusicStore = {}));
+//# sourceMappingURL=GenreController.js.map

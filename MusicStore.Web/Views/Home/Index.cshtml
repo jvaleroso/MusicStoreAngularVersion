@@ -19,20 +19,20 @@
             </button>
 
             <div class="collapse navbar-collapse" id="navHeaderCollapse">
-                <ul class="nav navbar-nav" ng-controller="NavbarController">
-                    <li ng-class="{'active': getClass('/Home')}">
+                <ul class="nav navbar-nav" ng-controller="NavbarController as navbar">
+                    <li ng-class="{'active': navbar.getClass('/Home')}">
                         <a href="#/Home"><span class="glyphicon glyphicon-home"></span> Home</a>
                     </li>
-                    <li ng-class="{'active': getClass('/Store')}">
+                    <li ng-class="{'active': navbar.getClass('/Store')}">
                         <a href="#/Store"><span class="glyphicon glyphicon-music"></span> Store</a>
                     </li>
-                    <li ng-class="{'active': getClass('/Cart')}">
+                    <li ng-class="{'active': navbar.getClass('/Cart')}">
                         <a href="#/Cart"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a>
                     </li>
-                    <li ng-class="{'active': getClass('/Admin')}">
+                    <li ng-class="{'active': navbar.getClass('/Admin')}">
                         <a href="#/Admin"><span class="glyphicon glyphicon-user"></span> Admin</a>
                     </li>
-                    <li ng-class="{'active': getClass('/StoreManager')}">
+                    <li ng-class="{'active': navbar.getClass('/StoreManager')}">
                         <a href="#/StoreManager"><span class="glyphicon glyphicon-list-alt"></span> Store Manager</a>
                     </li>
                     <li class="dropdown">
@@ -55,11 +55,11 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
 
-                        <div ng-controller="GenreListController">
+                        <div ng-controller="GenreListController as genreList">
                             <ul class="nav nav-pills nav-stacked" role="navigation">
                                 <li class="nav-header">Music Genre</li>
                                 <li class="nav-divider"></li>
-                                <li ng-repeat="genre in genres" ng-class="{'active': genre.selected}">
+                                <li ng-repeat="genre in genreList.genres" ng-class="{'active': genreList.getClass(genre.name)}">
                                     <a href="#/Store/Browse?genre={{genre.name}}">
                                         <span ng-bind="genre.name"></span>
                                     </a>
@@ -93,6 +93,7 @@
             "~/bundles/modernizr",
             "~/bundles/bootstrap",
             "~/bundles/angular",
+            "~/bundles/restangular",
             "~/bundles/musicstore-app")
 </body>
 </html>

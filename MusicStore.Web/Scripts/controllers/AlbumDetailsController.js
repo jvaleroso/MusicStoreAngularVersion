@@ -1,20 +1,16 @@
-﻿(function () {
-    var musicStoreApp = angular.module('musicStoreApp');
-
-    musicStoreApp.controller('AlbumDetailsController', ['$scope', '$routeParams', 'StoreManager',
-        function ($scope, $routeParams, storeManager) {
-
-            init();
-
-            function init() {
-                storeManager.getById({Id: $routeParams.id},function (response) {
-                    $scope.album = response;
-                }, function (error) {
-                    console.log(error);
-                });
+﻿var MusicStore;
+(function (MusicStore) {
+    (function (Controllers) {
+        var AlbumDetailsController = (function () {
+            function AlbumDetailsController($routeParams, albumService) {
+                this.$routeParams = $routeParams;
+                this.albumService = albumService;
+                this.album = this.albumService.getAlbumById($routeParams.albumId);
             }
-        }]);
-
-})();
-
-
+            return AlbumDetailsController;
+        })();
+        Controllers.AlbumDetailsController = AlbumDetailsController;
+    })(MusicStore.Controllers || (MusicStore.Controllers = {}));
+    var Controllers = MusicStore.Controllers;
+})(MusicStore || (MusicStore = {}));
+//# sourceMappingURL=AlbumDetailsController.js.map

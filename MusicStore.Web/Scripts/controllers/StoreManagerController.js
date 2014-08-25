@@ -1,65 +1,46 @@
-﻿(function () {
-    var musicStoreApp = angular.module('musicStoreApp');
-
-    musicStoreApp.controller('StoreManagerController', ['$scope', '$location', '$routeParams', 'StoreManager',
-        function ($scope, $location, $routeParams, storeManager) {
-
-            init();
-
-            function init() {
-                if (isNaN($routeParams.id)) {
-                    storeManager.getAlbums(function (response) {
-                        $scope.albums = [];
-                        $scope.albums = response;
-                    }, function (error) {
-                        console.log(error);
-                    });
-                    storeManager.getArtist(function (response) {
-                        $scope.artists = [];
-                        $scope.artists = response;
-                    }, function (error) {
-                        console.log(error);
-                    });
-                    storeManager.getGenres(function (response) {
-                        $scope.genres = [];
-                        $scope.genres = response;
-                    }, function (error) {
-                        console.log(error);
-                    });
+﻿var MusicStore;
+(function (MusicStore) {
+    (function (Controllers) {
+        var StoreManagerController = (function () {
+            function StoreManagerController($location, $routeParams, albumService, genreService, artistService) {
+                this.$location = $location;
+                this.$routeParams = $routeParams;
+                this.albumService = albumService;
+                this.genreService = genreService;
+                this.artistService = artistService;
+                if (isNaN($routeParams.albumId)) {
+                    this.genres = this.genreService.getGenres();
+                    this.albums = this.albumService.getAlbums();
+                    this.artists = this.artistService.getArtists();
                 } else {
-
-                    storeManager.get({ id: $routeParams.id }, function (album) {
-                        $scope.album = album;
-                    }, function (error) {
-                        console.log(error);
-                    });
+                    this.album = this.albumService.getAlbumById($routeParams.albumId);
                 }
             }
-
-            $scope.createAlbum = function (album) {
-                storeManager.saveAlbum(album, function () {
-                    storeManager.getAlbums(function (response) {
-                        $scope.albums = [];
-                        $scope.albums = response;
-                    });
-                }, function (error) {
-                    console.log(error);
-                });
+            StoreManagerController.prototype.createAlbum = function (album) {
+                var newAlbum = this.albumService.createAlbum(album);
+                this.albums.push(newAlbum);
             };
 
-            $scope.viewDetails = function () {
-                storeManager.get({ albumid: $routeParams.id }, function success(album) {
-                    $scope.album = album;
-                }, function (error) {
-                    console.log(error);
-                });
+            StoreManagerController.prototype.viewDetails = function () {
+                this.album = this.albumService.getAlbumById(this.$routeParams.albumId);
             };
 
-            $scope.editAlbum = function (album) {
-                $scope.newAlbum = album;
+            StoreManagerController.prototype.editAlbum = function (album) {
+                this.album = album;
             };
-        }]);
+            return StoreManagerController;
+        })();
+        Controllers.StoreManagerController = StoreManagerController;
 
-})();
-
-
+        angular.module('musicStoreApp').controller('StoreManagerController', [
+            '$location',
+            '$routeParams',
+            'AlbumService',
+            'GenreService',
+            'ArtistService',
+            StoreManagerController
+        ]);
+    })(MusicStore.Controllers || (MusicStore.Controllers = {}));
+    var Controllers = MusicStore.Controllers;
+})(MusicStore || (MusicStore = {}));
+//# sourceMappingURL=StoreManagerController.js.map

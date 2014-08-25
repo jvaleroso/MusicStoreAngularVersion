@@ -1,32 +1,41 @@
-﻿(function () {
-    var musicStoreApp = angular.module('musicStoreApp');
+﻿var MusicStore;
+(function (MusicStore) {
+    (function (Controllers) {
+        var GenreListController = (function () {
+            function GenreListController($scope, $location, $routeParams, genreService) {
+                var _this = this;
+                this.$scope = $scope;
+                this.$location = $location;
+                this.$routeParams = $routeParams;
+                this.genreService = genreService;
+                $scope.$on('GenreController_AddNewGenre', function () {
+                    _this.genres = genreService.getGenres();
+                });
 
-    musicStoreApp.controller('GenreListController', ['$scope', '$location', '$routeParams', 'Genre',
-        function ($scope, $location, $routeParams, genre) {
-
-            init();
-
-            function init() {
-                genre.query(function (response) {
-                    $scope.genres = response;
-                }, function (error) {
-                    console.log(error);
+                $scope.$on('Genre_Selected', function (event, selectedGenre) {
+                    angular.forEach(_this.genres, function (item) {
+                        if (item.name == selectedGenre)
+                            _this.isSelected = true;
+                        else
+                            _this.isSelected = false;
+                    });
                 });
             }
+            GenreListController.prototype.getClass = function (musicGenre) {
+                return this.$routeParams.genre == musicGenre;
+            };
+            return GenreListController;
+        })();
+        Controllers.GenreListController = GenreListController;
 
-            $scope.$on("GenreController_AddNewGenre", function () {
-                genre.query(function (response) {
-                    $scope.genres = response;
-                }, function (error) {
-                    console.log(error);
-                });
-            });
-
-            $scope.$on('Genre_Selected', function (event, selectedGenre) {
-                angular.forEach($scope.genres, function (item) {
-                    if (item.name == selectedGenre) item.selected = true;
-                    else item.selected = false;
-                });
-            });
-        }]);
-})();
+        angular.module('musicStoreApp').controller('GenreListController', [
+            '$scope',
+            '$location',
+            '$routeParams',
+            'GenreService',
+            GenreListController
+        ]);
+    })(MusicStore.Controllers || (MusicStore.Controllers = {}));
+    var Controllers = MusicStore.Controllers;
+})(MusicStore || (MusicStore = {}));
+//# sourceMappingURL=GenreListController.js.map

@@ -1,4 +1,5 @@
-﻿using System.Web.Http;
+﻿using System.Net.Http.Headers;
+using System.Web.Http;
 using System.Web.Routing;
 
 namespace MusicStore.Web.App_Start
@@ -28,20 +29,26 @@ namespace MusicStore.Web.App_Start
             config.Routes.MapHttpRoute(
                 "GetAlbumById",
                 "api/album/details",
-                new {controller = "Album", action = "GetById"},
-                new {httpMethod = new HttpMethodConstraint("GET")});
+                new { controller = "Album", action = "GetById" },
+                new { httpMethod = new HttpMethodConstraint("GET") });
 
             config.Routes.MapHttpRoute(
                 "CreateAlbum",
                 "api/album/createalbum",
                 new { controller = "Album", action = "CreateAlbum" },
-                new {httpMethod = new HttpMethodConstraint("POST")});
+                new { httpMethod = new HttpMethodConstraint("POST") });
 
             config.Routes.MapHttpRoute(
                 "CreateArtist",
                 "api/Artist",
                 new { controller = "Artist", action = "CreateArtist" },
                 new { httpMethod = new HttpMethodConstraint("POST") });
+
+            config.Routes.MapHttpRoute(
+                "",
+                "api/Artist",
+                new {controller = "Artist", action = "Get"},
+                new {httpMethod = new HttpMethodConstraint("GET")});
 
             config.Routes.MapHttpRoute(
                 "CreateGenre",
@@ -54,6 +61,8 @@ namespace MusicStore.Web.App_Start
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
                 );
+
+            config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
         }
     }
 }

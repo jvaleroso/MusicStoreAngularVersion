@@ -1,28 +1,29 @@
-﻿(function () {
-    var musicStoreApp = angular.module('musicStoreApp');
-
-    musicStoreApp.controller('ArtistController', ['$scope', '$location', '$routeParams', 'Artist',
-        function ($scope, $location, $routeParams, artist) {
-
-            init();
-
-            function init() {
-                artist.query(function (response) {
-                    $scope.artists = response;
-                }, function(error) {
-                    console.log(error);
-                });
+﻿var MusicStore;
+(function (MusicStore) {
+    (function (Controllers) {
+        var ArtistController = (function () {
+            function ArtistController(artistService, $location, $routeParam) {
+                this.artistService = artistService;
+                this.$location = $location;
+                this.$routeParam = $routeParam;
+                this.artists = artistService.getArtists();
             }
-
-            $scope.createNewArtist = function () {
-                artist.save($scope.newArtist, function () {
-                    $location.path('/StoreManager');
-                }, function (error) {
-                    console.log(error);
-                });
+            ArtistController.prototype.createNewArtist = function () {
+                var newArtist = this.artistService.createArtist(this.artist);
+                if (newArtist != null)
+                    this.artists.push(newArtist);
             };
-        }]);
+            return ArtistController;
+        })();
+        Controllers.ArtistController = ArtistController;
 
-})();
-
-
+        angular.module('musicStoreApp').controller('ArtistController', [
+            'artistService',
+            '$location',
+            '$routeParam',
+            ArtistController
+        ]);
+    })(MusicStore.Controllers || (MusicStore.Controllers = {}));
+    var Controllers = MusicStore.Controllers;
+})(MusicStore || (MusicStore = {}));
+//# sourceMappingURL=ArtistController.js.map
