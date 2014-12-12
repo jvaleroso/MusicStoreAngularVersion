@@ -13,6 +13,11 @@ interface Function {
     $inject?: string[];
 }
 
+// Support AMD require
+declare module 'angular' {
+    export = angular;
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 // ng module (angular.js)
 ///////////////////////////////////////////////////////////////////////////////
@@ -20,7 +25,7 @@ declare module ng {
 
     // not directly implemented, but ensures that constructed class implements $get
     interface IServiceProviderClass {
-        new(...args: any[]): IServiceProvider;
+        new (...args: any[]): IServiceProvider;
     }
 
     interface IServiceProviderFactory {
@@ -32,17 +37,168 @@ declare module ng {
         $get: any;
     }
 
+    interface IAngularBootstrapConfig {
+        strictDi?: boolean;
+    }
+
     ///////////////////////////////////////////////////////////////////////////
     // AngularStatic
     // see http://docs.angularjs.org/api
     ///////////////////////////////////////////////////////////////////////////
     interface IAngularStatic {
         bind(context: any, fn: Function, ...args: any[]): Function;
-        bootstrap(element: string, modules?: any[]): auto.IInjectorService;
-        bootstrap(element: JQuery, modules?: any[]): auto.IInjectorService;
-        bootstrap(element: Element, modules?: any[]): auto.IInjectorService;
-        bootstrap(element: Document, modules?: any[]): auto.IInjectorService;
-        copy(source: any, destination?: any): any;
+
+        /**
+         * Use this function to manually start up angular application.
+         *
+         * @param element DOM element which is the root of angular application.
+         * @param modules An array of modules to load into the application.
+         *     Each item in the array should be the name of a predefined module or a (DI annotated)
+         *     function that will be invoked by the injector as a run block.
+         * @param config an object for defining configuration options for the application. The following keys are supported:
+         *     - `strictDi`: disable automatic function annotation for the application. This is meant to assist in finding bugs which break minified code.
+         */
+        bootstrap(element: string, modules?: string, config?: IAngularBootstrapConfig): auto.IInjectorService;
+        /**
+         * Use this function to manually start up angular application.
+         *
+         * @param element DOM element which is the root of angular application.
+         * @param modules An array of modules to load into the application.
+         *     Each item in the array should be the name of a predefined module or a (DI annotated)
+         *     function that will be invoked by the injector as a run block.
+         * @param config an object for defining configuration options for the application. The following keys are supported:
+         *     - `strictDi`: disable automatic function annotation for the application. This is meant to assist in finding bugs which break minified code.
+         */
+        bootstrap(element: string, modules?: Function, config?: IAngularBootstrapConfig): auto.IInjectorService;
+        /**
+         * Use this function to manually start up angular application.
+         *
+         * @param element DOM element which is the root of angular application.
+         * @param modules An array of modules to load into the application.
+         *     Each item in the array should be the name of a predefined module or a (DI annotated)
+         *     function that will be invoked by the injector as a run block.
+         * @param config an object for defining configuration options for the application. The following keys are supported:
+         *     - `strictDi`: disable automatic function annotation for the application. This is meant to assist in finding bugs which break minified code.
+         */
+        bootstrap(element: string, modules?: string[], config?: IAngularBootstrapConfig): auto.IInjectorService;
+        /**
+         * Use this function to manually start up angular application.
+         *
+         * @param element DOM element which is the root of angular application.
+         * @param modules An array of modules to load into the application.
+         *     Each item in the array should be the name of a predefined module or a (DI annotated)
+         *     function that will be invoked by the injector as a run block.
+         * @param config an object for defining configuration options for the application. The following keys are supported:
+         *     - `strictDi`: disable automatic function annotation for the application. This is meant to assist in finding bugs which break minified code.
+         */
+        bootstrap(element: JQuery, modules?: string, config?: IAngularBootstrapConfig): auto.IInjectorService;
+        /**
+         * Use this function to manually start up angular application.
+         *
+         * @param element DOM element which is the root of angular application.
+         * @param modules An array of modules to load into the application.
+         *     Each item in the array should be the name of a predefined module or a (DI annotated)
+         *     function that will be invoked by the injector as a run block.
+         * @param config an object for defining configuration options for the application. The following keys are supported:
+         *     - `strictDi`: disable automatic function annotation for the application. This is meant to assist in finding bugs which break minified code.
+         */
+        bootstrap(element: JQuery, modules?: Function, config?: IAngularBootstrapConfig): auto.IInjectorService;
+        /**
+         * Use this function to manually start up angular application.
+         *
+         * @param element DOM element which is the root of angular application.
+         * @param modules An array of modules to load into the application.
+         *     Each item in the array should be the name of a predefined module or a (DI annotated)
+         *     function that will be invoked by the injector as a run block.
+         * @param config an object for defining configuration options for the application. The following keys are supported:
+         *     - `strictDi`: disable automatic function annotation for the application. This is meant to assist in finding bugs which break minified code.
+         */
+        bootstrap(element: JQuery, modules?: string[], config?: IAngularBootstrapConfig): auto.IInjectorService;
+        /**
+         * Use this function to manually start up angular application.
+         *
+         * @param element DOM element which is the root of angular application.
+         * @param modules An array of modules to load into the application.
+         *     Each item in the array should be the name of a predefined module or a (DI annotated)
+         *     function that will be invoked by the injector as a run block.
+         * @param config an object for defining configuration options for the application. The following keys are supported:
+         *     - `strictDi`: disable automatic function annotation for the application. This is meant to assist in finding bugs which break minified code.
+         */
+        bootstrap(element: Element, modules?: string, config?: IAngularBootstrapConfig): auto.IInjectorService;
+        /**
+         * Use this function to manually start up angular application.
+         *
+         * @param element DOM element which is the root of angular application.
+         * @param modules An array of modules to load into the application.
+         *     Each item in the array should be the name of a predefined module or a (DI annotated)
+         *     function that will be invoked by the injector as a run block.
+         * @param config an object for defining configuration options for the application. The following keys are supported:
+         *     - `strictDi`: disable automatic function annotation for the application. This is meant to assist in finding bugs which break minified code.
+         */
+        bootstrap(element: Element, modules?: Function, config?: IAngularBootstrapConfig): auto.IInjectorService;
+        /**
+         * Use this function to manually start up angular application.
+         *
+         * @param element DOM element which is the root of angular application.
+         * @param modules An array of modules to load into the application.
+         *     Each item in the array should be the name of a predefined module or a (DI annotated)
+         *     function that will be invoked by the injector as a run block.
+         * @param config an object for defining configuration options for the application. The following keys are supported:
+         *     - `strictDi`: disable automatic function annotation for the application. This is meant to assist in finding bugs which break minified code.
+         */
+        bootstrap(element: Element, modules?: string[], config?: IAngularBootstrapConfig): auto.IInjectorService;
+        /**
+         * Use this function to manually start up angular application.
+         *
+         * @param element DOM element which is the root of angular application.
+         * @param modules An array of modules to load into the application.
+         *     Each item in the array should be the name of a predefined module or a (DI annotated)
+         *     function that will be invoked by the injector as a run block.
+         * @param config an object for defining configuration options for the application. The following keys are supported:
+         *     - `strictDi`: disable automatic function annotation for the application. This is meant to assist in finding bugs which break minified code.
+         */
+        bootstrap(element: Document, modules?: string, config?: IAngularBootstrapConfig): auto.IInjectorService;
+        /**
+         * Use this function to manually start up angular application.
+         *
+         * @param element DOM element which is the root of angular application.
+         * @param modules An array of modules to load into the application.
+         *     Each item in the array should be the name of a predefined module or a (DI annotated)
+         *     function that will be invoked by the injector as a run block.
+         * @param config an object for defining configuration options for the application. The following keys are supported:
+         *     - `strictDi`: disable automatic function annotation for the application. This is meant to assist in finding bugs which break minified code.
+         */
+        bootstrap(element: Document, modules?: Function, config?: IAngularBootstrapConfig): auto.IInjectorService;
+        /**
+         * Use this function to manually start up angular application.
+         *
+         * @param element DOM element which is the root of angular application.
+         * @param modules An array of modules to load into the application.
+         *     Each item in the array should be the name of a predefined module or a (DI annotated)
+         *     function that will be invoked by the injector as a run block.
+         * @param config an object for defining configuration options for the application. The following keys are supported:
+         *     - `strictDi`: disable automatic function annotation for the application. This is meant to assist in finding bugs which break minified code.
+         */
+        bootstrap(element: Document, modules?: string[], config?: IAngularBootstrapConfig): auto.IInjectorService;
+
+        /**
+         * Creates a deep copy of source, which should be an object or an array.
+         *
+         * - If no destination is supplied, a copy of the object or array is created.
+         * - If a destination is provided, all of its elements (for array) or properties (for objects) are deleted and then all elements/properties from the source are copied to it.
+         * - If source is not an object or array (inc. null and undefined), source is returned.
+         * - If source is identical to 'destination' an exception will be thrown.
+         *
+         * @param source The source that will be used to make a copy. Can be any type, including primitives, null, and undefined.
+         * @param destination Destination into which the source is copied. If provided, must be of the same type as source.
+         */
+        copy<T>(source: T, destination?: T): T;
+
+        /**
+         * Wraps a raw DOM element or HTML string as a jQuery element.
+         *
+         * If jQuery is available, angular.element is an alias for the jQuery function. If jQuery is not available, angular.element delegates to Angular's built-in subset of jQuery, called "jQuery lite" or "jqLite."
+         */
         element: IAugmentedJQueryStatic;
         equals(value1: any, value2: any): boolean;
         extend(destination: any, ...sources: any[]): any;
@@ -107,6 +263,7 @@ declare module ng {
             configFn?: Function): IModule;
 
         noop(...args: any[]): void;
+        reloadWithDebugInfo(): void;
         toJson(obj: any, pretty?: boolean): string;
         uppercase(str: string): string;
         version: {
@@ -114,7 +271,7 @@ declare module ng {
             major: number;
             minor: number;
             dot: number;
-            codename: string;
+            codeName: string;
         };
     }
 
@@ -164,8 +321,20 @@ declare module ng {
          * @param controllerConstructor Controller constructor fn (optionally decorated with DI annotations in the array notation).
          */
         controller(name: string, inlineAnnotatedConstructor: any[]): IModule;
-        controller(object : Object): IModule;
+        controller(object: Object): IModule;
+        /**
+         * Register a new directive with the compiler.
+         *
+         * @param name Name of the directive in camel-case (i.e. ngBind which will match as ng-bind)
+         * @param directiveFactory An injectable directive factory function.
+         */
         directive(name: string, directiveFactory: IDirectiveFactory): IModule;
+        /**
+         * Register a new directive with the compiler.
+         *
+         * @param name Name of the directive in camel-case (i.e. ngBind which will match as ng-bind)
+         * @param directiveFactory An injectable directive factory function.
+         */
         directive(name: string, inlineAnnotatedFunction: any[]): IModule;
         directive(object: Object): IModule;
         /**
@@ -245,7 +414,7 @@ declare module ng {
         // The observer function will be invoked once during the next $digest
         // following compilation. The observer is then invoked whenever the
         // interpolated value changes.
-        $observe(name: string, fn:(value?:any)=>any): Function;
+        $observe(name: string, fn: (value?: any) => any): Function;
 
         // A map of DOM element attribute names to the normalized name. This is needed
         // to do reverse lookup from normalized name back to actual name.
@@ -277,6 +446,7 @@ declare module ng {
         $commitViewValue(): void;
         $rollbackViewValue(): void;
         $setSubmitted(): void;
+        $setUntouched(): void;
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -288,12 +458,13 @@ declare module ng {
         $setValidity(validationErrorKey: string, isValid: boolean): void;
         // Documentation states viewValue and modelValue to be a string but other
         // types do work and it's common to use them.
-        $setViewValue(value: any): void;
+        $setViewValue(value: any, trigger?: string): void;
+        $setPristine(): void;
         $validate(): void;
         $setTouched(): void;
         $setUntouched(): void;
         $rollbackViewValue(): void;
-        $commitViewValue(revalidate?: boolean): void;
+        $commitViewValue(): void;
         $isEmpty(value: any): boolean;
 
         $viewValue: any;
@@ -310,7 +481,9 @@ declare module ng {
         $untouched: boolean;
 
         $validators: IModelValidators;
+        $asyncValidators: IAsyncModelValidators;
 
+        $pending: any;
         $pristine: boolean;
         $dirty: boolean;
         $valid: boolean;
@@ -319,6 +492,10 @@ declare module ng {
 
     interface IModelValidators {
         [index: string]: (...args: any[]) => boolean;
+    }
+
+    interface IAsyncModelValidators {
+        [index: string]: (...args: any[]) => ng.IPromise<boolean>;
     }
 
     interface IModelParser {
@@ -333,31 +510,45 @@ declare module ng {
         (): void;
     }
 
-    ///////////////////////////////////////////////////////////////////////////
-    // Scope and RootScope
-    // see https://docs.angularjs.org/api/ng/type/$rootScope.Scope and http://docs.angularjs.org/api/ng.$rootScope
-    ///////////////////////////////////////////////////////////////////////////
+    /**
+     * $rootScope - $rootScopeProvider - service in module ng
+     * see https://docs.angularjs.org/api/ng/type/$rootScope.Scope and https://docs.angularjs.org/api/ng/service/$rootScope
+     */
     interface IRootScopeService {
+        [index: string]: any;
+
         $apply(): any;
         $apply(exp: string): any;
         $apply(exp: (scope: IScope) => any): any;
+
+        $applyAsync(): any;
+        $applyAsync(exp: string): any;
+        $applyAsync(exp: (scope: IScope) => any): any;
 
         $broadcast(name: string, ...args: any[]): IAngularEvent;
         $destroy(): void;
         $digest(): void;
         $emit(name: string, ...args: any[]): IAngularEvent;
 
-        // Documentation says exp is optional, but actual implementaton counts on it
-        $eval(expression: string, args?: Object): any;
-        $eval(expression: (scope: IScope) => any, args?: Object): any;
+        $eval(): any;
+        $eval(expression: string, locals?: Object): any;
+        $eval(expression: (scope: IScope) => any, locals?: Object): any;
 
-        // Documentation says exp is optional, but actual implementaton counts on it
+        $evalAsync(): void;
         $evalAsync(expression: string): void;
         $evalAsync(expression: (scope: IScope) => any): void;
 
         // Defaults to false by the implementation checking strategy
-        $new(isolate?: boolean): IScope;
+        $new(isolate?: boolean, parent?: IScope): IScope;
 
+        /**
+         * Listens on events of a given type. See $emit for discussion of event life cycle.
+         *
+         * The event listener function format is: function(event, args...).
+         *
+         * @param name Event name to listen on.
+         * @param listener Function to call when the event is emitted.
+         */
         $on(name: string, listener: (event: IAngularEvent, ...args: any[]) => any): Function;
 
         $watch(watchExpression: string, listener?: string, objectEquality?: boolean): Function;
@@ -369,33 +560,44 @@ declare module ng {
         $watchCollection(watchExpression: (scope: IScope) => any, listener: (newValue: any, oldValue: any, scope: IScope) => any): Function;
 
         $watchGroup(watchExpressions: any[], listener: (newValue: any, oldValue: any, scope: IScope) => any): Function;
-        $watchGroup(watchExpressions: {(scope: IScope) : any}[], listener: (newValue: any, oldValue: any, scope: IScope) => any): Function;
+        $watchGroup(watchExpressions: { (scope: IScope): any }[], listener: (newValue: any, oldValue: any, scope: IScope) => any): Function;
 
         $parent: IScope;
-
         $root: IRootScopeService;
-        this: IRootScopeService;
-
-        $id: string;
+        $id: number;
 
         // Hidden members
         $$isolateBindings: any;
         $$phase: any;
     }
 
-    interface IScope extends IRootScopeService {
-        [index: string]: any;
-    }
+    interface IScope extends IRootScopeService { }
 
     interface IAngularEvent {
+        /**
+         * the scope on which the event was $emit-ed or $broadcast-ed.
+         */
         targetScope: IScope;
+        /**
+         * the scope that is currently handling the event. Once the event propagates through the scope hierarchy, this property is set to null.
+         */
         currentScope: IScope;
+        /**
+         * name of the event.
+         */
         name: string;
-        preventDefault: Function;
-        defaultPrevented: boolean;
-
-        // Available only events that were $emit-ted
+        /**
+         * calling stopPropagation function will cancel further event propagation (available only for events that were $emit-ed).
+         */
         stopPropagation?: Function;
+        /**
+         * calling preventDefault sets defaultPrevented flag to true.
+         */
+        preventDefault: Function;
+        /**
+         * true if preventDefault was called.
+         */
+        defaultPrevented: boolean;
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -430,6 +632,35 @@ declare module ng {
     interface IIntervalService {
         (func: Function, delay: number, count?: number, invokeApply?: boolean): IPromise<any>;
         cancel(promise: IPromise<any>): boolean;
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+    // AngularProvider
+    // see http://docs.angularjs.org/api/ng/provider/$animateProvider
+    ///////////////////////////////////////////////////////////////////////////
+    interface IAnimateProvider {
+        /**
+         * Registers a new injectable animation factory function.
+         *
+         * @param name The name of the animation.
+         * @param factory The factory function that will be executed to return the animation object.
+         */
+        register(name: string, factory: () => IAnimateCallbackObject): void;
+
+        /**
+         * Gets and/or sets the CSS class expression that is checked when performing an animation.
+         *
+         * @param expression The className expression which will be checked against all animations.
+         * @returns The current CSS className expression value. If null then there is no expression value.
+         */
+        classNameFilter(expression?: RegExp): RegExp;
+    }
+
+    /**
+     * The animation object which contains callback functions for each event that is expected to be animated.
+     */
+    interface IAnimateCallbackObject {
+        eventFn(element: Node, doneFn: () => void): Function;
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -508,11 +739,11 @@ declare module ng {
     }
 
     interface ILogProvider {
-        debugEnabled(enabled: boolean): ILogProvider;
         debugEnabled(): boolean;
+        debugEnabled(enabled: boolean): ILogProvider;
     }
 
-    // We define this as separete interface so we can reopen it later for
+    // We define this as separate interface so we can reopen it later for
     // the ngMock module.
     interface ILogCall {
         (...args: any[]): void;
@@ -544,25 +775,81 @@ declare module ng {
         assign(context: any, value: any): any;
     }
 
-    ///////////////////////////////////////////////////////////////////////////
-    // LocationService
-    // see http://docs.angularjs.org/api/ng.$location
-    // see http://docs.angularjs.org/api/ng.$locationProvider
-    // see http://docs.angularjs.org/guide/dev_guide.services.$location
-    ///////////////////////////////////////////////////////////////////////////
+    /**
+     * $location - $locationProvider - service in module ng
+     * see https://docs.angularjs.org/api/ng/service/$location
+     */
     interface ILocationService {
         absUrl(): string;
         hash(): string;
         hash(newHash: string): ILocationService;
         host(): string;
+
+        /**
+         * Return path of current url
+         */
         path(): string;
-        path(newPath: string): ILocationService;
+
+        /**
+         * Change path when called with parameter and return $location.
+         * Note: Path should always begin with forward slash (/), this method will add the forward slash if it is missing.
+         *
+         * @param path New path
+         */
+        path(path: string): ILocationService;
+
         port(): number;
         protocol(): string;
         replace(): ILocationService;
+
+        /**
+         * Return search part (as object) of current url
+         */
         search(): any;
-        search(parametersMap: any): ILocationService;
-        search(parameter: string, parameterValue: any): ILocationService;
+
+        /**
+         * Change search part when called with parameter and return $location.
+         *
+         * @param search When called with a single argument the method acts as a setter, setting the search component of $location to the specified value.
+         *
+         * If the argument is a hash object containing an array of values, these values will be encoded as duplicate search parameters in the url.
+         */
+        search(search: any): ILocationService;
+
+        /**
+         * Change search part when called with parameter and return $location.
+         *
+         * @param search New search params
+         * @param paramValue If search is a string or a Number, then paramValue will override only a single search property. If paramValue is null, the property specified via the first argument will be deleted.
+         */
+        search(search: string, paramValue: string): ILocationService;
+
+        /**
+         * Change search part when called with parameter and return $location.
+         *
+         * @param search New search params
+         * @param paramValue If search is a string or a Number, then paramValue will override only a single search property. If paramValue is null, the property specified via the first argument will be deleted.
+         */
+        search(search: string, paramValue: number): ILocationService;
+
+        /**
+         * Change search part when called with parameter and return $location.
+         *
+         * @param search New search params
+         * @param paramValue If paramValue is an array, it will override the property of the search component of $location specified via the first argument.
+         */
+        search(search: string, paramValue: string[]): ILocationService;
+
+        /**
+         * Change search part when called with parameter and return $location.
+         *
+         * @param search New search params
+         * @param paramValue If paramValue is true, the property specified via the first argument will be added with no value nor trailing equal sign.
+         */
+        search(search: string, paramValue: boolean): ILocationService;
+
+        state(): any;
+        state(state: any): ILocationService;
         url(): string;
         url(url: string): ILocationService;
     }
@@ -598,12 +885,20 @@ declare module ng {
     ///////////////////////////////////////////////////////////////////////////
     interface IRootElementService extends JQuery {}
 
+    interface IQResolveReject<T> {
+        (): void;
+        (value: T): void;
+    }
     /**
      * $q - service in module ng
      * A promise/deferred implementation inspired by Kris Kowal's Q.
      * See http://docs.angularjs.org/api/ng/service/$q
      */
     interface IQService {
+        new (resolver: (resolve: IQResolveReject<any>) => any): IPromise<any>;
+        new (resolver: (resolve: IQResolveReject<any>, reject: IQResolveReject<any>) => any): IPromise<any>;
+        new <T>(resolver: (resolve: IQResolveReject<T>, reject: IQResolveReject<any>) => any): IPromise<T>;
+
         /**
          * Combines multiple promises into a single promise that is resolved when all of the input promises are resolved.
          *
@@ -631,7 +926,7 @@ declare module ng {
          *
          * @param reason Constant, message, exception or an object representing the rejection reason.
          */
-        reject(reason?: any): IPromise<void>;
+        reject(reason?: any): IPromise<any>;
         /**
          * Wraps an object that might be a value or a (3rd party) then-able promise into a $q promise. This is useful when you are dealing with an object that might or might not be a promise, or if the promise comes from a source that can't be trusted.
          *
@@ -653,22 +948,50 @@ declare module ng {
     }
 
     interface IPromise<T> {
+        /**
+         * Regardless of when the promise was or will be resolved or rejected, then calls one of the success or error callbacks asynchronously as soon as the result is available. The callbacks are called with a single argument: the result or rejection reason. Additionally, the notify callback may be called zero or more times to provide a progress indication, before the promise is resolved or rejected.
+         *
+         * This method returns a new promise which is resolved or rejected via the return value of the successCallback, errorCallback. It also notifies via the return value of the notifyCallback method. The promise can not be resolved or rejected from the notifyCallback method.
+         */
         then<TResult>(successCallback: (promiseValue: T) => IHttpPromise<TResult>, errorCallback?: (reason: any) => any, notifyCallback?: (state: any) => any): IPromise<TResult>;
+        /**
+         * Regardless of when the promise was or will be resolved or rejected, then calls one of the success or error callbacks asynchronously as soon as the result is available. The callbacks are called with a single argument: the result or rejection reason. Additionally, the notify callback may be called zero or more times to provide a progress indication, before the promise is resolved or rejected.
+         *
+         * This method returns a new promise which is resolved or rejected via the return value of the successCallback, errorCallback. It also notifies via the return value of the notifyCallback method. The promise can not be resolved or rejected from the notifyCallback method.
+         */
         then<TResult>(successCallback: (promiseValue: T) => IPromise<TResult>, errorCallback?: (reason: any) => any, notifyCallback?: (state: any) => any): IPromise<TResult>;
+        /**
+         * Regardless of when the promise was or will be resolved or rejected, then calls one of the success or error callbacks asynchronously as soon as the result is available. The callbacks are called with a single argument: the result or rejection reason. Additionally, the notify callback may be called zero or more times to provide a progress indication, before the promise is resolved or rejected.
+         *
+         * This method returns a new promise which is resolved or rejected via the return value of the successCallback, errorCallback. It also notifies via the return value of the notifyCallback method. The promise can not be resolved or rejected from the notifyCallback method.
+         */
         then<TResult>(successCallback: (promiseValue: T) => TResult, errorCallback?: (reason: any) => TResult, notifyCallback?: (state: any) => any): IPromise<TResult>;
 
-
+        /**
+         * Shorthand for promise.then(null, errorCallback)
+         */
         catch<TResult>(onRejected: (reason: any) => IHttpPromise<TResult>): IPromise<TResult>;
+        /**
+         * Shorthand for promise.then(null, errorCallback)
+         */
         catch<TResult>(onRejected: (reason: any) => IPromise<TResult>): IPromise<TResult>;
+        /**
+         * Shorthand for promise.then(null, errorCallback)
+         */
         catch<TResult>(onRejected: (reason: any) => TResult): IPromise<TResult>;
 
-        finally<TResult>(finallyCallback: ()=>any):IPromise<TResult>;
+        /**
+         * Allows you to observe either the fulfillment or rejection of a promise, but to do so without modifying the final value. This is useful to release resources or do some clean-up that needs to be done whether the promise was rejected or resolved. See the full specification for more information.
+         *
+         * Because finally is a reserved word in JavaScript and reserved keywords are not supported as property names by ES3, you'll need to invoke the method like promise['finally'](callback) to make your code IE8 and Android 2.x compatible.
+         */
+        finally<TResult>(finallyCallback: () => any): IPromise<TResult>;
     }
 
     interface IDeferred<T> {
         resolve(value?: T): void;
         reject(reason?: any): void;
-        notify(state?:any): void;
+        notify(state?: any): void;
         promise: IPromise<T>;
     }
 
@@ -678,6 +1001,7 @@ declare module ng {
     ///////////////////////////////////////////////////////////////////////////
     interface IAnchorScrollService {
         (): void;
+        yOffset: any;
     }
 
     interface IAnchorScrollProvider extends IServiceProvider {
@@ -697,7 +1021,7 @@ declare module ng {
 
         // Methods bellow are not documented
         info(): any;
-        get (cacheId: string): ICacheObject;
+        get(cacheId: string): ICacheObject;
     }
 
     interface ICacheObject {
@@ -709,7 +1033,7 @@ declare module ng {
             //capacity: number;
         };
         put(key: string, value?: any): void;
-        get (key: string): any;
+        get(key: string): any;
         remove(key: string): void;
         removeAll(): void;
         destroy(): void;
@@ -737,6 +1061,8 @@ declare module ng {
 
         imgSrcSanitizationWhitelist(): RegExp;
         imgSrcSanitizationWhitelist(regexp: RegExp): ICompileProvider;
+
+        debugInfoEnabled(enabled?: boolean): any;
     }
 
     interface ICloneAttachFunction {
@@ -771,6 +1097,7 @@ declare module ng {
     interface IControllerProvider extends IServiceProvider {
         register(name: string, controllerConstructor: Function): void;
         register(name: string, dependencyAnnotatedConstructor: any[]): void;
+        allowGlobals(): void;
     }
 
     /**
@@ -926,8 +1253,13 @@ declare module ng {
         url: string;
     }
 
+    interface IHttpHeadersGetter {
+        (): { [name: string]: string; };
+        (headerName: string): string;
+    }
+
     interface IHttpPromiseCallback<T> {
-        (data: T, status: number, headers: (headerName: string) => string, config: IRequestConfig): void;
+        (data: T, status: number, headers: IHttpHeadersGetter, config: IRequestConfig): void;
     }
 
     interface IHttpPromiseCallbackArg<T> {
@@ -945,10 +1277,22 @@ declare module ng {
         then<TResult>(successCallback: (response: IHttpPromiseCallbackArg<T>) => TResult, errorCallback?: (response: IHttpPromiseCallbackArg<any>) => any): IPromise<TResult>;
     }
 
+    interface IHttpProviderDefaults {
+        xsrfCookieName?: string;
+        xsrfHeaderName?: string;
+        headers?: {
+            common?: any;
+            post?: any;
+            put?: any;
+            patch?: any;
+        }
+    }
+
     interface IHttpProvider extends IServiceProvider {
-        defaults: IRequestConfig;
+        defaults: IHttpProviderDefaults;
         interceptors: any[];
-        responseInterceptors: any[];
+        useApplyAsync(): boolean;
+        useApplyAsync(value: boolean): IHttpProvider;
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -967,7 +1311,7 @@ declare module ng {
     // see http://docs.angularjs.org/api/ng.$interpolateProvider
     ///////////////////////////////////////////////////////////////////////////
     interface IInterpolateService {
-        (text: string, mustHaveExpression?: boolean): IInterpolationFunction;
+        (text: string, mustHaveExpression?: boolean, trustedContext?: string, allOrNothing?: boolean): IInterpolationFunction;
         endSymbol(): string;
         startSymbol(): string;
     }
@@ -1042,6 +1386,34 @@ declare module ng {
         resourceUrlWhitelist(whitelist: any[]): void;
     }
 
+    /**
+     * $templateRequest service
+     * see http://docs.angularjs.org/api/ng/service/$templateRequest
+     */
+    interface ITemplateRequestService {
+        /**
+         * Downloads a template using $http and, upon success, stores the
+         * contents inside of $templateCache.
+         *
+         * If the HTTP request fails or the response data of the HTTP request is
+         * empty then a $compile error will be thrown (unless
+         * {ignoreRequestError} is set to true).
+         *
+         * @param tpl                  The template URL.
+         * @param ignoreRequestError   Whether or not to ignore the exception
+         *                             when the request fails or the template is
+         *                             empty.
+         *
+         * @return   A promise whose value is the template content.
+         */
+        (tpl: string, ignoreRequestError?: boolean): IPromise<string>;
+        /**
+         * total amount of pending template requests being downloaded.
+         * @type {number}
+         */
+        totalPendingRequests: number;
+    }
+
     ///////////////////////////////////////////////////////////////////////////
     // Directive
     // see http://docs.angularjs.org/api/ng.$compileProvider#directive
@@ -1079,6 +1451,7 @@ declare module ng {
         compile?: IDirectiveCompileFn;
         controller?: any;
         controllerAs?: string;
+        bindToController?: boolean;
         link?: IDirectiveLinkFn;
         name?: string;
         priority?: number;
@@ -1092,12 +1465,12 @@ declare module ng {
         transclude?: any;
     }
 
-    ///////////////////////////////////////////////////////////////////////////
-    // angular.element
-    // when calling angular.element, angular returns a jQuery object,
-    // augmented with additional methods like e.g. scope.
-    // see: http://docs.angularjs.org/api/angular.element
-    ///////////////////////////////////////////////////////////////////////////
+    /**
+     * angular.element
+     * when calling angular.element, angular returns a jQuery object,
+     * augmented with additional methods like e.g. scope.
+     * see: http://docs.angularjs.org/api/angular.element
+     */
     interface IAugmentedJQueryStatic extends JQueryStatic {
         (selector: string, context?: any): IAugmentedJQuery;
         (element: Element): IAugmentedJQuery;
@@ -1116,7 +1489,7 @@ declare module ng {
         find(selector: string): IAugmentedJQuery;
         find(element: any): IAugmentedJQuery;
         find(obj: JQuery): IAugmentedJQuery;
-
+        controller(): any;
         controller(name: string): any;
         injector(): any;
         scope(): IScope;

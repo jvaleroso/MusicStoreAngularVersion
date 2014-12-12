@@ -9,7 +9,11 @@
                 this.$routeParams = $routeParams;
                 this.genreService = genreService;
                 $scope.$on('GenreController_AddNewGenre', function () {
-                    _this.genres = genreService.getGenres();
+                    _this.genreService.getGenres().then(function (genres) {
+                        _this.genres = genres;
+                    }, function (error) {
+                        console.log(error);
+                    });
                 });
 
                 $scope.$on('Genre_Selected', function (event, selectedGenre) {

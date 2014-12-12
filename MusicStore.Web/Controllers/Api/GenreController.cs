@@ -8,6 +8,7 @@ using MusicStore.Web.Models;
 
 namespace MusicStore.Web.Controllers.Api
 {
+    [RoutePrefix("api/genre")]
     public class GenreController : ApiController
     {
         private readonly IGenreService _genreService;

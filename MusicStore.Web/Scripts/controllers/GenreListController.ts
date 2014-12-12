@@ -12,7 +12,11 @@
             private genreService: MusicStore.Services.GenreService) {
 
             $scope.$on('GenreController_AddNewGenre', () => {
-                this.genres = genreService.getGenres();
+                this.genreService.getGenres().then(genres => {
+                    this.genres = genres;
+                }, (error) => {
+                    console.log(error);
+                });
             });
 
             $scope.$on('Genre_Selected', (event, selectedGenre) => {

@@ -17,12 +17,13 @@ declare module ng.ui {
         controllerProvider?: any;
         resolve?: {};
         url?: string;
-        params?: any[];
+        params?: any;
         views?: {};
         abstract?: boolean;
         onEnter?: any;
         onExit?: any;
         data?: any;
+        reloadOnSearch?: boolean;
     }
 
     interface IStateProvider extends IServiceProvider {
@@ -107,10 +108,10 @@ declare module ng.ui {
     	 */
         sync(): void;
     }
-    
+
     interface IUiViewScrollProvider {
         /*
-         * Reverts back to using the core $anchorScroll service for scrolling 
+         * Reverts back to using the core $anchorScroll service for scrolling
          * based on the url anchor.
          */
         useAnchorScroll(): void;

@@ -1,7 +1,7 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace MusicStore.Web.App_Start
+namespace MusicStore.Web
 {
     public class RouteConfig
     {
@@ -18,8 +18,6 @@ namespace MusicStore.Web.App_Start
                     id = UrlParameter.Optional
                 }
             );
-
-        
         }
     }
 }

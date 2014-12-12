@@ -3,14 +3,17 @@
     <div class="row-fluid">
         <h3>Artists Configuration</h3>
         <hr />
-        <div class="btn-group pull-right">
-            <button type="button" class="btn btn-warning">
-                <span class="glyphicon glyphicon-upload"></span> Download
-            </button>
-            <button type="button" class="btn btn-success">
-                <span class="glyphicon glyphicon-download"></span> Upload
-            </button>
-            <input id="artistUpload" type="file" name="file"/>
+        <div class="pull-right">
+            <span id="uploadArtistBtn" class="btn btn-primary fileinput-button" data-trigger="hover">
+                <i class="fa fa-cloud-upload"></i>
+                Upload                
+                <input id="uploadArtists" type="file" name="file">
+            </span>
+            <div class="btn-group">
+                <button type="button" class="btn btn-primary" ng-click="artistCtrl.downloadArtist()">
+                    <i class="fa fa-cloud-download"></i>&nbsp;Download
+                </button>
+            </div>
         </div>
     </div>
     <br />
@@ -26,7 +29,7 @@
                 <tr ng-repeat="artist in artists">
                     <td><span ng-bind="artist.name"></span></td>
                 </tr>
-                <tr ng-show="albums.length == 0" class="error">
+                <tr ng-if="!albums || albums.length == 0" class="error">
                     <td colspan="5" style="text-align: center"><em>No results found</em></td>
                 </tr>
             </tbody>

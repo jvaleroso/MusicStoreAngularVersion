@@ -11,7 +11,7 @@
             private $routeParams: IAlbumParams,
             private albumService: MusicStore.Services.AlbumService) {
 
-            this.album = this.albumService.getAlbumById($routeParams.albumId);
+            //this.album = this.albumService.getAlbumById($routeParams.albumId);
         }
     }
 }

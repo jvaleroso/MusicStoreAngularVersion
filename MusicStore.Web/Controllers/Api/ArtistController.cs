@@ -11,6 +11,7 @@ using MusicStore.Services;
 
 namespace MusicStore.Web.Controllers.Api
 {
+    [RoutePrefix("api/artist")]
     public class ArtistController : ApiController
     {
         private static readonly HashSet<string> ValidContentTypes =
@@ -21,8 +22,9 @@ namespace MusicStore.Web.Controllers.Api
         {
             _artistService = artistService;
         }
-
-        public HttpResponseMessage Get()
+        [Route("api/artist")]
+        [HttpGet]
+        public HttpResponseMessage GetArtist()
         {
             var artist = _artistService.GetList();
 
@@ -37,6 +39,7 @@ namespace MusicStore.Web.Controllers.Api
             return Request.CreateResponse(HttpStatusCode.OK, savedArtist);
         }
 
+        [Route("api/artist/upload")]
         [HttpPost]
         public async Task<HttpResponseMessage> UploadArtists()
         {
@@ -51,7 +54,7 @@ namespace MusicStore.Web.Controllers.Api
                 throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
 
             var csvData = await httpContent.ReadAsStreamAsync();
-            var result = this._artistService.UpdloadArtists(csvData);
+            var result = this._artistService.UpdloadArtistConfig(csvData);
 
             if (!result)
                 throw new Exception("Error in parsing files");
@@ -63,24 +66,29 @@ namespace MusicStore.Web.Controllers.Api
         }
 
         [HttpGet]
-        public HttpResponseMessage DownloadArtists()
+        [Route("api/artist/download")]
+        public IHttpActionResult DownloadArtists()
         {
-            byte[] output;
             using (var stream = new MemoryStream())
             {
-                this._artistService.DownloadArtists(stream);
+                this._artistService.ExportArtistConfig(stream);
                 stream.Flush();
-                output = stream.ToArray();
+                byte[] output = stream.ToArray();
+
+                if (output.Length > 0)
+                {
+                    var result = new HttpResponseMessage(HttpStatusCode.OK) { Content = new ByteArrayContent(output) };
+                    result.Content.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
+                    result.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment")
+                    {
+                        FileName = string.Format("{0}-Artists.csv", DateTime.Now.ToString("yyyyMMdd-hhmmss"))
+                    };
+
+                    return this.ResponseMessage(result);
+                }
+                return this.NotFound();
             }
 
-            var result = new HttpResponseMessage(HttpStatusCode.OK) { Content = new ByteArrayContent(output) };
-            result.Content.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
-            result.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment")
-            {
-                FileName = string.Format("{0}-Artists.csv", DateTime.Now.ToString("yyyyMMdd-hhmmss"))
-            };
-
-            return result;
         }
     }
 }

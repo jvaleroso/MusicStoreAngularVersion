@@ -13,16 +13,31 @@
             private $routeParams: IGenreParam,
             private genreService: MusicStore.Services.GenreService) {
 
-            this.genres = genreService.getGenres();
+            this.initialize();
         }
 
-        createNewGenre() {
-            var newGenre = this.genreService.createGenre(this.genre);
-            if (newGenre != null) this.genreService.createGenre(newGenre);
+        public createNewGenre(genre) {
+            this.genreService.saveGenre(genre).then(() => {
+                this.initialize();
+            }, (error) => {
+                    console.log(error);
+                });
         }
 
-        getClass(musicGenre: string) {
+        public downloadGenres() {
+ 
+        }
+
+        public getClass(musicGenre: string) {
             return this.$routeParams.genre == musicGenre;
+        }
+
+        public initialize() {
+            this.genreService.getGenres().then(genres => {
+                this.genres = genres;
+            }, (error) => {
+                    console.log(error);
+                });
         }
     }
 

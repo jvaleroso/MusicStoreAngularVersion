@@ -3,6 +3,7 @@
     (function (Controllers) {
         var StoreController = (function () {
             function StoreController($rootScope, $location, $routeParams, albumService) {
+                var _this = this;
                 this.$rootScope = $rootScope;
                 this.$location = $location;
                 this.$routeParams = $routeParams;
@@ -11,12 +12,24 @@
                 this.path = $location.path();
 
                 if ($routeParams.genre != null) {
-                    this.albums = this.albumService.getAlbumsByGenre($routeParams.genre);
-                    $rootScope.$broadcast("Genre_Selected", $routeParams.genre);
+                    this.albumService.getAlbumsByGenre($routeParams.genre).then(function (albums) {
+                        _this.albums = albums;
+                        $rootScope.$broadcast("Genre_Selected", $routeParams.genre);
+                    }, function (error) {
+                        console.log(error);
+                    });
                 } else {
-                    this.albums = albumService.getAlbums();
+                    this.initialize();
                 }
             }
+            StoreController.prototype.initialize = function () {
+                var _this = this;
+                this.albumService.getAlbums().then(function (albums) {
+                    _this.albums = albums;
+                }, function (error) {
+                    console.log(error);
+                });
+            };
             return StoreController;
         })();
         Controllers.StoreController = StoreController;

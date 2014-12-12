@@ -4,27 +4,18 @@
         var GenreService = (function () {
             function GenreService(restangular) {
                 this.restangular = restangular;
-                this.genreService = restangular.all('genre');
+                this.genreService = this.restangular.all('api/genre');
             }
             GenreService.prototype.getGenres = function () {
-                var genreList;
-                this.genreService.getList().then(function (genres) {
-                    genreList = genres;
-                }, function (error) {
-                    console.log(error.message);
-                });
-                return genreList;
+                return this.genreService.getList();
             };
 
-            GenreService.prototype.createGenre = function (genre) {
-                var returnedGenre;
+            GenreService.prototype.saveGenre = function (genre) {
+                return this.genreService.customPOST(genre);
+            };
 
-                this.genreService.post(genre).then(function (newGenre) {
-                    returnedGenre = newGenre;
-                }, function (error) {
-                    console.log(error.message);
-                });
-                return returnedGenre;
+            GenreService.prototype.downloadGenre = function () {
+                return this.genreService.customGET('downloadGenre');
             };
             return GenreService;
         })();

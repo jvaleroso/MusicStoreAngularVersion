@@ -4,49 +4,22 @@
         var AlbumService = (function () {
             function AlbumService(restangular) {
                 this.restangular = restangular;
-                this.albumService = restangular.all('album');
+                this.albumService = restangular.all('api/album');
             }
             AlbumService.prototype.getAlbums = function () {
-                var albumList;
-                this.albumService.getList().then(function (albums) {
-                    albumList = albums;
-                }, function (error) {
-                    console.log(error);
-                });
-                return albumList;
+                return this.albumService.getList();
             };
 
             AlbumService.prototype.getAlbumsByGenre = function (genre) {
-                var albumList;
-                this.albumService.getList('album', { genre: genre }).then(function (albums) {
-                    albumList = albums;
-                }, function (error) {
-                    console.log(error);
-                });
-                return albumList;
+                return this.albumService.getList('', { genre: genre });
             };
 
             AlbumService.prototype.getAlbumById = function (id) {
-                var album;
-
-                this.restangular.one('album', id).get().then(function (returnedAlbum) {
-                    album = returnedAlbum;
-                }, function (error) {
-                    console.log(error);
-                });
-
-                return album;
+                return this.albumService.customGET('', { id: id });
             };
 
-            AlbumService.prototype.createAlbum = function (album) {
-                var returnedAlbum;
-
-                this.albumService.post(album).then(function (newAlbum) {
-                    returnedAlbum = newAlbum;
-                }, function (error) {
-                    console.log(error.message);
-                });
-                return returnedAlbum;
+            AlbumService.prototype.saveAlbum = function (album) {
+                return this.albumService.customPOST(album);
             };
             return AlbumService;
         })();

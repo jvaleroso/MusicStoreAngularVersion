@@ -40,7 +40,7 @@ namespace MusicStore.Services
         }
 
 
-        public bool UpdloadArtists(Stream memoryStream)
+        public bool UpdloadArtistConfig(Stream memoryStream)
         {
             bool result = true;
 
@@ -79,7 +79,7 @@ namespace MusicStore.Services
         }
 
 
-        public void DownloadArtists(Stream memortStream)
+        public void ExportArtistConfig(Stream memortStream)
         {
             var records = this.GetList();
             using (var txtWriter = new StreamWriter(memortStream))

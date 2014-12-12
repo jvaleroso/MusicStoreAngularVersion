@@ -15,11 +15,26 @@
             this.path = $location.path();
 
             if ($routeParams.genre != null) {
-                this.albums = this.albumService.getAlbumsByGenre($routeParams.genre);
-                $rootScope.$broadcast("Genre_Selected", $routeParams.genre);
-            } else {
-                this.albums = albumService.getAlbums();
+                this.albumService.getAlbumsByGenre($routeParams.genre).then(albums => {
+                    this.albums = albums;
+                    $rootScope.$broadcast("Genre_Selected", $routeParams.genre);
+                },
+                (error) => {
+                    console.log(error);
+                });
+
             }
+            else {
+                this.initialize();
+            }
+        }
+
+        public initialize() {
+            this.albumService.getAlbums().then(albums => {
+                this.albums = albums;
+            }, (error) => {
+                    console.log(error);
+                });
         }
     }
 

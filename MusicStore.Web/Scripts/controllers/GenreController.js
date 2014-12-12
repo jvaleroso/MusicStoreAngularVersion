@@ -7,16 +7,31 @@
                 this.$location = $location;
                 this.$routeParams = $routeParams;
                 this.genreService = genreService;
-                this.genres = genreService.getGenres();
+                this.initialize();
             }
-            GenreController.prototype.createNewGenre = function () {
-                var newGenre = this.genreService.createGenre(this.genre);
-                if (newGenre != null)
-                    this.genreService.createGenre(newGenre);
+            GenreController.prototype.createNewGenre = function (genre) {
+                var _this = this;
+                this.genreService.saveGenre(genre).then(function () {
+                    _this.initialize();
+                }, function (error) {
+                    console.log(error);
+                });
+            };
+
+            GenreController.prototype.downloadGenres = function () {
             };
 
             GenreController.prototype.getClass = function (musicGenre) {
                 return this.$routeParams.genre == musicGenre;
+            };
+
+            GenreController.prototype.initialize = function () {
+                var _this = this;
+                this.genreService.getGenres().then(function (genres) {
+                    _this.genres = genres;
+                }, function (error) {
+                    console.log(error);
+                });
             };
             return GenreController;
         })();

@@ -3,30 +3,20 @@
     export class GenreService {
         private genreService: restangular.IElement;
 
-        constructor(
-            private restangular: restangular.IElement) {
-            this.genreService = restangular.all('genre');
+        constructor(private restangular: restangular.IElement) {
+            this.genreService = this.restangular.all('api/genre');
         }
 
-        getGenres(): MusicStore.Models.IGenre[] {
-            var genreList: MusicStore.Models.IGenre[];
-            this.genreService.getList().then((genres: MusicStore.Models.IGenre[]) => {
-                genreList = genres;
-            }, (error: Error) => {
-                    console.log(error.message);
-                });
-            return genreList;
+        public getGenres() {
+            return this.genreService.getList();
         }
 
-        createGenre(genre: MusicStore.Models.IGenre) {
-            var returnedGenre: MusicStore.Models.IGenre;
+        public saveGenre(genre: MusicStore.Models.IGenre) {
+            return this.genreService.customPOST(genre);
+        }
 
-            this.genreService.post(genre).then((newGenre: MusicStore.Models.IGenre) => {
-                returnedGenre = newGenre;
-            }, (error: Error) => {
-                    console.log(error.message);
-                });
-            return returnedGenre;
+        public downloadGenre() {
+            return this.genreService.customGET('downloadGenre');
         }
     }
 

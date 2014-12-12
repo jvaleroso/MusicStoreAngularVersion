@@ -17,21 +17,57 @@
             private artistService: MusicStore.Services.ArtistService) {
 
             if (isNaN($routeParams.albumId)) {
-                this.genres = this.genreService.getGenres();
-                this.albums = this.albumService.getAlbums();
-                this.artists = this.artistService.getArtists();
-            } else {
-                this.album = this.albumService.getAlbumById($routeParams.albumId);
+                this.initialzie();
+            }
+            else {
+                this.albumService.getAlbumById($routeParams.albumId).then(album => {
+                    this.album = album;
+                },
+                (error) => {
+                    console.log(error);
+                });
             }
         }
 
-        createAlbum(album: MusicStore.Models.IAlbum) {
-            var newAlbum = this.albumService.createAlbum(album);
-            this.albums.push(newAlbum);
+        public initialzie() {
+            this.albumService.getAlbums().then(albums => {
+                this.albums = albums;
+            }, (error) => {
+                    console.log(error);
+                });
+
+            this.genreService.getGenres().then(genres => {
+                this.genres = genres;
+            }, (error) => {
+                    console.log(error);
+                });
+
+            this.artistService.getArtists().then(response => {
+                this.artists = response;
+            },
+                (error) => {
+                    console.log(error);
+                });
+        }
+
+        saveAlbum(album: MusicStore.Models.IAlbum) {
+            this.albumService.saveAlbum(album).then(() => {
+                this.albumService.getAlbums().then(albums => {
+                    this.albums = albums;
+                }, (error) => {
+                    console.log(error);
+                });
+            });
+
         }
 
         viewDetails() {
-            this.album = this.albumService.getAlbumById(this.$routeParams.albumId);
+            this.albumService.getAlbumById(this.$routeParams.albumId).then(album => {
+                this.album = album;
+            },
+                (error) => {
+                    console.log(error);
+                });
         }
 
         editAlbum(album: MusicStore.Models.IAlbum) {

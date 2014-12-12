@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace MusicStore.Web.App_Start
+namespace MusicStore.Web
 {
     public class FilterConfig
     {

@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using AutoMapper;
 using MusicStore.Web.Models;
 
-namespace MusicStore.Web.App_Start
+namespace MusicStore.Web
 {
     public class ViewModelAutoMapperProfile : Profile
     {

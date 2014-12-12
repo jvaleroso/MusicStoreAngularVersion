@@ -1,42 +1,21 @@
-﻿//(function () {
-//    var musicStoreApp = angular.module('musicStoreApp');
-
-//    musicStoreApp.factory('Artist', ['$resource', function ($resource) {
-//        return $resource('/api/Artist/');
-//    }]);
-//})();
-
-module MusicStore.Services {
+﻿module MusicStore.Services {
     export class ArtistService {
         private artistService: restangular.IElement;
 
-        constructor(
-            private restangular: restangular.IService) {
-            this.artistService = restangular.all('artist');
+        constructor(private restangular: restangular.IService) {
+            this.artistService = this.restangular.all('api/artist');
         }
 
-        getArtists(): Models.IArtist[] {
-            var artistList: Models.IArtist[];
-            this.artistService.getList().then(
-                (artists: MusicStore.Models.IArtist[]) => {
-                    artistList = artists;
-                }, (error: Error) => {
-                    console.log(error.message);
-                });
-            return artistList;
+        public getArtists() {
+            return this.artistService.customGETLIST('');
         }
 
-        createArtist(artist: MusicStore.Models.IArtist) {
-            var returnedArtist: MusicStore.Models.IArtist;
+        public saveArtist(artist: MusicStore.Models.IArtist) {
+            return this.artistService.customPOST(artist);
+        }
 
-            this.artistService.post(artist).then((newArtist: MusicStore.Models.IArtist) => {
-                returnedArtist = newArtist;
-            }, (error: Error) => {
-                    console.log(error);
-                    returnedArtist = null;
-                });
-
-            return returnedArtist;
+        public downloadArtist() {
+            return this.artistService.customGET('download');
         }
     }
 

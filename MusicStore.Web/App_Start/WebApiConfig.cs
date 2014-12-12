@@ -1,68 +1,30 @@
-﻿using System.Net.Http.Headers;
+﻿using System.Net.Http;
 using System.Web.Http;
-using System.Web.Routing;
+using HttpMethodConstraint = System.Web.Http.Routing.HttpMethodConstraint;
 
-namespace MusicStore.Web.App_Start
+namespace MusicStore.Web
 {
     public static class WebApiConfig
     {
         public static void Register(HttpConfiguration config)
         {
-            config.Routes.MapHttpRoute(
-                "StoreAlbumRequests",
-                "api/album",
-                new { controller = "Album", action = "GetByGenre" },
-                new { httpMethod = new HttpMethodConstraint("POST") });
+            config.Routes.MapHttpRoute("GetArtists",
+                "api/artist",
+                new {controller = "Artist", action = "GetArtist"},
+                new {httpMethod = new HttpMethodConstraint(HttpMethod.Get)});
 
-            config.Routes.MapHttpRoute(
-                "Genre",
-                "api/genre",
-                new { controller = "Genre", action = "Get" },
-                new { httpMethod = new HttpMethodConstraint("GET") });
+            config.Routes.MapHttpRoute("DownloadArtists",
+                "api/artist/download",
+                new { controller = "Artist", action = "DownloadArtists" },
+                new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) });
 
-            config.Routes.MapHttpRoute(
-                "AlbumRequest",
-                "api/store",
-                new { controller = "Album", action = "GetAlbumByGenre" },
-                new { httpMethod = new HttpMethodConstraint("GET") });
 
-            config.Routes.MapHttpRoute(
-                "GetAlbumById",
-                "api/album/details",
-                new { controller = "Album", action = "GetById" },
-                new { httpMethod = new HttpMethodConstraint("GET") });
+            config.Routes.MapHttpRoute("UploadArtists",
+                "api/artist/upload",
+                new { controller = "Artist", action = "UploadArtists" },
+                new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) });
 
-            config.Routes.MapHttpRoute(
-                "CreateAlbum",
-                "api/album/createalbum",
-                new { controller = "Album", action = "CreateAlbum" },
-                new { httpMethod = new HttpMethodConstraint("POST") });
-
-            config.Routes.MapHttpRoute(
-                "CreateArtist",
-                "api/Artist",
-                new { controller = "Artist", action = "CreateArtist" },
-                new { httpMethod = new HttpMethodConstraint("POST") });
-
-            config.Routes.MapHttpRoute(
-                "",
-                "api/Artist",
-                new {controller = "Artist", action = "Get"},
-                new {httpMethod = new HttpMethodConstraint("GET")});
-
-            config.Routes.MapHttpRoute(
-                "CreateGenre",
-                "api/genre/creategenre",
-                new { controller = "Genre", action = "CreateGenre" },
-                new { httpMethod = new HttpMethodConstraint("POST") });
-
-            config.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
-                );
-
-            config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
+            config.Routes.MapHttpRoute("DefaultApi", "api/{controller}/{id}", new { id = RouteParameter.Optional });
         }
     }
 }

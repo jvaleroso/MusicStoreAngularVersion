@@ -31,18 +31,15 @@
                 controller: 'StoreManagerController',
                 templateUrl: '/PartialViews/StoreManager/Delete.html'
             }).when('/Configuration/Artists', {
-                controller: '',
+                controller: 'ArtistController as artistCtrl',
                 templateUrl: '/PartialViews/Configuration/Artists.html'
             }).when('/Configuration/Genres', {
                 controller: '',
                 templateUrl: '/PartialViews/Configuration/Genres.html'
             }).otherwise({
-                redirectTo: '/PartialViews/Home/Index.html'
+                redirectTo: '/Home'
             });
         }
-    ]).config([
-        'RestangularProvider', function (restangularProvider) {
-            restangularProvider.setBaseUrl('/api');
-        }]);
+    ]);
 })(MusicStore || (MusicStore = {}));
 //# sourceMappingURL=app.js.map

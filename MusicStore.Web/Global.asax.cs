@@ -2,7 +2,6 @@
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using MusicStore.Web.App_Start;
 using Newtonsoft.Json.Serialization;
 
 namespace MusicStore.Web

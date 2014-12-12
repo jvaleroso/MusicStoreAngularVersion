@@ -3,26 +3,61 @@
     (function (Controllers) {
         var StoreManagerController = (function () {
             function StoreManagerController($location, $routeParams, albumService, genreService, artistService) {
+                var _this = this;
                 this.$location = $location;
                 this.$routeParams = $routeParams;
                 this.albumService = albumService;
                 this.genreService = genreService;
                 this.artistService = artistService;
                 if (isNaN($routeParams.albumId)) {
-                    this.genres = this.genreService.getGenres();
-                    this.albums = this.albumService.getAlbums();
-                    this.artists = this.artistService.getArtists();
+                    this.initialzie();
                 } else {
-                    this.album = this.albumService.getAlbumById($routeParams.albumId);
+                    this.albumService.getAlbumById($routeParams.albumId).then(function (album) {
+                        _this.album = album;
+                    }, function (error) {
+                        console.log(error);
+                    });
                 }
             }
-            StoreManagerController.prototype.createAlbum = function (album) {
-                var newAlbum = this.albumService.createAlbum(album);
-                this.albums.push(newAlbum);
+            StoreManagerController.prototype.initialzie = function () {
+                var _this = this;
+                this.albumService.getAlbums().then(function (albums) {
+                    _this.albums = albums;
+                }, function (error) {
+                    console.log(error);
+                });
+
+                this.genreService.getGenres().then(function (genres) {
+                    _this.genres = genres;
+                }, function (error) {
+                    console.log(error);
+                });
+
+                this.artistService.getArtists().then(function (response) {
+                    _this.artists = response;
+                }, function (error) {
+                    console.log(error);
+                });
+            };
+
+            StoreManagerController.prototype.saveAlbum = function (album) {
+                var _this = this;
+                this.albumService.saveAlbum(album).then(function () {
+                    _this.albumService.getAlbums().then(function (albums) {
+                        _this.albums = albums;
+                    }, function (error) {
+                        console.log(error);
+                    });
+                });
             };
 
             StoreManagerController.prototype.viewDetails = function () {
-                this.album = this.albumService.getAlbumById(this.$routeParams.albumId);
+                var _this = this;
+                this.albumService.getAlbumById(this.$routeParams.albumId).then(function (album) {
+                    _this.album = album;
+                }, function (error) {
+                    console.log(error);
+                });
             };
 
             StoreManagerController.prototype.editAlbum = function (album) {

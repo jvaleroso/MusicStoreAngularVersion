@@ -5,51 +5,23 @@
 
         constructor(
             private restangular: restangular.IElement) {
-            this.albumService = restangular.all('album');
+            this.albumService = restangular.all('api/album');
         }
 
-        getAlbums(): MusicStore.Models.IAlbum[] {
-            var albumList: MusicStore.Models.IAlbum[];
-            this.albumService.getList().then((albums: MusicStore.Models.IAlbum[]) => {
-                albumList = albums;
-            }, (error: Error) => {
-                    console.log(error);
-                });
-            return albumList;
+        public getAlbums() {
+            return this.albumService.getList();
         }
 
-        getAlbumsByGenre(genre: string): MusicStore.Models.IAlbum[] {
-            var albumList: MusicStore.Models.IAlbum[];
-            this.albumService.getList('album', { genre: genre })
-                .then((albums: MusicStore.Models.IAlbum[]) => {
-                    albumList = albums;
-                }, (error: Error) => {
-                    console.log(error);
-                });
-            return albumList;
+        public getAlbumsByGenre(genre: string) {
+            return this.albumService.getList('', { genre: genre });
         }
 
-        getAlbumById(id: number): MusicStore.Models.IAlbum {
-            var album: MusicStore.Models.IAlbum;
-
-            this.restangular.one('album', id).get().then((returnedAlbum: MusicStore.Models.IAlbum) => {
-                album = returnedAlbum;
-            }, (error: Error) => {
-                    console.log(error);
-                });
-
-            return album;
+        getAlbumById(id: number) {
+            return this.albumService.customGET('', { id: id });
         }
 
-        createAlbum(album: MusicStore.Models.IAlbum) {
-            var returnedAlbum: MusicStore.Models.IAlbum;
-
-            this.albumService.post(album).then((newAlbum: MusicStore.Models.IAlbum) => {
-                returnedAlbum = newAlbum;
-            }, (error: Error) => {
-                    console.log(error.message);
-                });
-            return returnedAlbum;
+        saveAlbum(album: MusicStore.Models.IAlbum) {
+            return this.albumService.customPOST(album);
         }
     }
 

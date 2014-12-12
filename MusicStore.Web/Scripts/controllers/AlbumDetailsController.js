@@ -5,7 +5,7 @@
             function AlbumDetailsController($routeParams, albumService) {
                 this.$routeParams = $routeParams;
                 this.albumService = albumService;
-                this.album = this.albumService.getAlbumById($routeParams.albumId);
+                //this.album = this.albumService.getAlbumById($routeParams.albumId);
             }
             return AlbumDetailsController;
         })();

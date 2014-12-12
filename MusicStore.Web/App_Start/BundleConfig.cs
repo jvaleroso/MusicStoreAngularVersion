@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
-namespace MusicStore.Web.App_Start
+namespace MusicStore.Web
 {
     public class BundleConfig
     {
@@ -30,8 +26,14 @@ namespace MusicStore.Web.App_Start
                 "~/Content/bootstrap-theme.min.css",
                 "~/Content/site.css"));
 
-            bundles.Add(new StyleBundle("~/Content/css/font-awesome").Include(
+            bundles.Add(new StyleBundle("~/Content/fontawesome").Include(
                 "~/Content/font-awesome.css"));
+
+            bundles.Add(new StyleBundle("~/Content/jQueryFileUpload").Include(
+                "~/Content/jQuery.FileUpload/css/jquery.fileupload.css",
+                "~/Content/jQuery.FileUpload/css/jquery.fileupload-ui.css"));
+
+            bundles.Add(new StyleBundle("~/Content/themes/base/css").IncludeDirectory("~/Content/themes/base", "*.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
                 "~/Scripts/angular.js",

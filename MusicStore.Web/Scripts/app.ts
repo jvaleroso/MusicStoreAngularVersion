@@ -41,7 +41,7 @@
                     templateUrl: '/PartialViews/StoreManager/Delete.html'
                 })
                 .when('/Configuration/Artists', {
-                    controller: '',
+                    controller: 'ArtistController as artistCtrl',
                     templateUrl: '/PartialViews/Configuration/Artists.html'
                 })
                 .when('/Configuration/Genres', {
@@ -49,11 +49,9 @@
                     templateUrl: '/PartialViews/Configuration/Genres.html'
                 })
                 .otherwise({
-                    redirectTo: '/PartialViews/Home/Index.html'
+                    redirectTo: '/Home'
                 });
         }
-    ]).config(['RestangularProvider', (restangularProvider: restangular.IProvider) => {
-        restangularProvider.setBaseUrl('/api');
-    }]);
+    ]);
 }
 

@@ -2,13 +2,17 @@
     <div class="row-fluid">
         <h3>Genre Configuration</h3>
         <hr />
-        <div class="btn-group pull-right">
-            <button type="button" class="btn btn-warning">
-                <span class="glyphicon glyphicon-upload"></span> Download
-            </button>
-            <button type="button" class="btn btn-success">
-                <span class="glyphicon glyphicon-download"></span> Upload
-            </button>
+        <div class="pull-right">
+            <span id="uploadGenresBtn" class="btn btn-primary fileinput-button" data-trigger="hover">
+                <i class="fa fa-cloud-upload"> </i>
+                <span>Upload</span>
+                <input id="uploadGenres" type="file" name="file" />
+            </span>
+            <div class="btn-group">
+                <button type="button" class="btn btn-primary">
+                    <i class="fa fa-cloud-download"></i>&nbsp;Download
+                </button>
+            </div>
         </div>
     </div>
     <br />
@@ -26,7 +30,7 @@
                     <td><span ng-bind="artist.name"></span></td>
                     <td><span ng-bind="artist.description"></span></td>
                 </tr>
-                <tr ng-show="albums.length == 0" class="error">
+                <tr ng-if="!album || albums.length == 0" class="error">
                     <td colspan="5" style="text-align: center"><em>No results found</em></td>
                 </tr>
             </tbody>
