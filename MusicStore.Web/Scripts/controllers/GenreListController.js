@@ -24,9 +24,20 @@
                             _this.isSelected = false;
                     });
                 });
+
+                this.initialize();
             }
             GenreListController.prototype.getClass = function (musicGenre) {
                 return this.$routeParams.genre == musicGenre;
+            };
+
+            GenreListController.prototype.initialize = function () {
+                var _this = this;
+                this.genreService.getGenres().then(function (genres) {
+                    _this.genres = genres;
+                }, function (error) {
+                    console.log(error);
+                });
             };
             return GenreListController;
         })();

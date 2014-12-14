@@ -1,6 +1,6 @@
 ﻿module MusicStore {
 
-    var app = angular.module('musicStoreApp', ['ngResource', 'ngRoute', 'restangular']);
+    var app = angular.module('musicStoreApp', ['ngResource', 'ngRoute', 'restangular', 'angularFileUpload']);
 
     app.config([
         '$routeProvider', ($routeProvider: ng.route.IRouteProvider) => {
@@ -13,7 +13,7 @@
                     templateUrl: '/PartialViews/Store/Store.html'
                 })
                 .when('/Store/Browse', {
-                    controller: 'StoreController',
+                    controller: 'StoreController as storeController',
                     templateUrl: '/PartialViews/Store/Browse.html'
                 })
                 .when('/Store/Details', {
@@ -21,11 +21,11 @@
                     templateUrl: '/PartialViews/Store/Details.html'
                 })
                 .when('/StoreManager', {
-                    controller: 'StoreManagerController',
+                    controller: 'StoreManagerController as storeMgrCtrl',
                     templateUrl: '/PartialViews/StoreManager/StoreManager.html'
                 })
                 .when('/StoreManager/Create', {
-                    controller: 'StoreManagerController',
+                    controller: 'StoreManagerController as storeMgrCtrl',
                     templateUrl: '/PartialViews/StoreManager/Create.html'
                 })
                 .when('/StoreManager/Edit/:id', {
@@ -45,7 +45,7 @@
                     templateUrl: '/PartialViews/Configuration/Artists.html'
                 })
                 .when('/Configuration/Genres', {
-                    controller: '',
+                    controller:  'GenreController as genreCtrl',
                     templateUrl: '/PartialViews/Configuration/Genres.html'
                 })
                 .otherwise({

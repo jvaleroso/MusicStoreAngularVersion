@@ -1,6 +1,6 @@
 ﻿<div class="row-fluid">
     <ul class="thumbnails">
-        <li class="span3" ng-repeat="album in albums" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+        <li class="span3" ng-repeat="album in storeController.albums" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
             <div class="thumbnail">
                 <div class="caption">
                     <h5><span ng-bind="album.title"></span></h5>
@@ -13,5 +13,11 @@
                 </div>
             </div>
         </li>
+
     </ul>
+
+    <div class="alert alert-info" ng-if="storeController.albums.length == 0">
+        <a href="#" class="close" data-dismiss="alert">&times;</a>
+        No result found.
+    </div>
 </div>

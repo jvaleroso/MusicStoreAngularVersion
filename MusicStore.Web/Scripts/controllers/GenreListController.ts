@@ -1,7 +1,6 @@
 ﻿module MusicStore.Controllers {
 
     export class GenreListController {
-        private baseGenres: restangular.IElement;
         private genres: MusicStore.Models.IGenre[];
         private isSelected: boolean;
 
@@ -25,10 +24,20 @@
                     else this.isSelected = false;
                 });
             });
+
+            this.initialize();
         }
 
         getClass(musicGenre: string) {
             return this.$routeParams.genre == musicGenre;
+        }
+
+        initialize() {
+            this.genreService.getGenres().then(genres => {
+                this.genres = genres;
+            }, (error) => {
+                console.log(error);
+            });
         }
     }
 

@@ -5,6 +5,7 @@ using System.Linq;
 using CsvHelper;
 using MusicStore.CsvMaps;
 using MusicStore.Data;
+using MusicStore.Factory;
 
 namespace MusicStore.Services
 {
@@ -38,9 +39,8 @@ namespace MusicStore.Services
         {
             return _artistDao.GetList();
         }
-
-
-        public bool UpdloadArtistConfig(Stream memoryStream)
+        
+        public bool ImportArtistConfig(Stream memoryStream)
         {
             bool result = true;
 

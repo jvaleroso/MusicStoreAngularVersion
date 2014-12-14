@@ -1,4 +1,6 @@
-﻿module MusicStore.Controllers {
+﻿/// <reference path="../typings/angular-file-upload/angular-file-upload.d.ts" />
+
+module MusicStore.Controllers {
     export interface IGenreParam extends ng.route.IRouteParamsService {
         genre: string;
     }
@@ -6,12 +8,14 @@
     export class GenreController {
         private genres: MusicStore.Models.IGenre[];
         private genre: MusicStore.Models.IGenre;
+        private isLoadingData: boolean;
 
         constructor(
             private $rootScope: ng.IRootScopeService,
             private $location: ng.ILocationService,
             private $routeParams: IGenreParam,
-            private genreService: MusicStore.Services.GenreService) {
+            private genreService: MusicStore.Services.GenreService,
+            private $upload: ng.angularFileUpload.IUploadService) {
 
             this.initialize();
         }
@@ -25,7 +29,7 @@
         }
 
         public downloadGenres() {
- 
+            location.href = 'api/genre/download';
         }
 
         public getClass(musicGenre: string) {
@@ -33,11 +37,36 @@
         }
 
         public initialize() {
+            this.isLoadingData = true;
             this.genreService.getGenres().then(genres => {
                 this.genres = genres;
+                this.isLoadingData = false;
             }, (error) => {
                     console.log(error);
                 });
+        }
+
+        public uploadGenres($files: File[]) {
+            var uploads: ng.IPromise<any>[] = [];
+
+            if ($files.length > 0) {
+
+                var file = $files[0];
+                uploads.push(this.$upload.upload<any>({
+                    url: 'api/genre/upload',
+                    headers: { 'Accept': 'application/json, text/plain, */*' },
+                    method: 'post',
+                    file: file
+                }).progress((event: any) => {
+                        console.log('progress');
+                    }).then(success => {
+                        console.log(success.data);
+                        this.initialize();
+                    }
+                    ).catch(err => {
+                        console.error(err);
+                    }));
+            }
         }
     }
 
@@ -46,7 +75,8 @@
             '$rootScope',
             '$location',
             '$routeParams',
-            'genreService',
+            'GenreService',
+            '$upload',
             GenreController
         ]);
 }

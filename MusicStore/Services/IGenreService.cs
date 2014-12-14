@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.IO;
 
 namespace MusicStore.Services
 {
@@ -12,5 +9,7 @@ namespace MusicStore.Services
         void Delete(Genre genre);
         Genre GetById(long id);
         IList<Genre> GetList();
+        bool ImportGenreConfig(Stream memoryStream);
+        void ExportGenreConfig(Stream memortStream);
     }
 }

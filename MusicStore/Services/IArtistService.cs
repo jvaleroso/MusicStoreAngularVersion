@@ -9,7 +9,7 @@ namespace MusicStore.Services
         void Delete(Artist artist);
         Artist GetById(long id);
         IList<Artist> GetList();
-        bool UpdloadArtistConfig(Stream memoryStream);
+        bool ImportArtistConfig(Stream memoryStream);
         void ExportArtistConfig(Stream memortStream);
     }
 }

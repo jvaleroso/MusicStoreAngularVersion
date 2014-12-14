@@ -43,7 +43,7 @@ namespace MusicStore.Web.Controllers.Api
         [HttpPost]
         public async Task<HttpResponseMessage> UploadArtists()
         {
-            if (!this.Request.Content.IsMimeMultipartContent())
+            if (!Request.Content.IsMimeMultipartContent())
                 throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
 
             var provider = new MultipartMemoryStreamProvider();
@@ -54,7 +54,7 @@ namespace MusicStore.Web.Controllers.Api
                 throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
 
             var csvData = await httpContent.ReadAsStreamAsync();
-            var result = this._artistService.UpdloadArtistConfig(csvData);
+            var result = this._artistService.ImportArtistConfig(csvData);
 
             if (!result)
                 throw new Exception("Error in parsing files");

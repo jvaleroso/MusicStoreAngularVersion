@@ -17,7 +17,7 @@
             private artistService: MusicStore.Services.ArtistService) {
 
             if (isNaN($routeParams.albumId)) {
-                this.initialzie();
+                this.initialize();
             }
             else {
                 this.albumService.getAlbumById($routeParams.albumId).then(album => {
@@ -29,25 +29,25 @@
             }
         }
 
-        public initialzie() {
+        public initialize() {
             this.albumService.getAlbums().then(albums => {
                 this.albums = albums;
             }, (error) => {
-                    console.log(error);
-                });
+                console.log(error);
+            });
 
             this.genreService.getGenres().then(genres => {
                 this.genres = genres;
             }, (error) => {
-                    console.log(error);
-                });
+                console.log(error);
+            });
 
             this.artistService.getArtists().then(response => {
                 this.artists = response;
             },
-                (error) => {
-                    console.log(error);
-                });
+            (error) => {
+                console.log(error);
+            });
         }
 
         saveAlbum(album: MusicStore.Models.IAlbum) {

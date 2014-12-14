@@ -1,17 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using CsvHelper.Configuration;
 
 namespace MusicStore.CsvMaps
 {
     public class ArtistCsvMap: CsvClassMap<Artist>
     {
+        [Obsolete("This method is deprecated and will be removed in the next major release. Specify your mappings in the constructor instead.", false)]
         public override void CreateMap()
         {
             Map(m => m.Name);
+
         }
     }
 }

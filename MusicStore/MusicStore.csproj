@@ -53,7 +53,8 @@
     <Compile Include="Data\IArtistDao.cs" />
     <Compile Include="Data\ICartDao.cs" />
     <Compile Include="Data\IOrderDetailDao.cs" />
-    <Compile Include="Services\IArtistFactory.cs" />
+    <Compile Include="Factory\IArtistFactory.cs" />
+    <Compile Include="Factory\IGenreFactory.cs" />
     <Compile Include="Services\IArtistService.cs" />
     <Compile Include="Data\IGenreDao.cs" />
     <Compile Include="Data\IOrderDao.cs" />

@@ -1,49 +1,42 @@
 ﻿<form id="mainForm" role="form" class="form-horizontal">
     <div class="container">
         <div class="form-horizontal">
-            <hr />
             <fieldset>
                 <legend>Album Details</legend>
-                <div class="control-group">
-                    <label class="control-label" for="lblTitle">Title</label>
-                    <div class="controls">
-                        <input type="text" id="lblTitle" ng-model="album.title">
+                <div class="form-group">
+                    <label for="lblTitle" class="control-label col-sm-2">Title</label>
+                    <div class="col-sm-10">
+                        <input type="text" id="lblTitle" ng-model="storeMgrCtrl.album.title">
                     </div>
                 </div>
-                <div class="control-group">
-                    <label class="control-label" for="lblPrice">Price</label>
-                    <div class="controls">
-                        <input type="text" id="lblPrice" ng-model="album.price">
+                <div class="form-group">
+                    <label for="lblPrice" class="control-label col-sm-2">Price</label>
+                    <div class="col-sm-10">
+                        <input type="text" id="lblPrice" ng-model="storeMgrCtrl.album.price">
                     </div>
                 </div>
-                <div class="control-group">
-                    <label class="control-label" for="lblAlbumArtUrl">Album Art URL:</label>
-                    <div class="controls">
-                        <input type="text" id="lblAlbumArtUrl" ng-model="album.albumarturl">
+                <div class="form-group">
+                    <label for="lblAlbumArtUrl" class="control-label col-sm-2">Album Art URL:</label>
+                    <div class="col-sm-10">
+                        <input type="text" id="lblAlbumArtUrl" ng-model="storeMgrCtrl.album.albumarturl">
                     </div>
                 </div>
-                <div class="control-group">
-                    <label class="control-label" for="drpArtists">Aritst</label>
-                    <div class="controls">
-                        <select ng-model="album.artists.id" id="drpArtists">
-                            <option value=""></option>
-                            <option ng-repeat="artist in artists" value="{{artist.id}}">{{artist.name}}</option>
-                        </select>
+                <div class="form-group">
+                    <label for="drpArtists" class="control-label col-sm-2">Aritst</label>
+                    <div class="col-sm-10">
+                        <select ng-model="storeMgrCtrl.album.artist" id="drpArtists" ng-options="artist.name for artist in storeMgrCtrl.artists"></select>
                     </div>
                 </div>
-                <div class="control-group">
-                    <label class="control-label" for="drpGenre">Genre</label>
-                    <div class="controls">
-                        <select ng-model="album.genre.id" id="drpGenre">
-                            <option value=""></option>
-                            <option ng-repeat="genre in genres" value="{{genre.id}}">{{genre.name}}</option>
-                        </select>
+                <div class="form-group">
+                    <label for="drpGenres" class="control-label col-sm-2">Genre</label>
+                    <div class="col-sm-10">
+                        <select ng-model="storeMgrCtrl.album.genre" id="drpGenres" ng-options="genre.name for genre in storeMgrCtrl.genres"></select>
                     </div>
                 </div>
-                <div class="control-group">
-                    <div class="controls">
-                        <button class="btn btn-default" data-ng-click="CreateAlbum(album)">Create</button>
-                        <button class="btn btn-default" onclick=" window.history.back() ">&larr;&nbsp;&nbsp;Back</button>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-2">
+                        <button type="button" class="btn btn-primary" ng-click="storeMgrCtrl.createAlbum(album)">Create</button>
+                        <button type="button" class="btn btn-primary" onclick="window.history.back() ">&larr;&nbsp;&nbsp;Back</button>
                     </div>
                 </div>
             </fieldset>  

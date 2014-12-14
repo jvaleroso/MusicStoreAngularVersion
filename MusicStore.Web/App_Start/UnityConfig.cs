@@ -1,6 +1,7 @@
 using System;
 using Microsoft.Practices.Unity;
 using MusicStore.Data;
+using MusicStore.Factory;
 using MusicStore.NHibernate.Dao;
 using MusicStore.Services;
 
@@ -60,6 +61,7 @@ namespace MusicStore.Web
             container.RegisterType<IArtistService, ArtistService>(new ContainerControlledLifetimeManager());
             container.RegisterType<ICartService, CartService>(new ContainerControlledLifetimeManager());
             container.RegisterType<IArtistFactory, ArtistFactory>(new ContainerControlledLifetimeManager());
+            container.RegisterType<IGenreFactory, GenreFactory>(new ContainerControlledLifetimeManager());
 
             #endregion //MusicStore Services
 

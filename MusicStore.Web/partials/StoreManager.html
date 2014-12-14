@@ -20,12 +20,12 @@
                 <label>Artist</label>
                 <select ng-model="newAlbum.artist.id">
                     <option value=""></option>
-                    <option ng-repeat="artist in artists" value="{{artist.id}}">{{artist.name}}</option>
+                    <option ng-repeat="artist in storeMgrCtrl.artists" value="{{artist.id}}">{{artist.name}}</option>
                 </select>
                 <label>Genre</label>
                 <select ng-model="newAlbum.genre.id">
                     <option value=""></option>
-                    <option ng-repeat="genre in genres" value="{{genre.id}}">{{genre.name}}</option>
+                    <option ng-repeat="genre in storeMgrCtrl.genres" value="{{genre.id}}">{{genre.name}}</option>
                 </select>
             </fieldset>
         </form>

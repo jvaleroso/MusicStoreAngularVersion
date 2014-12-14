@@ -42,8 +42,10 @@ namespace MusicStore.Web
 
             bundles.Add(new ScriptBundle("~/bundles/restangular").Include(
                 "~/Scripts/restangular.js",
-                "~/Scripts/lodash.js"
-                ));
+                "~/Scripts/lodash.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/angular-fileupload").Include(
+                "~/Scripts/angular-file-upload.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/musicstore-app").Include(
                 "~/Scripts/app.js",

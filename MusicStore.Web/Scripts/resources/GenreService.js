@@ -13,10 +13,6 @@
             GenreService.prototype.saveGenre = function (genre) {
                 return this.genreService.customPOST(genre);
             };
-
-            GenreService.prototype.downloadGenre = function () {
-                return this.genreService.customGET('downloadGenre');
-            };
             return GenreService;
         })();
         Services.GenreService = GenreService;

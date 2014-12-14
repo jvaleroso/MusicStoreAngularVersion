@@ -10,7 +10,7 @@
                 this.genreService = genreService;
                 this.artistService = artistService;
                 if (isNaN($routeParams.albumId)) {
-                    this.initialzie();
+                    this.initialize();
                 } else {
                     this.albumService.getAlbumById($routeParams.albumId).then(function (album) {
                         _this.album = album;
@@ -19,7 +19,7 @@
                     });
                 }
             }
-            StoreManagerController.prototype.initialzie = function () {
+            StoreManagerController.prototype.initialize = function () {
                 var _this = this;
                 this.albumService.getAlbums().then(function (albums) {
                     _this.albums = albums;

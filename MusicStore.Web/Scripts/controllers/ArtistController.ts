@@ -1,4 +1,6 @@
-﻿module MusicStore.Controllers {
+﻿/// <reference path="../typings/angular-file-upload/angular-file-upload.d.ts" />
+
+module MusicStore.Controllers {
 
     export interface IArtistParam extends ng.route.IRouteParamsService {
         artistId: string;
@@ -7,67 +9,60 @@
     export class ArtistController {
         private artists: MusicStore.Models.IArtist[];
         private artist: MusicStore.Models.IArtist;
+        private isLoadingData: boolean;
 
         constructor(
             private artistService: MusicStore.Services.ArtistService,
             private $location: ng.ILocationService,
-            private $routeParam: IArtistParam) {
+            private $routeParam: IArtistParam,
+            private $upload: ng.angularFileUpload.IUploadService) {
 
             this.initialize();
         }
 
         public initialize() {
+            this.isLoadingData = true;
             this.artistService.getArtists().then(response => {
                 this.artists = response;
+                this.isLoadingData = false;
             },
-                (error) => {
-                    console.log(error);
-                });
+            (error) => {
+                console.log(error);
+            });
         }
 
-        createNewArtist() {
+        public createNewArtist() {
             this.artistService.saveArtist(this.artist).then(() => {
                 this.initialize();
             });
 
         }
 
-        downloadArtist() {
-            //this.artistService.downloadArtist().then(() => {}, (error) => {
-            //    console.log(error);
-            //});
-
+        public downloadArtist() {
             location.href = '/api/artist/download';
         }
 
-        uploadArtists() {
+        public uploadArtists($files: File[]) {
+            var uploads: ng.IPromise<any>[] = [];
 
-            $('#uploadConfig').fileupload({
-                url: '/api/variable-udf-configuration/upload?type=' + this.configTypeSelected,
-                acceptFileTyples: /(\.|\/)(csv)$/i,
-                dataType: 'json',
-                maxFileSize: 10485760,
-                sequentialUploads: false,
-                add: (e, data) => {
-                    if (data.files.length > 0 && data.files[0].size > 10485760) {
-                        this.uploadMessage = 'Sorry but we cannot upload your csv file. Please make sure your file is less than 1MB.';
-                        this.$scope.$apply(() => {
-                            this.initilialize();
-                            $('#udfModal').modal('show');
-                        });
-                    } else {
-                        data.submit();
+            if ($files.length > 0) {
+
+                var file = $files[0];
+                uploads.push(this.$upload.upload<any>({
+                    url: 'api/artist/upload',
+                    headers: { 'Accept': 'application/json, text/plain, */*' },
+                    method: 'post',
+                    file: file
+                }).progress((event: any) => {
+                    console.log('progress');
+                }).then(success => {
+                        console.log(success.data);
+                        this.initialize();
                     }
-                },
-                success: (message) => {
-                    this.uploadMessage = message;
-                    this.$scope.$apply(() => {
-                        this.initilialize();
-                        $('#udfModal').modal('show');
-                    });
-                }
-            });
-
+                ).catch(err => {
+                    console.error(err);
+                }));
+            }
         }
     }
 
@@ -76,6 +71,7 @@
             'ArtistService',
             '$location',
             '$routeParams',
+            '$upload',
             ArtistController
         ]);
 } 

@@ -15,9 +15,6 @@
             return this.genreService.customPOST(genre);
         }
 
-        public downloadGenre() {
-            return this.genreService.customGET('downloadGenre');
-        }
     }
 
     angular.module('musicStoreApp')
