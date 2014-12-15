@@ -2,8 +2,9 @@
 (function (MusicStore) {
     (function (Controllers) {
         var CreateAlbumController = (function () {
-            function CreateAlbumController($location, albumService, artistService, genreService) {
+            function CreateAlbumController($location, $window, albumService, artistService, genreService) {
                 this.$location = $location;
+                this.$window = $window;
                 this.albumService = albumService;
                 this.artistService = artistService;
                 this.genreService = genreService;
@@ -12,7 +13,7 @@
             CreateAlbumController.prototype.saveAlbum = function () {
                 var _this = this;
                 this.albumService.saveAlbum(this.album).then(function () {
-                    _this.$location.path('#/StroreManager');
+                    _this.$window.location.href = "#/StoreManager";
                 }, function (error) {
                     console.log(error);
                 });
@@ -38,6 +39,7 @@
 
         angular.module('musicStoreApp').controller('CreateAlbumController', [
             '$location',
+            '$window',
             'AlbumService',
             'ArtistService',
             'GenreService',

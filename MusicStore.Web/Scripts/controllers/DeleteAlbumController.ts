@@ -8,16 +8,17 @@
         constructor(
             private $routeParams: IAlbumParams,
             private $location: ng.ILocationService,
+            private $window: ng.IWindowService,
             private albumService: Services.AlbumService) {
 
             if (isNaN(this.$routeParams.albumId)) {
-                this.$location.path('/StoreManager');
+                this.$window.location.href = "#/StoreManager";
             } else {
                 this.albumService.getAlbumById($routeParams.albumId).then(album => {
                     this.album = album;
                 },
                     (error) => {
-                        this.$location.path('/StoreManager');
+                        this.$window.location.href = "#/StoreManager";
                         console.error(error);
                     });
             }
@@ -25,7 +26,7 @@
 
         public deleteAlbum() {
             this.albumService.deleteAlbum(this.$routeParams.albumId).then(() => {
-                this.$location.path('/StroreManager');
+                this.$window.location.href = "#/StoreManager";
             }, (error) => {
                     console.error(error);
                 });
@@ -36,6 +37,7 @@
         .controller('DeleteAlbumController', [
             '$routeParams',
             '$location',
+            '$window',
             'AlbumService',
             DeleteAlbumController
         ]);

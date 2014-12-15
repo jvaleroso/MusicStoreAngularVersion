@@ -14,7 +14,7 @@
             <tbody>
                 <tr ng-repeat="album in storeMgrCtrl.albums">
                     <td><span ng-bind="album.title"></span></td>
-                    <td><span ng-bind="album.price"></span></td>
+                    <td><span ng-bind="album.price | currency"></span></td>
                     <td><span ng-bind="album.artist.name"></span></td>
                     <td><span ng-bind="album.genre.name"></span></td>
                     <td>

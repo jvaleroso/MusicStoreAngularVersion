@@ -2,15 +2,15 @@
 (function (MusicStore) {
     (function (Controllers) {
         var EditAlbumController = (function () {
-            function EditAlbumController($routeParams, $location, albumService, artistService, genreService) {
+            function EditAlbumController($routeParams, $window, albumService, artistService, genreService) {
                 var _this = this;
                 this.$routeParams = $routeParams;
-                this.$location = $location;
+                this.$window = $window;
                 this.albumService = albumService;
                 this.artistService = artistService;
                 this.genreService = genreService;
                 if (isNaN($routeParams.albumId)) {
-                    this.$location.path('/StoreManager');
+                    this.$window.location.href = "#/StoreManager";
                 } else {
                     this.albumService.getAlbumById($routeParams.albumId).then(function (album) {
                         _this.album = album;
@@ -44,7 +44,7 @@
             EditAlbumController.prototype.updateAlbum = function () {
                 var _this = this;
                 this.albumService.updateAlbum(this.album).then(function () {
-                    _this.$location.path('/StroreManager');
+                    _this.$window.location.href = "#/StoreManager";
                 }, function (error) {
                     console.log(error);
                 });
@@ -55,7 +55,7 @@
 
         angular.module('musicStoreApp').controller('EditAlbumController', [
             '$routeParams',
-            '$location',
+            '$window',
             'AlbumService',
             'ArtistService',
             'GenreService',

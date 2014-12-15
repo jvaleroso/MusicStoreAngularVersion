@@ -7,6 +7,7 @@
 
         constructor(
             private $location: ng.ILocationService,
+            private $window: ng.IWindowService,
             private albumService: MusicStore.Services.AlbumService,
             private artistService: MusicStore.Services.ArtistService,
             private genreService: MusicStore.Services.GenreService) {
@@ -16,7 +17,7 @@
 
         public saveAlbum() {
             this.albumService.saveAlbum(this.album).then(() => {
-                this.$location.path('#/StroreManager');
+                this.$window.location.href = "#/StoreManager";
             }, (error) => {
                 console.log(error);
             });
@@ -41,6 +42,7 @@
     angular.module('musicStoreApp')
         .controller('CreateAlbumController', [
             '$location',
+            '$window',
             'AlbumService',
             'ArtistService',  
             'GenreService',

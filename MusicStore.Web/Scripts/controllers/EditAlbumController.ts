@@ -7,14 +7,14 @@
 
         constructor(
             private $routeParams: IAlbumParams,
-            private $location: ng.ILocationService,
+            private $window: ng.IWindowService,
             private albumService: MusicStore.Services.AlbumService,
             private artistService: MusicStore.Services.ArtistService,
             private genreService: MusicStore.Services.GenreService) {
 
 
             if (isNaN($routeParams.albumId)) {
-                this.$location.path('/StoreManager');
+                this.$window.location.href = "#/StoreManager";
             }
             else {
                 this.albumService.getAlbumById($routeParams.albumId).then(album => {
@@ -50,7 +50,7 @@
 
         public updateAlbum() {
             this.albumService.updateAlbum(this.album).then(() => {
-                this.$location.path('/StroreManager');
+                this.$window.location.href = "#/StoreManager";
             }, (error) => {
                     console.log(error);
                 });
@@ -60,7 +60,7 @@
     angular.module('musicStoreApp')
         .controller('EditAlbumController', [
             '$routeParams',
-            '$location',
+            '$window',
             'AlbumService',
             'ArtistService',
             'GenreService',
