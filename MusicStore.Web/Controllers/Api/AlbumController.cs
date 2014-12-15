@@ -54,7 +54,6 @@ namespace MusicStore.Web.Controllers.Api
             return Request.CreateResponse(HttpStatusCode.Created, album);
         }
 
-
         [HttpGet]
         [Route("api/album?genre={genre}")]
         public HttpResponseMessage GetAlbumByGenre(string genre)
@@ -70,6 +69,5 @@ namespace MusicStore.Web.Controllers.Api
             var album = _albumService.GetById(id);
             return Request.CreateResponse(HttpStatusCode.OK, album);
         }
-
     }
 }
