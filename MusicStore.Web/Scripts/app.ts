@@ -9,11 +9,11 @@
                     templateUrl: '/PartialViews/Home/Index.html'
                 })
                 .when('/Store', {
-                    controller: 'StoreController',
+                    controller: 'StoreController as storeCtrl',
                     templateUrl: '/PartialViews/Store/Store.html'
                 })
                 .when('/Store/Browse', {
-                    controller: 'StoreController as storeController',
+                    controller: 'BrowseAlbumController as browseAlbumCtrl',
                     templateUrl: '/PartialViews/Store/Browse.html'
                 })
                 .when('/Store/Details', {
@@ -25,18 +25,18 @@
                     templateUrl: '/PartialViews/StoreManager/StoreManager.html'
                 })
                 .when('/StoreManager/Create', {
-                    controller: 'StoreManagerController as storeMgrCtrl',
+                    controller: 'CreateAlbumController as createAlbumCtrl',
                     templateUrl: '/PartialViews/StoreManager/Create.html'
                 })
-                .when('/StoreManager/Edit/:id', {
-                    controller: 'StoreManagerController',
+                .when('/StoreManager/Edit/:albumId', {
+                    controller: 'EditAlbumController as editAlbumCtrl',
                     templateUrl: '/PartialViews/StoreManager/Edit.html'
                 })
-                .when('/StoreManager/Details/:id', {
-                    controller: 'StoreManagerController',
+                .when('/StoreManager/Details/:albumId', {
+                    controller: 'AlbumDetailsController as albumDtlsCtrl',
                     templateUrl: '/PartialViews/StoreManager/Details.html'
                 })
-                .when('/StoreManager/Delete/:id', {
+                .when('/StoreManager/Delete/:albumId', {
                     controller: 'StoreManagerController',
                     templateUrl: '/PartialViews/StoreManager/Delete.html'
                 })

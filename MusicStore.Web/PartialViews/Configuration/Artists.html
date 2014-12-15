@@ -1,43 +1,43 @@
-﻿
-<div class="container-fluid">
-    <div class="row-fluid">
-        <h3>Artists Configuration</h3>
-        <hr />
-        <div class="pull-right">
-            <span id="uploadArtistBtn" class="btn btn-primary fileinput-button" data-trigger="hover">
-                <i class="fa fa-cloud-upload"></i>
-                Upload
-                <input id="uploadArtists" ng-file-select ng-file-change="artistCtrl.uploadArtists($files)"
-                       ng-multiple="false" type="file" name="file">
-            </span>
-            <div class="btn-group">
-                <button type="button" class="btn btn-primary" ng-click="artistCtrl.downloadArtist()">
-                    <i class="fa fa-cloud-download"></i>&nbsp;Download
-                </button>
+﻿<fieldset>
+    <legend>Artist Configuration</legend>
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="pull-right">
+                <span id="uploadArtistBtn" class="btn btn-success fileinput-button" data-trigger="hover">
+                    <i class="fa fa-cloud-upload"></i>
+                    Upload
+                    <input id="uploadArtists" ng-file-select ng-file-change="artistCtrl.uploadArtists($files)"
+                           ng-multiple="false" type="file" name="file">
+                </span>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-success" ng-click="artistCtrl.downloadArtist()">
+                        <i class="fa fa-cloud-download"></i>&nbsp;Download
+                    </button>
+                </div>
             </div>
         </div>
+        <br />
+        <br />
+        <div class="row-fluid">
+            <table class="table table-bordered table-hover table-condensed">
+                <thead>
+                    <tr>
+                        <th>Artists</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="artist in artistCtrl.artists" ng-if="!artistCtrl.isLoadingData">
+                        <td><span ng-bind="artist.name"></span></td>
+                    </tr>
+                    <tr ng-if="artistCtrl.isLoadingData">
+                        <td colspan="3" style="text-align: center"><i class="fa fa-refresh fa-spin fa-2x"></i><em> Loding data...</em></td>
+                    </tr>
+                    <tr ng-if="artistCtrl.artists == 0 && !artistCtrl.isLoadingData" class="error">
+                        <td colspan="5" style="text-align: center"><em>No results found</em></td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>Total: <span ng-bind="artistCtrl.artists.length"></span><p>
+        </div>
     </div>
-    <br />
-    <br />
-    <div class="row-fluid">
-        <table class="table table-bordered table-hover table-condensed">
-            <thead>
-                <tr>
-                    <th>Artists</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="artist in artistCtrl.artists" ng-if="!artistCtrl.isLoadingData">
-                    <td><span ng-bind="artist.name"></span></td>
-                </tr>
-                <tr ng-if="artistCtrl.isLoadingData">
-                    <td colspan="3" style="text-align: center"><i class="fa fa-refresh fa-spin fa-2x"></i><em> Loding data...</em></td>
-                </tr>
-                <tr ng-if="artistCtrl.artists == 0 && !artistCtrl.isLoadingData" class="error">
-                    <td colspan="5" style="text-align: center"><em>No results found</em></td>
-                </tr>
-            </tbody>
-        </table>
-        <p>Total: <span ng-bind="artistCtrl.artists.length"></span><p>
-    </div>
-</div>
+</fieldset>

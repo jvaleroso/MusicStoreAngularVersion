@@ -10,7 +10,7 @@
             return this.artistService.customGETLIST('');
         }
 
-        public saveArtist(artist: MusicStore.Models.IArtist) {
+        public saveArtist(artist: MusicStore.Models.Artist) {
             return this.artistService.customPOST(artist);
         }
 

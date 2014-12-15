@@ -18,6 +18,7 @@ namespace MusicStore.Web.Controllers.Api
         }
 
         [HttpGet]
+        [Route("api/album")]
         public HttpResponseMessage GetAlbums()
         {
             var albums = _albumService.GetList();
@@ -25,6 +26,7 @@ namespace MusicStore.Web.Controllers.Api
         }
 
         [HttpPost]
+        [Route("api/album")]
         public HttpResponseMessage CreateAlbum(Album album)
         {
             album.DateCreated = DateTime.Now;
@@ -32,7 +34,16 @@ namespace MusicStore.Web.Controllers.Api
             return Request.CreateResponse(HttpStatusCode.Created, album);
         }
 
+        [HttpPut]
+        [Route("api/album")]
+        public HttpResponseMessage UpdateAlbum(Album album)
+        {
+            _albumService.Save(album);
+            return Request.CreateResponse(HttpStatusCode.Created, album);
+        }
+
         [HttpGet]
+        [Route("api/album?genre={genre}")]
         public HttpResponseMessage GetAlbumByGenre(string genre)
         {
             var albums = _albumService.GetByGenre(genre);
@@ -40,6 +51,7 @@ namespace MusicStore.Web.Controllers.Api
         }
 
         [HttpGet]
+        [Route("api/album/{id}")]
         public HttpResponseMessage GetById(long id)
         {
             var album = _albumService.GetById(id);

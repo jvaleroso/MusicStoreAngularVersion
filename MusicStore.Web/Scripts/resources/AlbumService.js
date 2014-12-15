@@ -11,7 +11,7 @@
             };
 
             AlbumService.prototype.getAlbumsByGenre = function (genre) {
-                return this.albumService.getList('', { genre: genre });
+                return this.albumService.customGETLIST('', { genre: genre });
             };
 
             AlbumService.prototype.getAlbumById = function (id) {
@@ -20,6 +20,10 @@
 
             AlbumService.prototype.saveAlbum = function (album) {
                 return this.albumService.customPOST(album);
+            };
+
+            AlbumService.prototype.updateAlbum = function (album) {
+                return this.albumService.customPUT(album);
             };
             return AlbumService;
         })();

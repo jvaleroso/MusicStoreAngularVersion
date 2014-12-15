@@ -1,8 +1,9 @@
 ﻿module MusicStore.Controllers {
 
     export class GenreListController {
-        private genres: MusicStore.Models.IGenre[];
+        private genres: MusicStore.Models.Genre[];
         private isSelected: boolean;
+        private isLoadingGenre: boolean;
 
         constructor(
             private $scope: ng.IScope,
@@ -28,13 +29,15 @@
             this.initialize();
         }
 
-        getClass(musicGenre: string) {
+        public getClass(musicGenre: string) {
             return this.$routeParams.genre == musicGenre;
         }
 
-        initialize() {
+        public initialize() {
+            this.isLoadingGenre = true;
             this.genreService.getGenres().then(genres => {
                 this.genres = genres;
+                this.isLoadingGenre = false;
             }, (error) => {
                 console.log(error);
             });

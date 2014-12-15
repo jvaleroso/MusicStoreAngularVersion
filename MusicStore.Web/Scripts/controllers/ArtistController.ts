@@ -7,8 +7,8 @@ module MusicStore.Controllers {
     }
 
     export class ArtistController {
-        private artists: MusicStore.Models.IArtist[];
-        private artist: MusicStore.Models.IArtist;
+        private artists: MusicStore.Models.Artist[];
+        private artist: MusicStore.Models.Artist;
         private isLoadingData: boolean;
 
         constructor(
@@ -44,9 +44,7 @@ module MusicStore.Controllers {
 
         public uploadArtists($files: File[]) {
             var uploads: ng.IPromise<any>[] = [];
-
             if ($files.length > 0) {
-
                 var file = $files[0];
                 uploads.push(this.$upload.upload<any>({
                     url: 'api/artist/upload',

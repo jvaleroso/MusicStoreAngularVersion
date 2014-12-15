@@ -11,7 +11,7 @@
             return this.genreService.getList();
         }
 
-        public saveGenre(genre: MusicStore.Models.IGenre) {
+        public saveGenre(genre: MusicStore.Models.Genre) {
             return this.genreService.customPOST(genre);
         }
 

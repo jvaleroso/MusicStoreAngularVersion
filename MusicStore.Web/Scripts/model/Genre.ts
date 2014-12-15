@@ -1,6 +1,6 @@
 ﻿module MusicStore.Models {
 
-    export interface IGenre {
+    export class Genre {
         id: string;
         name: string;
         description: string;

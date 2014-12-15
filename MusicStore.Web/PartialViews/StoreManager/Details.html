@@ -1,39 +1,36 @@
 ﻿<form id="mainForm" role="form" class="form-horizontal">
-    <div class="container">
-        <div class="form-horizontal">
-            <hr />
-            <fieldset>
-                <legend>Album Details</legend>
-                <div class="control-group">
-                    <label class="control-label" for="lblTitle">Title</label>
-                    <div class="controls">
-                        <input type="text" id="lblTitle" ng-disabled="true" ng-model="album.title">
-                    </div>
+    <fieldset>
+        <legend>Album Details</legend>
+        <div class="container">
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="lblTitle">Title</label>
+                <div class="col-sm-5">
+                    <input type="text" id="lblTitle" ng-disabled="true" class="form-control" ng-model="albumDtlsCtrl.album.title">
                 </div>
-                <div class="control-group">
-                    <label class="control-label" for="lblPrice">Price</label>
-                    <div class="controls">
-                        <input type="text" id="lblPrice" ng-disabled="true" ng-model="album.price">
-                    </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="lblPrice">Price</label>
+                <div class="col-sm-5">
+                    <input type="text" id="lblPrice" ng-disabled="true" class="form-control" ng-model="albumDtlsCtrl.album.price">
                 </div>
-                <div class="control-group">
-                    <label class="control-label" for="lblArtist">Aritst</label>
-                    <div class="controls">
-                        <input type="text" id="lblArtist" ng-disabled="true" ng-model="album.artist.name">
-                    </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="lblArtist">Aritst</label>
+                <div class="col-sm-5">
+                    <input type="text" id="lblArtist" ng-disabled="true" class="form-control" ng-model="albumDtlsCtrl.album.artist.name">
                 </div>
-                <div class="control-group">
-                    <label class="control-label" for="lblGenre">Genre</label>
-                    <div class="controls">
-                        <input type="text" id="lblGenre" ng-disabled="true" ng-model="album.genre.name">
-                    </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="lblGenre">Genre</label>
+                <div class="col-sm-5">
+                    <input type="text" id="lblGenre" ng-disabled="true" class="form-control" ng-model="albumDtlsCtrl.album.genre.name">
                 </div>
-                <div class="control-group">
-                    <div class="controls">
-                        <button class="btn btn-default" onclick=" window.history.back() ">&larr;&nbsp;&nbsp;Back</button>
-                    </div>
-                </div>
-            </fieldset>
+            </div>
         </div>
-    </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button class="btn btn-default" onclick=" window.history.back() ">&larr;&nbsp;&nbsp;Back</button>
+            </div>
+        </div>
+    </fieldset>
 </form>

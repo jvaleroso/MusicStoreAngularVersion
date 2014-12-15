@@ -35,7 +35,6 @@ var MusicStore;
             ArtistController.prototype.uploadArtists = function ($files) {
                 var _this = this;
                 var uploads = [];
-
                 if ($files.length > 0) {
                     var file = $files[0];
                     uploads.push(this.$upload.upload({

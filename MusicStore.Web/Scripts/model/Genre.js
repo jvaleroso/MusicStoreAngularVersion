@@ -1,13 +1,13 @@
 ﻿var MusicStore;
 (function (MusicStore) {
     (function (Models) {
-        var Artist = (function () {
-            function Artist() {
+        var Genre = (function () {
+            function Genre() {
             }
-            return Artist;
+            return Genre;
         })();
-        Models.Artist = Artist;
+        Models.Genre = Genre;
     })(MusicStore.Models || (MusicStore.Models = {}));
     var Models = MusicStore.Models;
 })(MusicStore || (MusicStore = {}));
-//# sourceMappingURL=Artist.js.map
+//# sourceMappingURL=Genre.js.map

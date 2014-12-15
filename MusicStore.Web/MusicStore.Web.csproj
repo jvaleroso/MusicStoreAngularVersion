@@ -306,10 +306,6 @@
     <Content Include="hibernate.cfg.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="partials\AlbumDetails.html" />
-    <Content Include="partials\Artist.html" />
-    <Content Include="partials\Cart.html" />
-    <Content Include="partials\Genre.html" />
     <Content Include="PartialViews\Configuration\Artists.html" />
     <Content Include="PartialViews\Configuration\Genres.html" />
     <Content Include="Scripts\angular-file-upload-all.js" />
@@ -329,6 +325,8 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\controllers\AlbumDetailsController.js" />
     <Content Include="Scripts\controllers\ArtistController.js" />
+    <Content Include="Scripts\controllers\BrowseAlbumController.js" />
+    <Content Include="Scripts\controllers\CreateAlbumController.js" />
     <Content Include="Scripts\controllers\GenreListController.js" />
     <Content Include="Scripts\controllers\HomeController.js" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -373,11 +371,6 @@
     <Content Include="Scripts\controllers\GenreController.js" />
     <Content Include="Scripts\controllers\NavbarController.js" />
     <Content Include="Scripts\controllers\StoreController.js" />
-    <Content Include="partials\Admin.html" />
-    <Content Include="partials\Home.html" />
-    <Content Include="partials\Browse.html" />
-    <Content Include="partials\Store.html" />
-    <Content Include="partials\StoreManager.html" />
     <Content Include="Content\bootstrap\bootstrap-glyphicons.css" />
     <Content Include="Content\css\bootstrap-responsive.css" />
     <Content Include="Content\css\bootstrap-responsive.min.css" />
@@ -411,7 +404,6 @@
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\lodash.js" />
     <Content Include="Scripts\lodash.min.js" />
-    <Content Include="Scripts\model\Artist.js" />
     <Content Include="Scripts\restangular.js" />
     <Content Include="Scripts\restangular.min.js" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -481,15 +473,18 @@
     <TypeScriptCompile Include="Scripts\app.ts" />
     <TypeScriptCompile Include="Scripts\controllers\AlbumDetailsController.ts" />
     <TypeScriptCompile Include="Scripts\controllers\ArtistController.ts" />
+    <TypeScriptCompile Include="Scripts\controllers\BrowseAlbumController.ts" />
+    <TypeScriptCompile Include="Scripts\controllers\CreateAlbumController.ts" />
+    <TypeScriptCompile Include="Scripts\controllers\EditAlbumController.ts" />
     <TypeScriptCompile Include="Scripts\controllers\GenreController.ts" />
     <TypeScriptCompile Include="Scripts\controllers\GenreListController.ts" />
     <TypeScriptCompile Include="Scripts\controllers\HomeController.ts" />
     <TypeScriptCompile Include="Scripts\controllers\NavbarController.ts" />
     <TypeScriptCompile Include="Scripts\controllers\StoreController.ts" />
     <TypeScriptCompile Include="Scripts\controllers\StoreManagerController.ts" />
-    <TypeScriptCompile Include="Scripts\model\IAlbum.ts" />
-    <TypeScriptCompile Include="Scripts\model\IArtist.ts" />
-    <TypeScriptCompile Include="Scripts\model\IGenre.ts" />
+    <TypeScriptCompile Include="Scripts\model\Album.ts" />
+    <TypeScriptCompile Include="Scripts\model\Artist.ts" />
+    <TypeScriptCompile Include="Scripts\model\Genre.ts" />
     <TypeScriptCompile Include="Scripts\resources\AlbumService.ts" />
     <TypeScriptCompile Include="Scripts\resources\ArtistService.ts" />
     <TypeScriptCompile Include="Scripts\resources\GenreService.ts" />
@@ -505,6 +500,7 @@
     <TypeScriptCompile Include="Scripts\typings\angularjs\angular.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\jquery.fileupload\jquery.fileupload.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
+    <TypeScriptCompile Include="Scripts\typings\lodash\lodash.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\restangular\restangular.d.ts" />
   </ItemGroup>
   <PropertyGroup>

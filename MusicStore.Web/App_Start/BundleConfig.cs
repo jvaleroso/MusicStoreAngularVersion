@@ -59,7 +59,11 @@ namespace MusicStore.Web
                 "~/Scripts/controllers/StoreController.js",
                 "~/Scripts/controllers/StoreManagerController.js",
                 "~/Scripts/controllers/AlbumDetailsController.js",
-                "~/Scripts/controllers/ArtistController.js"));
+                "~/Scripts/controllers/ArtistController.js",
+                "~/Scripts/controllers/CreateAlbumController.js",
+                "~/Scripts/controllers/EditAlbumController.js",
+                "~/Scripts/controllers/BrowseAlbumController.js"
+                ));
 
         }
     }

@@ -1,1 +1,1 @@
-{"version":3,"file":"Artist.js","sourceRoot":"","sources":["Artist.ts"],"names":[],"mappings":""}
+{"version":3,"file":"Artist.js","sourceRoot":"","sources":["Artist.ts"],"names":["MusicStore","MusicStore.Models","MusicStore.Models.Artist","MusicStore.Models.Artist.constructor"],"mappings":"AAAA,IAAO,UAAU;AAMhB,CAND,UAAO,UAAU;KAAjBA,UAAkBA,MAAMA;QAEpBC;YAAAC;YAGAC,CAACA;AAAAD,YAADA,cAACA;QAADA,CAACA,IAAAD;QAHDA,uBAGCA;IACLA,CAACA,iDAAAD;mCAAAA;AAADA,CAACA,mCAAA"}

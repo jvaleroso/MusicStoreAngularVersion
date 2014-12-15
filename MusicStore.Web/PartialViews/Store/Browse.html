@@ -1,23 +1,23 @@
-﻿<div class="row-fluid">
-    <ul class="thumbnails">
-        <li class="span3" ng-repeat="album in storeController.albums" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
+﻿<fieldset>
+    <legend>Music Store</legend>
+    <div class="row-fluid">
+        <div class="col-xs-6 col-md-4" ng-repeat="album in browseAlbumCtrl.albums" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">
             <div class="thumbnail">
+                <img data-src="holder.js/300x300" />
                 <div class="caption">
-                    <h5><span ng-bind="album.title"></span></h5>
+                    <h4><i><span ng-bind=" album.title"></span></i></h4>
                     <p><span ng-bind="album.price"></span></p>
                     <p>Artist: <span ng-bind="album.artist.name"></span></p>
                     <p>Genre: <span ng-bind="album.genre.name"></span></p>
                     <p>
-                        <a href="#/Store/Browse?genre={{album.genre.name}}" class="btn btn-success">Add to cart</a>
+                        <a ng-href="#/Store/Browse?genre={{album.genre.name}}" class="btn btn-primary">Add to cart</a>
                     </p>
                 </div>
             </div>
-        </li>
-
-    </ul>
-
-    <div class="alert alert-info" ng-if="storeController.albums.length == 0">
+        </div>
+    </div>
+    <div class="alert alert-info" ng-if="browseAlbumCtrl.albums.length == 0">
         <a href="#" class="close" data-dismiss="alert">&times;</a>
         No result found.
     </div>
-</div>
+</fieldset>

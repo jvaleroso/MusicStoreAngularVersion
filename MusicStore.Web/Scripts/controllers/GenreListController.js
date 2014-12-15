@@ -33,8 +33,10 @@
 
             GenreListController.prototype.initialize = function () {
                 var _this = this;
+                this.isLoadingGenre = true;
                 this.genreService.getGenres().then(function (genres) {
                     _this.genres = genres;
+                    _this.isLoadingGenre = false;
                 }, function (error) {
                     console.log(error);
                 });

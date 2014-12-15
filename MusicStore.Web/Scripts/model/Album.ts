@@ -1,12 +1,12 @@
 ﻿module MusicStore.Models {
 
-    export interface IAlbum {
+    export class  Album {
         id: string;
         title: string;
         price: number;
         albumArtUrl: string;
-        artist: IArtist;
-        genre: IGenre;
+        artist: Artist;
+        genre: Genre;
         dateCreated: Date;
     }
 }

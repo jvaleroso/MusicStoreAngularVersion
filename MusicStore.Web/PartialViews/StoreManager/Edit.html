@@ -1,17 +1,43 @@
-﻿@{
-    Layout = null;
-}
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title></title>
-</head>
-<body>
-    <div>
-    
-    </div>
-</body>
-</html>
+﻿<form id="mainForm" role="form" class="form-horizontal">
+    <fieldset>
+        <legend>Edit Album</legend>
+        <div class="container">
+            <div class="form-group">
+                <label for="lblTitle" class="control-label col-sm-2">Title</label>
+                <div class="col-sm-5">
+                    <input type="text" id="lblTitle" class="form-control" ng-model="editAlbumCtrl.album.title">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="lblPrice" class="control-label col-sm-2">Price</label>
+                <div class="col-sm-5">
+                    <input type="text" id="lblPrice" class="form-control" ng-model="editAlbumCtrl.album.price">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="lblAlbumArtUrl" class="control-label col-sm-2">Album Art URL</label>
+                <div class="col-sm-5">
+                    <input type="text" id="lblAlbumArtUrl" class="form-control" ng-model="editAlbumCtrl.album.albumArtUrl">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="drpArtists" class="control-label col-sm-2">Aritst</label>
+                <div class="col-sm-5">
+                    <select ng-model="editAlbumCtrl.album.artist" id="drpArtists" class="form-control" ng-options="artist.name for artist in editAlbumCtrl.artists"></select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="drpGenres" class="control-label col-sm-2">Genre</label>
+                <div class="col-sm-5">
+                    <select ng-model="editAlbumCtrl.album.genre" id="drpGenres" class="form-control" ng-options="genre.name for genre in editAlbumCtrl.genres"></select>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="button" class="btn btn-success" ng-click="editAlbumCtrl.updateAlbum()">Update</button>
+                <button type="button" class="btn btn-success" onclick="window.history.back() ">&larr;&nbsp;&nbsp;Back</button>
+            </div>
+        </div>
+    </fieldset>
+</form>

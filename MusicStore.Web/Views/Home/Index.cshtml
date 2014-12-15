@@ -24,19 +24,19 @@
             <div class="collapse navbar-collapse" id="navHeaderCollapse">
                 <ul class="nav navbar-nav" ng-controller="NavbarController as navbar">
                     <li ng-class="{'active': navbar.getClass('/Home')}">
-                        <a href="#/Home"><span class="glyphicon glyphicon-home"></span> Home</a>
+                        <a ng-href="#/Home"><span class="glyphicon glyphicon-home"></span> Home</a>
                     </li>
                     <li ng-class="{'active': navbar.getClass('/Store')}">
-                        <a href="#/Store"><span class="glyphicon glyphicon-music"></span> Store</a>
+                        <a ng-href="#/Store"><span class="glyphicon glyphicon-music"></span> Store</a>
                     </li>
                     <li ng-class="{'active': navbar.getClass('/Cart')}">
-                        <a href="#/Cart"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a>
+                        <a ng-href="#/Cart"><span class="glyphicon glyphicon-shopping-cart"></span> Cart</a>
                     </li>
                     <li ng-class="{'active': navbar.getClass('/Admin')}">
-                        <a href="#/Admin"><span class="glyphicon glyphicon-user"></span> Admin</a>
+                        <a ng-href="#/Admin"><span class="glyphicon glyphicon-user"></span> Admin</a>
                     </li>
                     <li ng-class="{'active': navbar.getClass('/StoreManager')}">
-                        <a href="#/StoreManager"><span class="glyphicon glyphicon-list-alt"></span> Store Manager</a>
+                        <a ng-href="#/StoreManager"><span class="glyphicon glyphicon-list-alt"></span> Store Manager</a>
                     </li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown">
@@ -44,8 +44,8 @@
                             Configuration <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="#/Configuration/Artists">Artists</a></li>
-                            <li><a href="#/Configuration/Genres">Genres</a></li>
+                            <li><a ng-href="#/Configuration/Artists">Artists</a></li>
+                            <li><a ng-href="#/Configuration/Genres">Genres</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -62,15 +62,17 @@
                             <ul class="nav nav-pills nav-stacked" role="navigation">
                                 <li class="nav-header">Music Genre</li>
                                 <li class="nav-divider"></li>
-                                <li ng-repeat="genre in genreList.genres" ng-class="{'active': genreList.getClass(genre.name)}">
-                                    <a href="#/Store/Browse?genre={{genre.name}}">
+                                <li ng-repeat="genre in genreList.genres" ng-class="{'active': genreList.getClass(genre.name)}"
+                                    ng-if="!genreList.isLoadingGenre">
+                                    <a ng-href="#/Store/Browse?genre={{genre.name}}">
                                         <span ng-bind="genre.name"></span>
                                     </a>
                                 </li>
                                 @*<li class="active"><a href="#"><span class="badge pull-right">3</span>Rock</a></li>
-                                <li><a href="#"><span class="badge pull-right">2</span>Ballad</a></li>
-                                <li><a href="#"><span class="badge pull-right">1</span>POP</a></li>*@
+                                    <li><a href="#"><span class="badge pull-right">2</span>Ballad</a></li>
+                                    <li><a href="#"><span class="badge pull-right">1</span>POP</a></li>*@
                             </ul>
+                            <span ng-if="genreList.isLoadingGenre" style="align-content: center "><i class="fa fa-refresh fa-spin fa-2x"></i></span>
                         </div>
                     </div>
                 </div>

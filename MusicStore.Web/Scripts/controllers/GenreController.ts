@@ -6,8 +6,8 @@ module MusicStore.Controllers {
     }
 
     export class GenreController {
-        private genres: MusicStore.Models.IGenre[];
-        private genre: MusicStore.Models.IGenre;
+        private genres: MusicStore.Models.Genre[];
+        private genre: MusicStore.Models.Genre;
         private isLoadingData: boolean;
 
         constructor(

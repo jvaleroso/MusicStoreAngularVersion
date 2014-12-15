@@ -13,15 +13,19 @@
         }
 
         public getAlbumsByGenre(genre: string) {
-            return this.albumService.getList('', { genre: genre });
+            return this.albumService.customGETLIST('', { genre: genre });
         }
 
-        getAlbumById(id: number) {
+        public getAlbumById(id: number) {
             return this.albumService.customGET('', { id: id });
         }
 
-        saveAlbum(album: MusicStore.Models.IAlbum) {
+        public saveAlbum(album: Models.Album) {
             return this.albumService.customPOST(album);
+        }
+
+        public updateAlbum(album: Models.Album) {
+            return this.albumService.customPUT(album);
         }
     }
 

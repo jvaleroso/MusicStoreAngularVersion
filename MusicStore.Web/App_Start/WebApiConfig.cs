@@ -10,8 +10,8 @@ namespace MusicStore.Web
         {
             config.Routes.MapHttpRoute("GetArtists",
                 "api/genre",
-                new {controller = "Genre", action = "Get"},
-                new {httpMethod = new HttpMethodConstraint(HttpMethod.Get)});
+                new { controller = "Genre", action = "Get" },
+                new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) });
 
             config.Routes.MapHttpRoute("DownloadArtists",
                 "api/artist/download",
@@ -25,14 +25,14 @@ namespace MusicStore.Web
                 new { httpMethod = new HttpMethodConstraint(HttpMethod.Post) });
 
             config.Routes.MapHttpRoute("GetGenres",
-       "api/artist",
-       new { controller = "Artist", action = "GetArtist" },
-       new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) });
+                "api/artist",
+                new { controller = "Artist", action = "GetArtist" },
+                new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) });
 
             config.Routes.MapHttpRoute("DownloadGenres",
                 "api/genre/download",
-                new {controller = "Genre", action = "DownloadGenres"},
-                new {httpMethod = new HttpMethodConstraint(HttpMethod.Get)});
+                new { controller = "Genre", action = "DownloadGenres" },
+                new { httpMethod = new HttpMethodConstraint(HttpMethod.Get) });
 
             config.Routes.MapHttpRoute("UploadGenres",
                 "api/genre/upload",

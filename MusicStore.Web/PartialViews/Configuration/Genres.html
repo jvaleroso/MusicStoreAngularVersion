@@ -1,44 +1,45 @@
-﻿<div class="container-fluid">
-    <div class="row-fluid">
-        <h3>Genre Configuration</h3>
-        <hr />
-        <div class="pull-right">
-            <span id="uploadGenresBtn" class="btn btn-primary fileinput-button" data-trigger="hover">
-                <i class="fa fa-cloud-upload"> </i>
-                <span>Upload</span>
-                <input id="uploadGenres" ng-file-select ng-file-change="genreCtrl.uploadGenres($files)"
-                       ng-multiple="false" type="file" name="file">
-            </span>
-            <div class="btn-group">
-                <button type="button" class="btn btn-primary" ng-click="genreCtrl.downloadGenres()">
-                    <i class="fa fa-cloud-download"></i>&nbsp;Download
-                </button>
+﻿<fieldset>
+    <legend>Genre Configuration</legend>
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="pull-right">
+                <span id="uploadGenresBtn" class="btn btn-success fileinput-button" data-trigger="hover">
+                    <i class="fa fa-cloud-upload"> </i>
+                    <span>Upload</span>
+                    <input id="uploadGenres" ng-file-select ng-file-change="genreCtrl.uploadGenres($files)"
+                           ng-multiple="false" type="file" name="file">
+                </span>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-success" ng-click="genreCtrl.downloadGenres()">
+                        <i class="fa fa-cloud-download"></i>&nbsp;Download
+                    </button>
+                </div>
             </div>
         </div>
+        <br />
+        <br />
+        <div class="row-fluid">
+            <table class="table table-bordered table-hover table-condensed">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="genre in genreCtrl.genres" ng-if="!genreCtrl.isLoadingData">
+                        <td><span ng-bind="genre.name"></span></td>
+                        <td><span ng-bind="genre.description"></span></td>
+                    </tr>
+                    <tr ng-if="genreCtrl.genres == 0 && !genreCtrl.isLoadingData" class="error">
+                        <td colspan="5" style="text-align: center"><em>No results found</em></td>
+                    </tr>
+                    <tr ng-if="genreCtrl.isLoadingData">
+                        <td colspan="3" style="text-align: center"><i class="fa fa-refresh fa-spin fa-2x"></i><em> Loding data...</em></td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>Total: <span ng-bind="genreCtrl.genres.length"></span><p>
+        </div>
     </div>
-    <br />
-    <br />
-    <div class="row-fluid">
-        <table class="table table-bordered table-hover table-condensed">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Description</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="genre in genreCtrl.genres" ng-if="!genreCtrl.isLoadingData">
-                    <td><span ng-bind="genre.name"></span></td>
-                    <td><span ng-bind="genre.description"></span></td>
-                </tr>
-                <tr ng-if="genreCtrl.genres == 0 && !genreCtrl.isLoadingData" class="error">
-                    <td colspan="5" style="text-align: center"><em>No results found</em></td>
-                </tr>
-                <tr ng-if="genreCtrl.isLoadingData">
-                    <td colspan="3" style="text-align: center"><i class="fa fa-refresh fa-spin fa-2x"></i><em> Loding data...</em></td>
-                </tr>
-            </tbody>
-        </table>
-        <p>Total: <span ng-bind="genreCtrl.genres.length"></span><p>
-</div>
-</div>
+</fieldset>
