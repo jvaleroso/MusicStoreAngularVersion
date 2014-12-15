@@ -42,6 +42,19 @@ namespace MusicStore.Web.Controllers.Api
             return Request.CreateResponse(HttpStatusCode.Created, album);
         }
 
+        [HttpDelete]
+        [Route("api/album?id={id}")]
+        public HttpResponseMessage DeleteAlbum(int id)
+        {
+            var album = _albumService.GetById(id);
+            if (album != null)
+            {
+                _albumService.Delete(album);
+            }
+            return Request.CreateResponse(HttpStatusCode.Created, album);
+        }
+
+
         [HttpGet]
         [Route("api/album?genre={genre}")]
         public HttpResponseMessage GetAlbumByGenre(string genre)

@@ -27,6 +27,11 @@
         public updateAlbum(album: Models.Album) {
             return this.albumService.customPUT(album);
         }
+
+        public deleteAlbum(id: number) {
+            return this.albumService.customDELETE('', { id: id });
+        }
+
     }
 
     angular.module('musicStoreApp')

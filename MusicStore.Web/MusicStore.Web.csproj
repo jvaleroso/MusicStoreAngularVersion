@@ -475,6 +475,7 @@
     <TypeScriptCompile Include="Scripts\controllers\ArtistController.ts" />
     <TypeScriptCompile Include="Scripts\controllers\BrowseAlbumController.ts" />
     <TypeScriptCompile Include="Scripts\controllers\CreateAlbumController.ts" />
+    <TypeScriptCompile Include="Scripts\controllers\DeleteAlbumController.ts" />
     <TypeScriptCompile Include="Scripts\controllers\EditAlbumController.ts" />
     <TypeScriptCompile Include="Scripts\controllers\GenreController.ts" />
     <TypeScriptCompile Include="Scripts\controllers\GenreListController.ts" />

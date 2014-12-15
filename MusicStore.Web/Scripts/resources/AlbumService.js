@@ -25,6 +25,10 @@
             AlbumService.prototype.updateAlbum = function (album) {
                 return this.albumService.customPUT(album);
             };
+
+            AlbumService.prototype.deleteAlbum = function (id) {
+                return this.albumService.customDELETE('', { id: id });
+            };
             return AlbumService;
         })();
         Services.AlbumService = AlbumService;

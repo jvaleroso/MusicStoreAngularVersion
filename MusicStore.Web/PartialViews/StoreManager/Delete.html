@@ -1,17 +1,6 @@
-﻿@{
-    Layout = null;
-}
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title></title>
-</head>
-<body>
-    <div>
-    
-    </div>
-</body>
-</html>
+﻿<fieldset>
+    <legend>Delete Confirmation</legend>
+    <p>Are you sure you want to delete this album: <em><span ng-bind="deleteAlbumCtrl.album.title"></span></em>?</p>
+    <button type="button" class="btn btn-success" ng-click="deleteAlbumCtrl.deleteAlbum()">Ok</button>
+    <button type="button" class="btn btn-success" onclick="window.history.back()">Cancel</button>
+</fieldset>

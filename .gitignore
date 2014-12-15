@@ -4,3 +4,4 @@ obj
 *.user
 _Resharper.*
 packages/
+*.map

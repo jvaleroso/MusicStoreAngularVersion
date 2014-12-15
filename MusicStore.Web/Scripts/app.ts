@@ -37,7 +37,7 @@
                     templateUrl: '/PartialViews/StoreManager/Details.html'
                 })
                 .when('/StoreManager/Delete/:albumId', {
-                    controller: 'StoreManagerController',
+                    controller: 'DeleteAlbumController as deleteAlbumCtrl',
                     templateUrl: '/PartialViews/StoreManager/Delete.html'
                 })
                 .when('/Configuration/Artists', {
